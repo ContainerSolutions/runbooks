@@ -2,8 +2,6 @@
 title: "Hugo is fantastic"
 date: 2020-05-20T13:38:33+02:00
 tags: ["Hugo"]
-draft: true
-description: "Whoop whoop whoop.... Nice"
 ---
 
 Hugo is a static site generator, written in Go which is very easy for anybody to use.
