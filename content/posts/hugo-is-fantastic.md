@@ -65,8 +65,9 @@ and:
 Lets get started. First [install hugo](https://gohugo.io/getting-started/installing/) then:
 
 ```shell
-# Download this repository:
+# Download this repository and navigate to it:
 git clone --recursive git@github.com:ContainerSolutions/runbooks.git
+cd runbooks
 
 # Run the server. Note: the command will output a url for you:
 hugo serve -D
