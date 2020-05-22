@@ -1,20 +1,18 @@
-name: Publish Site
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
       - master
+      - gc/test-action-v2
 
 jobs:
-  build-deploy:
+  hugo-deploy-gh-pages:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-        with:
-          submodules: true
-      - name: Publish Site
-        uses: chabad360/hugo-gh-pages@master
-        with:
-          githubToken: ${{ secrets.PERSONAL_TOKEN }}
+    - uses: actions/checkout@master
+    - name: hugo-deploy-gh-pages
+      uses: khanhicetea/gh-actions-hugo-deploy-gh-pages@master
+      env:
+        GIT_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
+        HUGO_VERSION: "0.71"
