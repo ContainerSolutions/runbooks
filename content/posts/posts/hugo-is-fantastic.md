@@ -66,11 +66,12 @@ Lets get started. First [install hugo](https://gohugo.io/getting-started/install
 
 ```shell
 # Download this repository:
-git clone git@github.com:ContainerSolutions/runbooks.git
+git clone --recursive git@github.com:ContainerSolutions/runbooks.git
 
-# Generate a new runbook:
+# Run the server. Note: the command will output a url for you:
+hugo serve -D
+
+# Try making a new runbook:
 hugo new posts/<your-post-name>.md
 
-# See what it looks like:
-hugo serve -D
 ```
