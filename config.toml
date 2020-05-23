@@ -2,3 +2,5 @@ baseURL = "https://containersolutions.github.io/runbooks/"
 languageCode = "en-us"
 title = "Kookbooks"
 theme = "ananke"
+
+enableGitInfo = true
