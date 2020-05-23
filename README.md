@@ -1,6 +1,6 @@
 # Runbooks
 
-A collection of step by step guides for fixing common tech problems. The goal here is to use this as another avenue for reaching customers.
+A collection of step by step guides for fixing common tech problems.
 
 ## Requirements
 
