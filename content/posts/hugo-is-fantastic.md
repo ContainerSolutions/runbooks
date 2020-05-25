@@ -1,6 +1,5 @@
 ---
 title: "Hugo is fantastic"
-date: 2020-05-20T13:38:33+02:00
 tags: ["Hugo"]
 ---
 
