@@ -1,0 +1,3 @@
+{{ with .Page.GitInfo }}
+  <code class="f7">Last update: {{.AbbreviatedHash}} by {{.AuthorName}} on {{.AuthorDate}} - {{.Subject}}</code>
+{{ end }}
