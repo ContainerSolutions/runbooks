@@ -78,5 +78,3 @@ hugo serve -D
 hugo new posts/<your-post-name>.md
 
 ```
-
-{{ Get .GitInfo.AbbreviatedHash }}
