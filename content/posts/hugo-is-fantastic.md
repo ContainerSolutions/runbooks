@@ -1,7 +1,10 @@
 ---
 title: "Hugo is fantastic"
-tags: ["Hugo"]
+tags: ["hugo", "shortcodes"]
+summary: "Features of this amazing static site generator and how to get started with it."
 ---
+
+[//]: # "All page variables described here: https://gohugo.io/variables/page/"
 
 Hugo is a static site generator, written in Go which is very easy for anybody to use.
 
