@@ -1,3 +1,30 @@
 [submodule "themes/ananke"]
 	path = themes/ananke
 	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "themes/fuji"]
+	path = themes/fuji
+	url = https://github.com/amzrk2/hugo-theme-fuji
+[submodule "themes/techdoc"]
+	path = themes/techdoc
+	url = https://github.com/thingsym/hugo-theme-techdoc.git
+[submodule "themes/terminal"]
+	path = themes/terminal
+	url = https://github.com/panr/hugo-theme-terminal.git
+[submodule "themes/hugo-primer"]
+	path = themes/hugo-primer
+	url = https://github.com/qqhann/hugo-primer.git
+[submodule "themes/amperage"]
+	path = themes/amperage
+	url = https://github.com/asurbernardo/amperage.git
+[submodule "themes/book"]
+	path = themes/book
+	url = https://github.com/alex-shpak/hugo-book
+[submodule "themes/hugo.386"]
+	path = themes/hugo.386
+	url = https://gitlab.com/maxlefou/hugo.386
+[submodule "themes/pure"]
+	path = themes/pure
+	url = https://github.com/xiaoheiAh/hugo-theme-pure
+[submodule "themes/polymer"]
+	path = themes/polymer
+	url = https://github.com/pdevty/polymer
