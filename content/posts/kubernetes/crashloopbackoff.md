@@ -1,14 +1,12 @@
 ---
-title: "Crashloopbackoff"
+title: "CrashLoopBackOff"
 ---
 
-# CrashLoopBackOff
-
-## Overview
+# Overview
 
 A 'CrashLoopBackOff' error occurs when a Pod startup fails repeatedly in Kubernetes.
 
-## Check RunBook Match
+# Check RunBook Match
 
 When running a `kubectl get pods` command, you will see a line like this in the output for your pod:
 
@@ -17,7 +15,7 @@ NAME                     READY     STATUS             RESTARTS   AGE
 nginx-7ef9efa7cd-qasd2   0/1       CrashLoopBackOff   2          1m
 ```
 
-## Initial Steps Overview
+# Initial Steps Overview
 
 1) Run describe
 
@@ -27,17 +25,17 @@ nginx-7ef9efa7cd-qasd2   0/1       CrashLoopBackOff   2          1m
 
 4) Check readiness/liveness probes
 
-## Detailed Steps
+# Detailed Steps
 
-### 1) Run describe
+## 1) Run describe
 
 ```
 kubectl describe -n <NAMESPACE_NAME> pod <POD_NAME>`
 ```
 
-### 2) Examine 'Events' section in output
+## 2) Examine 'Events' section in output
 
-#### 2.1) Check logs of container
+### 2.1) Check logs of container
 
 If application is failing, run
 
@@ -51,7 +49,7 @@ If the container is running as part of a group, you may need to add the containe
 kubectl logs -c <CONTAINER_NAME> -p <POD_NAME>`
 ```
 
-### 3) Examine the 'Last State' section
+## 3) Examine the 'Last State' section
 
 ```
 kubectl describe -n <NAMESPACE_NAME> -p <POD_NAME> | grep -A5 Last.State:
@@ -61,7 +59,7 @@ If the 'Exit Code' is `127`, then the command specified to run (in the container
 
 If the container immediately exits (TODO: how is this identitified?), then you may need to add a command. See Solution B) below.
 
-### 4) Check readiness / liveness probes
+## 4) Check readiness / liveness probes
 
 If these are too short for the application initialization time, then Kubernetes may be killing the application too early.
 
@@ -69,7 +67,7 @@ Whether the time taken to start is longer because there is a problem, or whether
 
 If the probe times are too short, see Solution D) below.
 
-## Solutions
+# Solutions
 
 A) Fix the application
 
@@ -79,32 +77,32 @@ C) Correct the container or spec to run a command that exists in the container
 
 D) Adjust the time for the liveness/readiness probes
 
-### A) Fix the application
+## A) Fix the application
 
 This is outside the scope of this runbook.
 
-### B) Add a startup command
+## B) Add a startup command
 
 In order for a pod to start, it needs a startup command. Consider adding one to the container image, or adding a command to the
 
-### C) Correct the container or spec to run a command that exists in the container
+## C) Correct the container or spec to run a command that exists in the container
 
 TODO
 
-### D) Adjust the time for the liveness/readiness probes
+## D) Adjust the time for the liveness/readiness probes
 
 TODO
 
-## Check resolution
+# Check resolution
 
 If the pod starts up with status `RUNNING` according to the output of `kubectl get pods`, then the issue has been resolved.
 
 If there is a different status, then it may be that this issue is resolved, but a new issue has been revealed.
 
-## Further steps
+# Further steps
 
 None
 
-## Further information
+# Further information
 
 None
