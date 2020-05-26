@@ -2,3 +2,6 @@ public
 
 # Local Netlify folder
 .netlify
+
+# Resources folder generated when running locally
+resources
