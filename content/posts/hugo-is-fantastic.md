@@ -8,9 +8,11 @@ summary: "Features of this amazing static site generator and how to get started 
 
 Hugo is a static site generator, written in Go which is very easy for anybody to use.
 
+## Features
+
 The normal stuff
-* it's super fast (this page regenerates in about 3-18 ms on my laptop)
-* supports markdown with syntax highlight
+* super fast (this page regenerates in about 3-18 ms on my laptop)
+* supports markdown with syntax highlighting
 
 ```ruby
 10.times do |iteration|
@@ -18,7 +20,9 @@ The normal stuff
 end
 ```
 
-but the coolest part is that it has many builtin shortcodes:
+## Shortcodes
+
+One of the best features is that allows us to add special tags called "shortcodes":
 
 ```md
 {{</* youtube 2xkNJL4gJ9E */>}}
@@ -30,9 +34,12 @@ Output:
 
 See the other [builtin shortcodes](https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes)
 
+
+## Custom shortcodes
+
 Adding your own your shortcode components is also super simple with just a sprinkle of HTML.
 
-Lets create one for calling out to the [robohash](https://robohash.org/) service. It will allow us to pass any string and get back a unique robot for that string. [[more info](https://www.youtube.com/watch?v=Eu4zSaKOY4A&list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3&index=22)]
+Lets create one for calling out to the [Robohash](https://robohash.org/) service. It will allow us to pass any string and get back a unique robot for that string. [[more info on creating shortcodes](https://www.youtube.com/watch?v=Eu4zSaKOY4A&list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3&index=22)]
 
 ```html
 <!--
@@ -47,7 +54,7 @@ Lets create one for calling out to the [robohash](https://robohash.org/) service
 />
 ```
 
-That's it, then you can use this new component in any of your posts e.g.
+That's it. Then you can use this component in any of your posts e.g.
 
 ```md
 {{</* robot "Kelsey Hightower" */>}}
@@ -63,13 +70,13 @@ and:
 
 {{< robot "Bjørn Erik Pedersen" >}}
 
+## Get started
 
-Lets get started. First [install hugo](https://gohugo.io/getting-started/installing/) then:
+First [install hugo](https://gohugo.io/getting-started/installing/) then:
 
 ```shell
 # Download this repository and navigate to it:
-git clone --recursive git@github.com:ContainerSolutions/runbooks.git
-cd runbooks
+git clone --recursive git@github.com:ContainerSolutions/runbooks.git && cd runbooks
 
 # Run the server. Note: the command will output a url for you:
 hugo serve -D
