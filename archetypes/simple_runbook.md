@@ -2,24 +2,22 @@
 title: "Simple Runbook Template"
 ---
 
-# [Title Here]
+# Overview
 
-## Overview
+# Check RunBook Match
 
-## Check RunBook Match
+# Initial Steps Overview
 
-## Initial Steps Overview
+# Detailed Steps
 
-## Detailed Steps
+## 1) Step 1
 
-### 1) Step 1
+# Solutions
 
-## Solutions
+## Solution 1
 
-### Solution 1
+# Check resolution
 
-## Check resolution
+# Further steps
 
-## Further steps
-
-## Further information
+# Further information
