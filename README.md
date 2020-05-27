@@ -2,6 +2,8 @@
 
 A collection of step by step guides for fixing common tech problems. The goal here is to use this as another avenue for reaching customers.
 
+The content is published [here](https://containersolutions.github.io/runbooks/)
+
 ## Requirements
 
 ### Git-LFS
