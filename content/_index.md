@@ -6,5 +6,3 @@ description: "Cookies to Kubernetes"
 
 Here we showcase some of our best recipes for solving tricky or common tech problems in simple steps.
 
-
-Photo by [Shitota Yuri](https://unsplash.com/@itshoobastank)
