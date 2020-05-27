@@ -1,6 +1,5 @@
 ---
-title: "Kookbooks"
-featured_image: 'images/shitota-yuri-5IZwgy5LJp8-unsplash.jpg'
+title: "Runbooks"
 description: "Cookies to Kubernetes"
 ---
 
