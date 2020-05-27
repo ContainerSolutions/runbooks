@@ -1,6 +1,6 @@
 baseURL = "https://containersolutions.github.io/runbooks/"
 languageCode = "en-us"
-title = "Kookbooks"
+title = "Runbooks"
 theme = "hugo-primer"
 
 enableGitInfo = "true"
