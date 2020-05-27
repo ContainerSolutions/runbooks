@@ -21,7 +21,7 @@
 	url = https://github.com/alex-shpak/hugo-book
 [submodule "themes/hugo.386"]
 	path = themes/hugo.386
-	url = https://gitlab.com/maxlefou/hugo.386
+	url = https://gitlab.com/maxlefou/hugo.386.git/
 [submodule "themes/pure"]
 	path = themes/pure
 	url = https://github.com/xiaoheiAh/hugo-theme-pure
