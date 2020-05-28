@@ -27,7 +27,9 @@ nginx-7ef9efa7cd-qasd2   1/1       Terminating        0          1h
 
 1) [Check for finalizers](#detailed-step-1)
 
-2) [Force-delete the pod](#detailed-step-2)
+2) [Check the status of the node](#detailed-step-2)
+
+3) [Force-delete the pod](#detailed-step-3)
 
 ## Detailed Steps {#detailed-steps}
 
@@ -43,7 +45,19 @@ kubectl describe pod -n <NAMESPACE> -p <POD_NAME> -o yaml
 
 and look for a 'finalizers' section under 'metadata'. If any finalizers are present, then go to [Solution A)](#solution-a).
 
-### 2) Delete the pod {#detailed-step-2}
+### 2) Check the status of the node {#detailed-step-2}
+
+It is possible that the node your pod(s) is/are running on has failed in some way.
+
+If you run
+
+```
+kubectl get pods -o wide --all-namspaces
+```
+
+and find that pods are in a `Terminating` state on a specific node, then this may be the issue.
+
+### 3) Delete the pod {#detailed-step-3}
 
 The pod may not be terminating due to a process that is not responding to a signal. The exact reason will be context-specific and application dependent. Common causes include:
 
@@ -58,6 +72,8 @@ In these cases, [Solution B)](#solution-b) may resolve the issue.
 A) [Remove finalizers](#solution-a)
 
 B) [Force-delete the pod](#solution-b)
+
+C) [Restart kubelet](#solution-c)
 
 ### A) Remove finalizers {#solution-a}
 
@@ -76,6 +92,10 @@ kubectl delete pod --grace-period=0 --force --namespace <NAMESPACE> <POD_NAME>
 ```
 
 If this [does not work]{#check-resolution}, then return to the previous step.
+
+### C) Restart kubelet {#solution-c}
+
+If you can, SSH to the node and restart the kubelet process. If you do not have access or permission, this may require an administrator to get involved.
 
 ## Check Resolution {#check-resolution}
 
