@@ -10,3 +10,27 @@ googleAnalytics = "UA-53586058-2"
 
 [frontmatter]
 date = [":git", "lastmod", "date", "publishDate"]
+
+[menu]
+
+[[menu.main]]
+name = "Posts"
+weight = 1
+identifier = "posts"
+url = "/posts/"
+
+[[menu.main]]
+name = "Kubernetes"
+parent = "posts"
+weight = 2
+identifier = "kubernetes"
+url = "/posts/kubernetes/"
+permalink = "/posts/kubernetes"
+
+[[menu.main]]
+name = "General"
+parent = "posts"
+weight = 3
+identifier = "general"
+url = "/posts/general/"
+permalink = "/posts/general"
