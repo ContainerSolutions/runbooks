@@ -26,25 +26,23 @@ then continue with this runbook, bearing in mind that the problem is likely spec
 
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) Run describe on pod
+1) [Run describe on pod](#step-1)
 
-2) Examine 'Events' section in describe output
+2) [Examine 'Events' section in describe output](#step-2)
 
-3) Check the exit code
+3) [Check the exit code](#step-3)
 
-4) Check readiness/liveness probes
+4) [Check readiness/liveness probes](#step-4)
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Run describe on pod
+### 1) Run describe on pod {#step-1}
 
 ```
 kubectl describe -n <NAMESPACE_NAME> pod <POD_NAME>`
 ```
 
-### 2) Examine 'Events' section in output
-
-#### 2.1) Check logs of container
+### 2) Examine 'Events' section in output {#step-2}
 
 If application is failing, run
 
@@ -58,7 +56,7 @@ If the container is running as part of a group of containers, you may need to ad
 kubectl logs -c <CONTAINER_NAME> -p <POD_NAME>`
 ```
 
-### 3) Examine the 'Last State' section
+### 3) Examine the 'Last State' section {#step-3}
 
 ```
 kubectl describe -n <NAMESPACE_NAME> -p <POD_NAME> | grep -A5 Last.State:
@@ -70,7 +68,7 @@ If the 'Exit Code' is `126`, then the command specified to run (in the container
 
 If the container immediately exits (TODO: how is this identitified?), then you may need to add a command. See Solution B) below.
 
-### 4) Check readiness / liveness probes
+### 4) Check readiness / liveness probes {#step-4}
 
 If these are too short for the application initialization time, then Kubernetes may be killing the application too early.
 
@@ -80,13 +78,13 @@ If the probe times are too short, see Solution D) below.
 
 ## Solutions {#solutions}
 
-A) Fix the application
+A) [Fix the application](#solution-a)
 
-B) Add a startup command
+B) [Add a startup command](#solution-b)
 
-C) Correct the container or spec to run a command that exists in the container, and is executable
+C) [Correct the container or spec to run a command that exists in the container, and is executable](#solution-c)
 
-D) Adjust the time for the liveness/readiness probes
+D) [Adjust the time for the liveness/readiness probes](#solution-d)
 
 ### A) Fix the application {#solution-a}
 
