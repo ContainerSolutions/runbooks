@@ -17,21 +17,21 @@ nginx-7ef9efa7cd-qasd2   0/1       ImagePullBackOff   0          1m
 
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) Run describe on pod
+1) [Run describe on pod](#step-1)
 
-2) Examine 'Events' section in describe output
+2) [Examine 'Events' section in describe output](#step-2)
 
-3) Check the error message
+3) [Check the error message](#step-3)
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Run describe on pod
+### 1) Run describe on pod {#step-1}
 
 ```
 kubectl describe -n <NAMESPACE_NAME> pod <POD_NAME>`
 ```
 
-### 2) Examine 'Events' section in describe output
+### 2) Examine 'Events' section in describe output {#step-2}
 
 #### Repository does not exist
 
@@ -66,7 +66,7 @@ Warning  Failed     10m (x4 over 6m)    kubelet, gke-cs-79ec0e47-kfkc  Failed to
 then this indicates that the _specific version_ of the Docker repository is not available. Confirm that the image is available, and update accordingly if this is the case.
 
 
-### 3) Check registry is accessible
+### 3) Check registry is accessible {#step-3}
 
 You may be trying to access a private repository to download the image from the Kubernetes node.
 
@@ -74,7 +74,7 @@ If you are pointed at a private repository, it is possible that you do not have 
 
 ## Solutions {#solutions}
 
-A) Add credentials
+A) [Add credentials](#solution-a)
 
 ### A) Add credentials {#solution-a}
 
