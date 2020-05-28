@@ -6,7 +6,7 @@ theme = "hugo-primer"
 disqusShortname = "runbooks"
 enableGitInfo = "true"
 
-googleAnalytics = "UA-96483456-4"
+googleAnalytics = "UA-53586058-2"
 
 [frontmatter]
 date = [":git", "lastmod", "date", "publishDate"]
