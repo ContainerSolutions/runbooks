@@ -1,5 +1,6 @@
 ---
 title: "Simple Runbook Template"
+summary: "Summary here"
 ---
 
 ## Overview {#overview}
@@ -39,3 +40,6 @@ A) [Solution](#solution-a)
 ### Further Step 1 {#further-steps-1}
 
 ## Further Information {#further-information}
+
+[//]: # (REFERENCED DOCS)
+[//]: # (eg https://somestackoverflowpage)
