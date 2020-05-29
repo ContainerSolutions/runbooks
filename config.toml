@@ -21,7 +21,7 @@ url = "/"
 
 [[menu.main]]
 name = "Home"
-parent = "posts"
+parent = "navmenu"
 weight = 2
 identifier = "home"
 url = "/"
@@ -29,7 +29,7 @@ permalink = "/"
 
 [[menu.main]]
 name = "Kubernetes"
-parent = "posts"
+parent = "navmenu"
 weight = 3
 identifier = "kubernetes"
 url = "/posts/kubernetes/"
@@ -37,7 +37,7 @@ permalink = "/posts/kubernetes"
 
 [[menu.main]]
 name = "General"
-parent = "posts"
+parent = "navmenu"
 weight = 4
 identifier = "general"
 url = "/posts/general/"
