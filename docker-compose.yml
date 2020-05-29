@@ -1,0 +1,8 @@
+version: '2.0'
+services:
+  hugo:
+    build: .
+    ports:
+    - "1313:1313"
+    volumes:
+    - .:/src

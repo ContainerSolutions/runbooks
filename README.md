@@ -15,3 +15,30 @@ binary files are used).
 Instructions for installing LFS can be found here:
 
 https://git-lfs.github.com/
+
+
+### Submodules
+
+Hugo uses submodule for themes so when you are cloning this repository you should pass the `--recursive` flag:
+
+```
+git clone --recursive git@github.com:ContainerSolutions/runbooks.git
+```
+
+## Running hugo locally
+
+### Docker
+
+If you have docker compose installed you can simply call and you should see the blog at http://localhost:1313/runbooks/
+
+```
+docker-compose up
+```
+
+#### Local Install (runs really fast)
+
+First [install hugo](https://gohugo.io/getting-started/installing/) then from this repository run:
+
+```
+hugo serve -D
+```
