@@ -30,7 +30,7 @@ permalink = "/"
 [[menu.main]]
 name = "Kubernetes"
 parent = "posts"
-weight = 2
+weight = 3
 identifier = "kubernetes"
 url = "/posts/kubernetes/"
 permalink = "/posts/kubernetes"
@@ -38,7 +38,7 @@ permalink = "/posts/kubernetes"
 [[menu.main]]
 name = "General"
 parent = "posts"
-weight = 3
+weight = 4
 identifier = "general"
 url = "/posts/general/"
 permalink = "/posts/general"
