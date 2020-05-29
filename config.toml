@@ -14,10 +14,18 @@ date = [":git", "lastmod", "date", "publishDate"]
 [menu]
 
 [[menu.main]]
-name = "Posts"
+name = "Nav Menu"
 weight = 1
-identifier = "posts"
-url = "/posts/"
+identifier = "navmenu"
+url = "/"
+
+[[menu.main]]
+name = "Home"
+parent = "posts"
+weight = 2
+identifier = "home"
+url = "/"
+permalink = "/"
 
 [[menu.main]]
 name = "Kubernetes"
