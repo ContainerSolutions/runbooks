@@ -1,10 +1,11 @@
 ---
 title: "Pod Stuck In Terminating State"
+summary: "Pod Stuck In Terminating State"
 ---
 
 ## Overview {#overview}
 
-Pods have been deleted, and remain in a status of Terminated for more than a few seconds.
+A pod has been deleted, and remains in a status of Terminated for more than a few seconds.
 
 This can happen because:
 
@@ -37,10 +38,10 @@ nginx-7ef9efa7cd-qasd2   1/1       Terminating        0          1h
 
 First we check to see whether the pod has any finalizers. If it does, their failure to complete may be the root cause.
 
-Run a describe on the pod to get its configuration:
+Get the pod's configuration:
 
 ```
-kubectl describe pod -n <NAMESPACE> -p <POD_NAME> -o yaml
+kubectl get pod -n <NAMESPACE> -p <POD_NAME> -o yaml
 ```
 
 and look for a 'finalizers' section under 'metadata'. If any finalizers are present, then go to [Solution A)](#solution-a).

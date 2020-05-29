@@ -1,5 +1,6 @@
 ---
-title: "ImagePullBackOff"
+title: "Pod In ImagePullBackOff State"
+summary: "Pod In ImagePullBackOff State"
 ---
 
 ## Overview {#overview}
