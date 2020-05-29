@@ -1,7 +1,7 @@
 baseURL = "https://containersolutions.github.io/runbooks/"
 languageCode = "en-us"
 title = "Runbooks"
-theme = "hugo-primer-fixed"
+theme = "hugo-primer-cs"
 
 disqusShortname = "runbooks"
 enableGitInfo = "true"
