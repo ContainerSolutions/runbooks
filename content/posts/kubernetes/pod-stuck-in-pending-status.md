@@ -7,12 +7,6 @@ summary: "Pod Stuck In Pending State"
 
 A pod has been deployed, and remains in a Pending state for more time than is expected.
 
-This most commonly happens because:
-
-- the cluster doesn't have enough resources to start the
-
-- a container image is still downloading, or is hanging on download
-
 ## Check RunBook Match {#check-runbook-match}
 
 When running a `kubectl get pods` command, you will see a line like this in the output for your pod:
@@ -62,7 +56,7 @@ Look at the 'Events' section of your `/tmp/runbooks_describe_pod.txt` file.
 
 then skip to [Debug 'pulling image'](#step-8).
 
-#### 2.2) If you see a `FailedScheduling` error with `Insufficient cpu` or `Insuffient memory` {#step-2_2}
+#### 2.2) If you see a `FailedScheduling` error with `Insufficient cpu` or `Insuffient memory` {#step-2-2}
 
 mentioned, you have run out of resources available to run your pod:
 
@@ -169,7 +163,7 @@ Warning  FailedScheduling  <unknown>  default-scheduler  0/1 nodes are available
 ```
 - nodes being busy
 
-If your pod could not be scheduled because nodes were busy, then [this step](#step-2_2) should have caught this.
+If your pod could not be scheduled because nodes were busy, then [this step](#step-2-2) should have caught this.
 
 ### 7) Debug 'pulling image' event {#step-7}
 
