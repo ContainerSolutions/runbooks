@@ -109,7 +109,9 @@ TODO
 
 If the pod starts up with status `RUNNING` according to the output of `kubectl get pods`, then the issue has been resolved.
 
-If there is a different status, then it may be that this issue is resolved, but a new issue has been revealed.
+If there is a different status, then it may be that this particular issue is resolved, but a new issue has been revealed, and the runbook needs to be re-followed.
+
+If it has not been resolved by this runbook, then please comment below.
 
 ## Further Steps {#further-steps}
 
