@@ -27,7 +27,7 @@ then continue with this runbook, bearing in mind that the problem is likely spec
 
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) [Run describe on pod](#step-1)
+1) [Gather information](#step-1)
 
 2) [Examine 'Events' section in describe output](#step-2)
 
@@ -39,35 +39,32 @@ then continue with this runbook, bearing in mind that the problem is likely spec
 
 ### 1) Run describe on pod {#step-1}
 
+Run these commands to gather relevant information in one step:
+
 ```
-kubectl describe -n <NAMESPACE_NAME> pod <POD_NAME>`
+kubectl describe -n [NAMESPACE_NAME] pod [POD_NAME] > /tmp/runbooks_describe_pod.txt
+kubectl logs --all-containers -n [NAMESPACE_NAME] > /tmp/runbooks_pod_logs.txt
 ```
 
 ### 2) Examine 'Events' section in output {#step-2}
 
-If application is failing, run
+Look at the 'Events' section of your `/tmp/runbooks_describe_pod.txt` file.
+
+#### 2.1) `Back-off restarting failed container`
+
+If you see a warning like the following in your `/tmp/runbooks_describe_pod.txt` output:
 
 ```
-kubectl logs -n <NAMESPACE_NAME> -p <POD_NAME>`
+Warning  BackOff    8s (x2 over 9s)    kubelet, dali      Back-off restarting failed container
 ```
 
-If the container is running as part of a group of containers, you may need to add the container name to the logs to specify which container you are interested in:
+then the pod has repeatedly failed to start up successfully.
 
-```
-kubectl logs -c <CONTAINER_NAME> -p <POD_NAME>`
-```
+Make a note of any containers that have a `State` of `Waiting` in the description and a description of `CrashLoopBackOff`. These are the containers you will need to fix.
 
-### 3) Examine the 'Last State' section {#step-3}
+### 3) Check the exit code {#step-3}
 
-```
-kubectl describe -n <NAMESPACE_NAME> -p <POD_NAME> | grep -A5 Last.State:
-```
-
-If the 'Exit Code' is `127`, then the command specified to run (in the container or in the pod specification) could not be found. See Solution C) below
-
-If the 'Exit Code' is `126`, then the command specified to run (in the container or in the pod specification) could be found, but not run. See Solution C) below
-
-If the container immediately exits (TODO: how is this identitified?), then you may need to add a command. See Solution B) below.
+TODO
 
 ### 4) Check readiness / liveness probes {#step-4}
 
@@ -120,3 +117,20 @@ None
 ## Further Information {#further-information}
 
 [Init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
+
+[//]: # (REFERENCED DOCS)
+[//]: # (https://aws.amazon.com/premiumsupport/knowledge-center/eks-pod-status-troubleshooting/ TODO)
+[//]: # (https://dev.to/wingkwong/how-to-debug-crashloopbackoff-when-starting-a-pod-in-kubernetes-4i07 TODO)
+[//]: # (https://github.com/kubernetes/kubernetes/issues/76619 TODO)
+[//]: # (https://github.com/rancher/k3s/issues/1019 TODO)
+[//]: # (https://kb.vmware.com/s/article/76870 TODO)
+[//]: # (https://kubernetes.io/docs/tasks/debug-application-cluster/determine-reason-pod-failure/ TODO)
+[//]: # (https://managedkube.com/kubernetes/pod/failure/crashloopbackoff/k8sbot/troubleshooting/2019/02/12/pod-failure-crashloopbackoff.html TODO)
+[//]: # (https://medium.com/@deepeshtripathi/kubernetes-controller-pod-crashloopbackoff-resolved-16aaa1c27cfci TODO)
+[//]: # (https://stackoverflow.com/questions/41604499/my-kubernetes-pods-keep-crashing-with-crashloopbackoff-but-i-cant-find-any-lo DONE)
+[//]: # (https://sysdig.com/blog/debug-kubernetes-crashloopbackoff/ DONE)
+[//]: # (https://www.krenger.ch/blog/crashloopbackoff-and-how-to-fix-it/ TODO)
+[//]: # ()
+[//]: # ()
+[//]: # ()
+[//]: # ()

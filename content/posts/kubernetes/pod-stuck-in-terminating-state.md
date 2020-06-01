@@ -41,7 +41,7 @@ First we check to see whether the pod has any finalizers. If it does, their fail
 Get the pod's configuration:
 
 ```
-kubectl get pod -n <NAMESPACE> -p <POD_NAME> -o yaml
+kubectl get pod -n [NAMESPACE] -p [POD_NAME] -o yaml
 ```
 
 and look for a 'finalizers' section under 'metadata'. If any finalizers are present, then go to [Solution A)](#solution-a).
@@ -53,7 +53,7 @@ It is possible that the node your pod(s) is/are running on has failed in some wa
 If you run
 
 ```
-kubectl get pods -o wide --all-namspaces
+kubectl get pods -o wide --all-namespaces
 ```
 
 and find that pods are in a `Terminating` state on a specific node, then this may be the issue.
@@ -81,7 +81,7 @@ C) [Restart kubelet](#solution-c)
 To remove the finalizers from the pod, run:
 
 ```
-kubectl patch pod <POD_NAME> -p '{"metadata":{"finalizers":null}}'
+kubectl patch pod [POD_NAME] -p '{"metadata":{"finalizers":null}}'
 ```
 
 ### B) Force-delete the pod {#solution-b}
@@ -89,7 +89,7 @@ kubectl patch pod <POD_NAME> -p '{"metadata":{"finalizers":null}}'
 To force-delete the pod, run:
 
 ```
-kubectl delete pod --grace-period=0 --force --namespace <NAMESPACE> <POD_NAME>
+kubectl delete pod --grace-period=0 --force --namespace [NAMESPACE] [POD_NAME]
 ```
 
 If this [does not work]{#check-resolution}, then return to the previous step.
