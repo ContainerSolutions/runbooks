@@ -29,7 +29,7 @@ nginx-7ef9efa7cd-qasd2   0/1       ImagePullBackOff   0          1m
 ### 1) Run describe on pod {#step-1}
 
 ```
-kubectl describe -n <NAMESPACE_NAME> pod <POD_NAME>`
+kubectl describe -n [NAMESPACE_NAME] pod [POD_NAME]`
 ```
 
 ### 2) Examine 'Events' section in describe output {#step-2}

@@ -38,12 +38,10 @@ nginx-7ef9efa7cd-qasd2   0/1       Pending            0          1h
 
 ### 1) Gather information {#step-1}
 
-To detemine the root cause here, first gather relevant information that you may need to refer back to later:
-
-Describe the pod in question, with a wide output:
+To determine the root cause here, first gather relevant information that you may need to refer back to later:
 
 ```
-kubectl describe pod -n <NAMESPACE> -p <POD_NAME> -o wide > /tmp/runbooks_describe_pod.txt
+kubectl describe pod -n [NAMESPACE] -p [POD_NAME] > /tmp/runbooks_describe_pod.txt
 kubectl describe nodes > /tmp/runbooks_describe_nodes.txt
 kubectl get componentstatuses > /tmp/runbooks_componentstatuses.txt
 ```
@@ -56,7 +54,7 @@ Look at the 'Events' section of your `/tmp/runbooks_describe_pod.txt` file.
 
 then skip to [Debug 'pulling image'](#step-8).
 
-#### 2.2) If you see a `FailedScheduling` error with `Insufficient cpu` or `Insuffient memory` {#step-2-2}
+#### 2.2) If you see a `FailedScheduling` warning with `Insufficient cpu` or `Insuffient memory` {#step-2-2}
 
 mentioned, you have run out of resources available to run your pod:
 
@@ -70,7 +68,7 @@ mentioned, you have run out of resources available to run your pod:
 
 Go to [Solution B](#solution-b)
 
-#### 2.3) If you see a `FailedScheduling [...] 0/n nodes are available` error
+#### 2.3) If you see a `FailedScheduling [...] 0/n nodes are available` warning
 
 mentioned, you have run out of nodes available to assign this pod to.
 
@@ -78,7 +76,7 @@ mentioned, you have run out of nodes available to assign this pod to.
   Warning  FailedScheduling  3m (x57 over 19m)  default-scheduler  0/1 nodes are available: 1 MatchNodeSelector.
 ```
 
-Skip to [Debug no nodes available](#step-7).
+Skip to [debug no nodes available](#step-6).
 
 #### 2.4) If you see a `cni config` error like this:
 
@@ -100,7 +98,7 @@ then consider:
 
 * have you bound the same PersistentVolume to multiple pods (eg in a stateful set) and that these volumes can't be concurrently bound to multiple pods?
 
-accessModes need to be "ReadWriteMany" if you want to have multiple pods access them.
+accessModes need to be `ReadWriteMany` if you want to have multiple pods access them.
 
 See also [here](https://groups.google.com/forum/#!topic/kubernetes-users/6A1ZwSYkG8I) for more background on this.
 
@@ -116,13 +114,13 @@ If your pod has been assigned to a node, and you have admin access to that node,
 Otherwise, you can run:
 
 ```
-kubectl get nodes -o wide <NODE_NAME>
+kubectl get nodes -o wide [NODE_NAME]
 ```
 
 to check on the status of that node. If it does not appear ready, then run:
 
 ```
-kubectl describe nodes <NODE_NAME>
+kubectl describe nodes [NODE_NAME]
 ```
 
 ### 4) Is this a `coredns` or `kube-dns` pod? {#step-4}
@@ -135,7 +133,7 @@ If the kubelet is not running on the node the pod has been assigned to, this err
 
 You can check this in various ways that may be context-dependent, eg:
 
-- `systemctl status <SERVICE_NAME>`
+- `systemctl status [SERVICE_NAME]`
 
 To determine the `SERVICE_NAME` above, you may want to run `systemctl --type service | grep kube` to determine the service name.
 
@@ -171,14 +169,14 @@ The first thing to consider is whether the download of the image needs more time
 
 If you think you have waited a sufficient amount of time, then it may be worth re-running the ```describe pod``` command from [step 1](#step-1) to see if any message has followed it.
 
-If there is still no output, and you have admin access, you may want to log onto the node the pod has been assigned to and run the appropriate pull command (eg ```docker pull <IMAGE_NAME>```) on the image to see if the image is downloadable from the node.
+If there is still no output, and you have admin access, you may want to log onto the node the pod has been assigned to and run the appropriate pull command (eg ```docker pull [IMAGE_NAME]```) on the image to see if the image is downloadable from the node.
 
 
 ### 8) Check component statuses {#step-8}
 
 Examine the output of your `/tmp/runbooks_componentstatuses.txt` file, looking for unhealthy components.
 
-This most commonly is a problem when a cluster has just been stood up.
+This is most commonly a problem when a cluster has just been stood up.
 
 ## Solutions {#solutions}
 
@@ -192,7 +190,7 @@ C) [Repair your CNI](#solution-c)
 
 How exactly to restart the kubelet will depend on its process supervisor. The most common one is `systemctl`:
 
-```systemctl restart <SERVICE_NAME>```
+```systemctl restart [SERVICE_NAME]```
 
 If you don't know how to restart the kubelet, you may need to contact your system administrator.
 
