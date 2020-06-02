@@ -26,3 +26,7 @@
 .bg-gray {
   background-color: white !important;
 }
+
+div#holy {
+  height: auto;
+}
