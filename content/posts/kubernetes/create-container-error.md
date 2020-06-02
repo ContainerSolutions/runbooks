@@ -1,6 +1,6 @@
 ---
-title: "Simple Runbook Template"
-summary: "Summary here"
+title: "CreateContainerError"
+summary: "Pod failing with CreateContainerError"
 ---
 
 ## Overview {#overview}
@@ -50,13 +50,32 @@ A) [Solution](#solution-a)
 
 ## Check Resolution {#check-resolution}
 
+TODO
+
 ## Further Steps {#further-steps}
+
+TODO
 
 1) [Further Step 1](#further-steps-1)
 
 ### Further Step 1 {#further-steps-1}
 
+TODO
+
 ## Further Information {#further-information}
 
 [//]: # (REFERENCED DOCS)
-[//]: # (eg )
+[//]: # (https://discuss.kubernetes.io/t/failed-job-pod-container-troubleshooting/6144 TODO)
+[//]: # (https://bugzilla.redhat.com/show_bug.cgi?id=1537478)
+[//]: # (https://github.com/cri-o/cri-o/issues/1927 TODO)
+[//]: # (https://github.com/cri-o/cri-o/issues/815 TODO)
+[//]: # (https://stackoverflow.com/questions/57143214/about-createcontainererror TODO)
+[//]: # (https://stackoverflow.com/questions/57476752/kube-apiserver-pod-sticks-in-the-createcontainererror-status TODO)
+[//]: # (https://stackoverflow.com/questions/58390812/how-to-fix-kubernetes-create-container-error TODO)
+[//]: # (https://stackoverflow.com/questions/61350893/kubernetes-gcp-error-response-from-daemon-no-command-specified-createcontainer TODO)
+[//]: # (https://stackoverflow.com/questions/50424754/pod-status-as-createcontainerconfigerror-in-minikube-cluster TODO)
+[//]: # (https://stackoverflow.com/questions/57821723/list-of-all-reasons-for-container-states-in-kubernetes TODO)
+[//]: # ()
+[//]: # ()
+[//]: # ()
+[//]: # ()
