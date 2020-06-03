@@ -5,7 +5,7 @@ summary: "Pod In CrashLoopBackOff State"
 
 ## Overview {#overview}
 
-A 'CrashLoopBackOff' error occurs when a pod startup fails repeatedly in Kubernetes.
+A `CrashLoopBackOff` error occurs when a pod startup fails repeatedly in Kubernetes.
 
 ## Check RunBook Match {#check-runbook-match}
 
@@ -29,7 +29,7 @@ then continue with this runbook, bearing in mind that the problem is likely spec
 
 1) [Gather information](#step-1)
 
-2) [Examine 'Events' section in describe output](#step-2)
+2) [Examine `Events` section in describe output](#step-2)
 
 3) [Check the exit code](#step-3)
 
@@ -47,9 +47,9 @@ kubectl logs --all-containers -n [NAMESPACE_NAME] > /tmp/runbooks_pod_logs.txt
 kubectl logs --all-containers --previous -n [NAMESPACE_NAME] > /tmp/runbooks_previous_pod_logs.txt
 ```
 
-### 2) Examine 'Events' section in output {#step-2}
+### 2) Examine `Events` section in output {#step-2}
 
-Look at the 'Events' section of your `/tmp/runbooks_describe_pod.txt` file.
+Look at the `Events` section of your `/tmp/runbooks_describe_pod.txt` file.
 
 #### 2.1) `Back-off restarting failed container`
 
@@ -85,7 +85,7 @@ Examine the logs in `/tmp/runbooks_describe_pod.txt` and determine resolution in
 
 #### 3.2) Exit Code 2
 
-An exit code of `2` indicates either that the application chose to return that error code, or (by convention) there was a 'misuse of a shell builtin'. Check your pod's command specification to ensure that the command is correct. If you think it is correct, try running the image locally with a shell and run the command directly.
+An exit code of `2` indicates either that the application chose to return that error code, or (by convention) there was a `misuse of a shell builtin`. Check your pod's command specification to ensure that the command is correct. If you think it is correct, try running the image locally with a shell and run the command directly.
 
 #### 3.2) Exit Code 128
 

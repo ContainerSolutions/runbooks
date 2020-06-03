@@ -20,7 +20,7 @@ nginx-7ef9efa7cd-qasd2   0/1       Pending            0          1h
 
 1) [Gather information](#step-1)
 
-2) [Examine pod 'events' output](#step-2)
+2) [Examine pod `Events` output](#step-2)
 
 3) [Check kubelet logs](#step-3)
 
@@ -30,7 +30,7 @@ nginx-7ef9efa7cd-qasd2   0/1       Pending            0          1h
 
 6) [Debug no nodes available](#step-6)
 
-7) [Debug 'pulling image'](#step-7)
+7) [Debug `pulling image`](#step-7)
 
 8) [Check component statuses](#step-8)
 
@@ -48,11 +48,11 @@ kubectl get componentstatuses > /tmp/runbooks_componentstatuses.txt
 
 ### 2) Examine pod `Events` output.
 
-Look at the 'Events' section of your `/tmp/runbooks_describe_pod.txt` file.
+Look at the `Events` section of your `/tmp/runbooks_describe_pod.txt` file.
 
-#### 2.1) If the last message is 'pulling image'
+#### 2.1) If the last message is `pulling image`
 
-then skip to [Debug 'pulling image'](#step-8).
+then skip to [Debug `pulling image`](#step-8).
 
 #### 2.2) If you see a `FailedScheduling` warning with `Insufficient cpu` or `Insuffient memory` {#step-2-2}
 
@@ -163,7 +163,7 @@ Warning  FailedScheduling  <unknown>  default-scheduler  0/1 nodes are available
 
 If your pod could not be scheduled because nodes were busy, then [this step](#step-2-2) should have caught this.
 
-### 7) Debug 'pulling image' event {#step-7}
+### 7) Debug `pulling image` event {#step-7}
 
 The first thing to consider is whether the download of the image needs more time.
 

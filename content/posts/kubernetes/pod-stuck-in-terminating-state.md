@@ -44,7 +44,7 @@ Get the pod's configuration:
 kubectl get pod -n [NAMESPACE] -p [POD_NAME] -o yaml
 ```
 
-and look for a 'finalizers' section under 'metadata'. If any finalizers are present, then go to [Solution A)](#solution-a).
+and look for a `finalizers` section under `metadata`. If any finalizers are present, then go to [Solution A)](#solution-a).
 
 ### 2) Check the status of the node {#detailed-step-2}
 

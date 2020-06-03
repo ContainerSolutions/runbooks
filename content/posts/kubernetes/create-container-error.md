@@ -9,6 +9,8 @@ This issue happens when Kubernetes tries to create a container (a precursor to t
 
 It generally implies some kind of issue with the container runtime, but can also indicate a problem starting up the container, such as the command not existing.
 
+This symptom can also lead to CrashLoopBackOff errors, so it may be worth looking at [that runbook]({{< relref "crashloopbackoff.md" >}}) if this one does not resolve your issue.
+
 ## Check RunBook Match {#check-runbook-match}
 
 When running a `kubectl get pods` command, you will see a line like this in the output for your pod:
@@ -36,7 +38,7 @@ kubectl describe pod -n [NAMESPACE] -p [POD_NAME] > /tmp/runbooks_describe_pod.t
 
 ### 2) Examine pod `Events` output {#step-2}
 
-Look at the 'Events' section of your `/tmp/runbooks_describe_pod.txt` file.
+Look at the `Events` section of your `/tmp/runbooks_describe_pod.txt` file.
 
 #### 2.1) If you see `no command specified`
 
@@ -48,7 +50,7 @@ Warning  Failed     116s                kubelet, dali      Error: failed to gene
 
 then the error is caused by both the image and pod specification not specifying a command to run. See the [CrashLoopBackOff runbook]({{< relref "crashloopbackoff.md#solution-b" >}}) solution B.
 
-#### 2.2) If you see 'starting container process caused'
+#### 2.2) If you see `starting container process caused`
 
 Then the message following this explains what happened on the node when the container process was run
 
@@ -61,7 +63,7 @@ Warning  Failed                 8s (x3 over 22s)  kubelet, nginx-7ef9efa7cd-qasd
 then starting command might not be available on the image. Correct the container start command - or the image's contents - accordingly. See the [CrashLoopBackOff runbook]({{< relref "crashloopbackoff.md#solution-c" >}}) solution C.
 [//]: # (https://bugzilla.redhat.com/show_bug.cgi?id=1537478 DONE)
 
-#### 2.3) If you see 'container name [...] already in use by container'
+#### 2.3) If you see `container name [...] already in use by container`
 
 For example:
 
@@ -71,7 +73,7 @@ The container name "/k8s_kube-apiserver_kube-apiserver-master_kube-system_ce0f74
 
 Then it is likely there is a problem with the container runtime on that host not cleaning up old containers. If you have admin access, check the kubelet logs on the node the container was assigned to.
 
-#### 2.4) If you see 'is waiting to start'
+#### 2.4) If you see `is waiting to start`
 
 In the error message, like this:
 
