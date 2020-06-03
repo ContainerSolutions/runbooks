@@ -69,9 +69,11 @@ Examine the describe output, and look for the Exit Code.
 
 #### 3.1) Exit Code 0
 
-TODO: process completed 'sucessfully' but too often
+This exit code implies that the specified container command completed 'sucessfully', but too often for Kubernetes to accept as working.
 
-- Did you fail to specify a command the pod spec, and the container ran (for example) a default shell command that failed?
+Did you fail to specify a command the pod spec, and the container ran (for example) a default shell command that failed? If so, you will need to add the right command. See [solution c](#solution-c).
+
+Examine the logs in `/tmp/runbooks_describe_pod.txt` to see whether there are any clues there as to why the application terminated.
 
 #### 3.1) Exit Code 1
 
@@ -79,23 +81,19 @@ The container failed to run its command successfully, and returned an exit code 
 
 If this is happening only with all pods running on your cluster, then there may be a problem with your notes. Check nodes are OK on your cluster with: `kubectl get nodes -o wide`.
 
-Examine the logs and determine resolution in the context of the command that ran as specified in the image or debug the application directly.
-
-TODO: kubectl debug?
+Examine the logs in `/tmp/runbooks_describe_pod.txt` and determine resolution in the context of the command that ran as specified in the image, or debug the application directly.
 
 #### 3.2) Exit Code 2
 
-An exit code of `2` indicates either that the application chose to return that error code, or (by convention) there was a 'misuse of a shell builtin'. Check your pod's command specification.
+An exit code of `2` indicates either that the application chose to return that error code, or (by convention) there was a 'misuse of a shell builtin'. Check your pod's command specification to ensure that the command is correct. If you think it is correct, try running the image locally with a shell and run the command directly.
 
 #### 3.2) Exit Code 128
 
-An exit code of `128` indicates .... ?
-
-TODO Reason: ContainerCannotRun
+An exit code of `128` indicates that the container could not run. Check this by examining the `/tmp/runbooks_describe_pod.txt` output to see whether the `LastState` `Reason` is: `ContainerCannotRun`.
 
 #### 3.3) Exit Code 137
 
-Container was killed with signal 9
+This indicates that the container was killed with signal 9
 
 This can be due to one of the following reasons:
 
@@ -147,7 +145,7 @@ This is outside the scope of this runbook.
 
 ### B) Add a startup command {#solution-b}
 
-In order for a pod to start, it needs a startup command. Consider adding one to the container image, or adding a command to the
+In order for a pod to start, it needs a startup command. Consider adding one to the container image, or adding a command to the container specification(s) within the pod.
 
 ### C) Correct the container or spec to run a command that exists in the container {#solution-c}
 
@@ -157,8 +155,7 @@ If the command was not executable, make it executable. This may require a change
 
 ### D) Adjust the time for the liveness/readiness probes {#solution-d}
 
-TODO
-See [here](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes).
+See [here](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes) for information on how and what to change in your pod specification.
 
 ### E) Increase resource request {#solution-e}
 
