@@ -5,7 +5,7 @@ summary: "Pod In ImagePullBackOff State"
 
 ## Overview {#overview}
 
-An 'ImagePullBackOff' error occurs when a Pod startup fails due to an inability to pull the image.
+An `ImagePullBackOff` error occurs when a Pod startup fails due to an inability to pull the image.
 
 ## Check RunBook Match {#check-runbook-match}
 
@@ -20,7 +20,7 @@ nginx-7ef9efa7cd-qasd2   0/1       ImagePullBackOff   0          1m
 
 1) [Run describe on pod](#step-1)
 
-2) [Examine 'Events' section in describe output](#step-2)
+2) [Examine `Events` section in describe output](#step-2)
 
 3) [Check the error message](#step-3)
 
@@ -32,7 +32,7 @@ nginx-7ef9efa7cd-qasd2   0/1       ImagePullBackOff   0          1m
 kubectl describe -n [NAMESPACE_NAME] pod [POD_NAME]`
 ```
 
-### 2) Examine 'Events' section in describe output {#step-2}
+### 2) Examine `Events` section in describe output {#step-2}
 
 #### Repository does not exist
 
