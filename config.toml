@@ -8,6 +8,9 @@ enableGitInfo = "true"
 
 googleAnalytics = "UA-53586058-2"
 
+[params]
+showFooterCredits = false
+
 [frontmatter]
 date = [":git", "lastmod", "date", "publishDate"]
 
