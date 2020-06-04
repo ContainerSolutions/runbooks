@@ -225,6 +225,8 @@ None
 
 See [here](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) for background information on pod placement.
 
+[Kubelet logs](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/#looking-at-logs)
+
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://kubernetes.io/docs/tasks/debug-application-cluster/debug-pod-replication-controller/#my-pod-stays-pending DONE)

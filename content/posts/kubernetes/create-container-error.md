@@ -110,6 +110,8 @@ None
 
 [Init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
 
+[Kubelet logs](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/#looking-at-logs)
+
 [//]: # (REFERENCED DOCS)
 [//]: # (https://discuss.kubernetes.io/t/failed-job-pod-container-troubleshooting/6144 DONE)
 [//]: # (https://bugzilla.redhat.com/show_bug.cgi?id=1537478 DONE)

@@ -37,7 +37,7 @@ then continue with this runbook, bearing in mind that the problem is likely spec
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Run describe on pod {#step-1}
+### 1) Gather information {#step-1}
 
 Run these commands to gather relevant information in one step:
 
@@ -117,6 +117,8 @@ Warning  Unhealthy  13s (x3 over 23s)  kubelet, dali      Liveness probe failed:
 
 Then you will need to check your liveness probes. Skip to [step 4](#step-4).
 
+[//]: # (Reg. 137 & liveness, I made mistake of keeping liveness & readiness endpoints same... When thread pool was exhausted, it would restart instead of just taking traffic off... Ideally liveness shouldn't contend for resources (threads etc), readiness should just like normal traffic)
+
 ### 4) Check liveness/readiness probes {#step-4}
 
 If these are too short for the application initialization time, then Kubernetes may be killing the application too early.
@@ -178,6 +180,8 @@ None
 [Init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
 
 [Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes)
+
+[Kubelet logs](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/#looking-at-logs)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://aws.amazon.com/premiumsupport/knowledge-center/eks-pod-status-troubleshooting/ DONE)
