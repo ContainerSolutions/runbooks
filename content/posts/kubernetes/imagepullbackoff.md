@@ -18,7 +18,7 @@ nginx-7ef9efa7cd-qasd2   0/1       ImagePullBackOff   0          1m
 
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) [Run describe on pod](#step-1)
+1) [Gather information](#step-1)
 
 2) [Examine `Events` section in describe output](#step-2)
 
@@ -26,15 +26,17 @@ nginx-7ef9efa7cd-qasd2   0/1       ImagePullBackOff   0          1m
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Run describe on pod {#step-1}
+### 1) Gather information {#step-1}
+
+Run this commands to gather relevant information in one step:
 
 ```
-kubectl describe -n [NAMESPACE_NAME] pod [POD_NAME]`
+kubectl describe -n [NAMESPACE_NAME] pod [POD_NAME]` > /tmp/runbooks_describe_pod.txt
 ```
 
 ### 2) Examine `Events` section in describe output {#step-2}
 
-#### Repository does not exist
+#### 2.1) Repository does not exist
 
 If you see lines that look like:
 
@@ -56,7 +58,7 @@ A common list of errors that can cause this are:
 
 Generally, images will be pulled from the [Docker Hub](https://hub.docker.com/) registry by default. However, it's also possible that your cluster is pointed at another, private registry (or registries)
 
-#### Manifest not found
+#### 2.2) Manifest not found
 
 If the error specifies that the manifest is unavailable:
 
@@ -66,12 +68,20 @@ Warning  Failed     10m (x4 over 6m)    kubelet, gke-cs-79ec0e47-kfkc  Failed to
 
 then this indicates that the _specific version_ of the Docker repository is not available. Confirm that the image is available, and update accordingly if this is the case.
 
+#### 2.3) Authorization failed: {#step-2-3}
+
+If the error specifies that authorization failed:
+
+```
+Warning  Failed     100s (x4 over 3m6s)  kubelet, dali      Failed to pull image "imiell/bad-dockerfile-private": rpc error: code = Unknown desc = failed to resolve image "docker.io/imiell/bad-dockerfile-private:latest": no available registry endpoint: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+```
+then the container image you have requested may be inaccessible without credentials being supplied; see [Solution A)](#solution-a)
 
 ### 3) Check registry is accessible {#step-3}
 
-You may be trying to access a private repository to download the image from the Kubernetes node.
+It may be that there is a network issue between your Kubernetes node and the registry.
 
-If you are pointed at a private repository, it is possible that you do not have an appropriate secret set up. See [Solution A)](#solution-a)
+To debug this (and if you have admin access), you may need to log into the kubernetes node the container was assigned to (the `/tmp/runbooks_describe_pod.txt` file will have the host name in it) and run the container runtime command to download and run by hand.
 
 ## Solutions {#solutions}
 
@@ -99,6 +109,6 @@ None
 
 ## Further Information {#further-information}
 
-None
+[Kubelet logs](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/#looking-at-logs)
 
 [Images documentation](https://kubernetes.io/docs/concepts/containers/images)
