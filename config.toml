@@ -45,3 +45,10 @@ weight = 4
 identifier = "general"
 url = "/posts/general/"
 permalink = "/posts/general"
+
+[privacy]
+[privacy.googleAnalytics]
+disable = false
+respectDoNotTrack = true
+anonymizeIP = true
+useSessionStorage = true
