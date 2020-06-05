@@ -35,6 +35,8 @@ then continue with this runbook, bearing in mind that the problem is likely spec
 
 4) [Check readiness/liveness probes](#step-4)
 
+5) [Check common application issues](#step-5)
+
 ## Detailed Steps {#detailed-steps}
 
 ### 1) Gather information {#step-1}
@@ -128,6 +130,16 @@ Whether the time taken to start is longer because there is a problem, or whether
 If the probe times are too short, see Solution D) below.
 
 See [here](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for more background information.
+
+### 5) Check common application issues {#step-5}
+
+Some common application problems to consider that may not be specific to your context:
+
+- If your application requires privileged access to function, then you may need to set `allowPrivilegeEscalation` (some core components rely on this, eg coreDNS)
+
+- SELinux or AppArmor controls may be preventing your application from running
+
+Note that by allowing privilege escalation, you may be undermining necessary controls, or allowing your application to do something that is not allowed in your context.
 
 ## Solutions {#solutions}
 
