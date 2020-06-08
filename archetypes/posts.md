@@ -1,5 +1,5 @@
 ---
-title: "Simple Runbook Template"
+title: "{{ replace .Name "-" " " | title }}"
 summary: "Summary here"
 ---
 
