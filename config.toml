@@ -39,9 +39,17 @@ url = "/posts/kubernetes/"
 permalink = "/posts/kubernetes"
 
 [[menu.main]]
-name = "General"
+name = "Python"
 parent = "navmenu"
 weight = 4
+identifier = "python"
+url = "/posts/python/"
+permalink = "/posts/python"
+
+[[menu.main]]
+name = "General"
+parent = "navmenu"
+weight = 5
 identifier = "general"
 url = "/posts/general/"
 permalink = "/posts/general"
