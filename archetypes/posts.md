@@ -43,3 +43,7 @@ A) [Solution](#solution-a)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (eg https://somestackoverflowpage)
+
+## Owner {#owner}
+
+email

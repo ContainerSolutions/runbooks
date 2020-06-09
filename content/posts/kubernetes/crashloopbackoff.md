@@ -195,6 +195,10 @@ None
 
 [Kubelet logs](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/#looking-at-logs)
 
+## Owner {#owner}
+
+ian.miell@container-solutions.com
+
 [//]: # (REFERENCED DOCS)
 [//]: # (https://aws.amazon.com/premiumsupport/knowledge-center/eks-pod-status-troubleshooting/ DONE)
 [//]: # (https://dev.to/wingkwong/how-to-debug-crashloopbackoff-when-starting-a-pod-in-kubernetes-4i07 DONE)
@@ -205,3 +209,5 @@ None
 [//]: # (https://sysdig.com/blog/debug-kubernetes-crashloopbackoff/ DONE)
 [//]: # (https://www.krenger.ch/blog/crashloopbackoff-and-how-to-fix-it/ DONE)
 [//]: # ()
+
+
