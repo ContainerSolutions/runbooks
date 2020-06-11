@@ -1,6 +1,7 @@
 ---
 title: "Privacy policy"
 type: "page"
+comments: false
 ---
 
 We are not directly collecting any data, but we use services that do. Both of these services add cookies to your browser which are unique to you.
