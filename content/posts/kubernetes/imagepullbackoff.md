@@ -83,9 +83,11 @@ It may be that there is a network issue between your Kubernetes node and the reg
 
 To debug this (and if you have admin access), you may need to log into the kubernetes node the container was assigned to (the `/tmp/runbooks_describe_pod.txt` file will have the host name in it) and run the container runtime command to download and run by hand.
 
-## Solutions {#solutions}
+## Solutions List {#solutions-list}
 
 A) [Add credentials](#solution-a)
+
+## Solutions Detail {#solutions-detail}
 
 ### A) Add credentials {#solution-a}
 
@@ -115,4 +117,4 @@ None
 
 ## Owner {#owner}
 
-ian.miell@container-solutions.com
+[Ian Miell](https://github.com/ianmiell)

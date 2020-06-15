@@ -76,13 +76,15 @@ If nothing else works, it may be worth trying to restart the kubelet on the node
 
 See [solution C)](#solution-c)
 
-## Solutions {#solutions}
+## Solutions List {#solutions-list}
 
 A) [Remove finalizers](#solution-a)
 
 B) [Force-delete the pod](#solution-b)
 
 C) [Restart kubelet](#solution-c)
+
+## Solutions Detail {#solutions-detail}
 
 ### A) Remove finalizers {#solution-a}
 
@@ -162,7 +164,7 @@ Some tips:
 
 ## Owner {#owner}
 
-ian.miell@container-solutions.com
+[Ian Miell](https://github.com/ianmiell)
 
 [//]: # (https://github.com/kubernetes/kubernetes/issues/51835#issuecomment-347760557 TODO)
 [//]: # (https://github.com/kubernetes/kubernetes/issues/65569 DONE)

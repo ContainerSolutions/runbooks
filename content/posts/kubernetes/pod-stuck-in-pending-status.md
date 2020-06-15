@@ -178,13 +178,15 @@ Examine the output of your `/tmp/runbooks_componentstatuses.txt` file, looking f
 
 This is most commonly a problem when a cluster has just been stood up.
 
-## Solutions {#solutions}
+## Solutions List {#solutions-list}
 
 A) [Restart kubelet](#solution-a)
 
 B) [Allocate resources](#solution-b)
 
 C) [Repair your CNI](#solution-c)
+
+## Solutions Detail {#solutions-detail}
 
 ### A) Restart kubelet {#solution-a}
 
@@ -229,7 +231,7 @@ See [here](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-no
 
 ## Owner {#owner}
 
-ian.miell@container-solutions.com
+[Ian Miell](https://github.com/ianmiell)
 
 
 [//]: # (REFERENCED DOCS)

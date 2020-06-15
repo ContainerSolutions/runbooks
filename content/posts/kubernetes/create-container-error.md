@@ -114,7 +114,7 @@ None
 
 ## Owner {#owner}
 
-ian.miell@container-solutions.com
+[Ian Miell](https://github.com/ianmiell)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://discuss.kubernetes.io/t/failed-job-pod-container-troubleshooting/6144 DONE)

@@ -1,5 +1,5 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Node Not Ready"
 summary: "Summary here"
 draft: true
 ---
@@ -46,8 +46,10 @@ A) [Solution](#solution-a)
 
 ## Owner {#owner}
 
-email
+[Ian Miell](https://github.com/ianmiell)
 
 [//]: # (REFERENCED DOCS)
-[//]: # (eg https://somestackoverflowpage)
+[//]: # (https://stackoverflow.com/questions/62370710/microk8s-node-not-ready-invaliddiskcapacity)
 [//]: # ()
+[//]: # ()
+
