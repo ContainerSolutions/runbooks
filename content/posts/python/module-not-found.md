@@ -142,7 +142,7 @@ General primer on Python packages:
 
 ## Owner {#owner}
 
-ian.miell@container-solutions.com
+[Ian Miell](https://github.com/ianmiell)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://askubuntu.com/questions/1017721/python-module-not-found-immediately-after-installing-it DONE)

@@ -23,33 +23,59 @@ identifier = "navmenu"
 url = "/"
 
 [[menu.main]]
-name = "Home"
+name = "General"
 parent = "navmenu"
 weight = 2
+identifier = "general"
+url = "/posts/general/"
+permalink = "/posts/general"
+
+[[menu.main]]
+name = "Home"
+parent = "navmenu"
+weight = 3
 identifier = "home"
 url = "/"
 permalink = "/"
 
 [[menu.main]]
+name = "How-Tos"
+parent = "navmenu"
+weight = 4
+identifier = "how-to"
+url = "/posts/how-to/"
+permalink = "/posts/how-to"
+
+[[menu.main]]
 name = "Kubernetes"
 parent = "navmenu"
-weight = 3
+weight = 5
 identifier = "kubernetes"
 url = "/posts/kubernetes/"
 permalink = "/posts/kubernetes"
 
 [[menu.main]]
+name = "Linux"
+parent = "navmenu"
+weight = 6
+identifier = "linux"
+url = "/posts/linux/"
+permalink = "/posts/linux"
+
+[[menu.main]]
+name = "Networking"
+parent = "navmenu"
+weight = 7
+identifier = "networking"
+url = "/posts/networking/"
+permalink = "/posts/networking"
+
+[[menu.main]]
 name = "Python"
 parent = "navmenu"
-weight = 4
+weight = 8
 identifier = "python"
 url = "/posts/python/"
 permalink = "/posts/python"
 
-[[menu.main]]
-name = "General"
-parent = "navmenu"
-weight = 5
-identifier = "general"
-url = "/posts/general/"
-permalink = "/posts/general"
+

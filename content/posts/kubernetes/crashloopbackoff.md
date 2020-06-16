@@ -141,7 +141,7 @@ Some common application problems to consider that may not be specific to your co
 
 Note that by allowing privilege escalation, you may be undermining necessary controls, or allowing your application to do something that is not allowed in your context.
 
-## Solutions {#solutions}
+## Solutions List {#solutions-list}
 
 A) [Fix the application](#solution-a)
 
@@ -152,6 +152,8 @@ C) [Correct the container or spec to run a command that exists in the container,
 D) [Adjust the time for the liveness/readiness probes](#solution-d)
 
 E) [Increase resource request](#solution-e)
+
+## Solutions Detail {#solutions-detail}
 
 ### A) Fix the application {#solution-a}
 
@@ -197,7 +199,7 @@ None
 
 ## Owner {#owner}
 
-ian.miell@container-solutions.com
+[Ian Miell](https://github.com/ianmiell)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://aws.amazon.com/premiumsupport/knowledge-center/eks-pod-status-troubleshooting/ DONE)

@@ -26,9 +26,11 @@ When you ... you expect to see ...
 
 [Link to Solution A](#solution-a)
 
-## Solutions {#solutions}
+## Solutions List {#solutions-list}
 
 A) [Solution](#solution-a)
+
+## Solutions Detail {#solutions-detail}
 
 ### Solution A {#solution-a}
 
@@ -42,7 +44,7 @@ None
 
 ## Owner {#owner}
 
-ian.miell@container-solutions.com
+[Ian Miell](https://github.com/ianmiell)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (eg )
