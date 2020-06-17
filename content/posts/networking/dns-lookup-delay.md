@@ -163,9 +163,11 @@ See below for more background that may help, and in [further information](#furth
 
 [Possible layers involved, along with systemd](https://unix.stackexchange.com/posts/418180/revisions)
 
-### 5) IPTables? {#step-5}
+### 5) IPTables/NetFilter? {#step-5}
 
-It may be possible that IPTables is interfering with your DNS request somehow.
+It may be possible that IPTables/NetFilter is interfering with your DNS request somehow.
+
+First, determine whether IPTables/NetFilter is
 
 TODO: guidance here
 
