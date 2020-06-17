@@ -30,7 +30,7 @@ nginx-7ef9efa7cd-qasd2   0/1       ImagePullBackOff   0          1m
 
 Run this commands to gather relevant information in one step:
 
-```
+```shell
 kubectl describe -n [NAMESPACE_NAME] pod [POD_NAME]` > /tmp/runbooks_describe_pod.txt
 ```
 

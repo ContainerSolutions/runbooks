@@ -38,11 +38,11 @@ When you run `sudo servicectl status <servicename>.service` you see an error tha
 
 ### 1) Unit Environment variables need to be set {#step-1}
 
-`systemd` will not inherit the `PATH` or any other environment variables of the User you have specified in the unit file. 
+`systemd` will not inherit the `PATH` or any other environment variables of the User you have specified in the unit file.
 
 In an environment where you know your command works try running `env` and then search through the output for any variables that your command might need. Unless you have specified these in your Unit file, they will not be set. This includes the `PATH` which is used to determine how to find your service.
 
-### 1.1 PATH needs to be set {#step-1-1}
+#### 1.1) PATH needs to be set {#step-1-1}
 Run this:
 `env | grep -i ^path`
 
@@ -54,7 +54,7 @@ Environment=PATH=/home/username/.asdf/shims:/home/username/.asdf/bin:/home/usern
 ```
 
 Then reload your service and see if it's working:
-```sh
+```shell
 service_name='test.service'
 sudo systemctl daemon-reload
 sudo systemctl restart "${service_name}"
@@ -63,7 +63,7 @@ sudo systemctl status "${service_name}"
 
 If it's working, make sure to go back and strip it down to the paths you actually need.
 
-### 1.2 Other variables {#step-1-2}
+#### 1.2) Other variables {#step-1-2}
 
 While a misconfigured `PATH` (see [step 1.1](#step-1-1)) is usually the cause, many languages depend on other environment variables being set so that they can find packages that they depend on.
 eg. GOPATH, CARGO_HOME, GEM_HOME, NODE_PATH, ASDF_DIR etc
@@ -112,7 +112,7 @@ When all else fails it's time to  attempt to emulate what `systemd` is trying to
 #### 4.1) Constructing the command {#step-4-1}
 We want to construct and run something like the following:
 
-```
+```shell
 sudo runuser -l <User> -g <Group> -c "cd <WorkingDirectory> && <EnvironmentFile contents> <Environment> <ExecStart>"
 ```
 
@@ -132,13 +132,13 @@ Finally `<ExecStart>` is simply just the value of the command to run.
 
 In case the section above wasn't clear, here is an example:
 
-```
+```shell
 # contents of /etc/default/extra
 PATH="/home/test/bin"
 DISPLAY=:2
 ```
 
-```
+```ini
 # contents of /etc/systemd/system/test.service
 [Unit]
 Description=Amazing Test Service
@@ -158,7 +158,8 @@ WantedBy=multi-user.target
 ```
 
 This would become the following command:
-```
+
+```shell
 sudo runuser -l deploy -c "cd /home/test/app && PATH=/home/test/bin DISPLAY=:2 NPM_DIR=/home/test/.npm /home/test/app/bin/start_server"
 ```
 

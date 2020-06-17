@@ -1,18 +1,21 @@
 ---
 title: "DNS Lookup Failure"
 summary: "DNS Request Fails"
-draft: true
 ---
 
 ## Overview {#overview}
 
-This issue happens when a DNS lookup is performed on a Linux system, and no IP address is returned.
+This issue happens when a DNS lookup is performed on a Linux system, and an IP address is not returned.
 
 ## Check RunBook Match {#check-runbook-match}
 
-If the DNS response is _delayed_, but returns a correct IP address see (TODO: DNS response delayed)
+If your application is pausing when a network request happens, this runbook may be a match.
 
-The request should be running on a Linux machine.
+This failure might be intermittent (due to caching of DNS responses in the application), or consistent.
+
+If the DNS response is _delayed_, but returns a correct IP address see the [DNS lookup delay]({{ relref . "dns-lookup-delay.md" }}) runbook.
+
+This runbook assumes you are on a Linux machine.
 
 ## Initial Steps Overview {#initial-steps-overview}
 
@@ -24,25 +27,45 @@ The request should be running on a Linux machine.
 
 4) [Check IPTables](#step-4)
 
+5) [Find Local DNS Server](#step-5)
+
 ## Detailed Steps {#detailed-steps}
 
 ### 1) Determine whether the Internet is accessible {#step-1}
 
-TODO: Follow [[networking:determine-internet-access|Do You Have Internet Access?]]
+First, check whether you have internet access at all. Surprisingly often, this is the root cause.
 
-If the outcome is 'yes', continue.
+To determine this without relying on DNS lookups, run:
+
+```shell
+ping -c1 8.8.8.8
+```
+
+If you see output similar to this:
+
+```shell
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=116 time=13.681 ms
+
+--- 8.8.8.8 ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 13.681/13.681/13.681/0.000 ms
+```
+
+then you have internet access.
+
+If you do not, then the root cause is that you don't.
 
 ### 2) Determine whether all DNS lookups are failing {#step-2}
 
 Run a DNS lookup against a stable site:
 
-```
+```shell
 dig google.com
 ```
 
 The output should look similar to this:
 
-```
+```shell
 Server:		192.168.1.25
 Address:	192.168.1.254#53
 
@@ -53,7 +76,7 @@ Address: 216.58.201.46
 
 Now run this command:
 
-```
+```shell
 dig @8.8.8.8 google.com
 ```
 
@@ -67,7 +90,6 @@ The first two numbers in the IP address in the last line (`216.58` in the above 
 
 Note the above outcome down as 'DNS not working for all' or 'DNS working for some', as it will be used later.
 
-
 ### 3) Determine DNS lookup method {#step-3}
 
 There are numerous ways DNS lookups can be performed. We now need to gather some facts about your host to determine what is doing the DNS lookup.
@@ -76,7 +98,7 @@ There are numerous ways DNS lookups can be performed. We now need to gather some
 
 Run this command:
 
-```
+```shell
 grep ^hosts: /etc/nsswitch.conf
 ```
 
@@ -98,17 +120,17 @@ Otherwise you see output like this:
 
 #### 3.2) `nsswitch` host: `/etc/hosts` {#step-3-2}
 
-If `host` was in your `nsswitch methods`, then check whether the host that's failing is in your `/etc/hosts` file.
+If you are using nsswitch, and if `host` was in your `nsswitch methods`, then check whether the host that's failing is in your `/etc/hosts` file.
 
 If it is, then go to [Solution A](#solution-a) and edit your `/etc/hosts` file.
 
 #### 3.3) `nsswitch` dns: `/resolv.conf` {#step-3-3}
 
-If `dns` **was not** in your 'nsswitch methods' then its absence may be the problem. Try adding it to see if that resolves your issue.
+If you are using nsswitch, and `dns` **was not** in your 'nsswitch methods' then its absence may be the problem. Try adding it to see if that resolves your issue.
 
-If `dns` **was** in your 'nsswitch methods', then run this command:
+If you are using nsswitch, and `dns` **was** in your 'nsswitch methods', then run this command:
 
-```
+```shell
 grep ^nameserver /etc/resolv.conf
 ```
 
@@ -124,19 +146,19 @@ For the first item in your 'dns servers in resolv.conf' list, determine:
 
 - Is your DNSSIPA pointed to the internet?
 
-To determine this, follow the instructions below:
+To determine the answer to the above, follow the instructions below:
 
 - If the DNSSIPA matches: 127.0.0.x, where x is any number between 0 and 255, then your DNS server is running locally. Proceed to [Find local DNS server](#step-5)
 
 - If your DNSSIPA is in any of the following ranges: ''10.0.0.0-10.255.255.255'', ''172.16.0.0-172.31.255.255'', or ''192.168.0.0-192.168.255.255'', then your DNSSIPA is pointed to a local network. Otherwise, it's likely to be pointed at an internet address. If you're still unsure run: ''dig +short @8.8.8.8 -x DNSSIPA'', where DNSSIPA should be replaced with the actual IP address. If the output is empty then the IPA is pointed to your local network. If it is not empty, then it is pointed to the internet.
 
-If your DNSSIPA is pointed at the internet, then proceed to solution [[dns-lookup-failure#change_dns_server_in_etc_resolvconf|Change DNS Server in ''/etc/resolv.conf'']]
+- If your DNSSIPA is pointed at the internet, then proceed to the solution [here]({{ relref . "dns-lookup-delay.md#solution-a" }}). If that solution does not resolve, continue.
 
-### 4) Check IPTables {#step-4}
+### 4) Check IPTables / Netfilter {#step-4}
 
 Run this script:
 
-```
+```shell
 iptables -vL -t filter | grep -E -w '(53|domain)'
 iptables -vL -t nat | grep -E -w '(53|domain)'
 iptables -vL -t mangle | grep -E -w '(53|domain)'
@@ -144,32 +166,43 @@ iptables -vL -t raw | grep -E -w '(53|domain)'
 iptables -vL -t security | grep -E -w '(53|domain)
 ```
 
-If this produces any output lines at all, it may be that IPTables is diverting the DNS request and causing the issue. Try going to [Solution B](#solution-b) to see if that works.
+If this produces any output lines at all, it may be that IPTables/NetFilter is diverting the DNS request and causing the issue. Try going to [Solution B](#solution-b) to see if that works.
+
+If you are unsure whether IPTables/NetFilter are in place at all on your system, see [here]({{ relref . "../how-to/determine-using-iptables-or-netfilter.md" }}).
+
+Your IPTables output might suggest that requests to port 53 are being diverted to another local DNS server (Vagrant's landrush plugin does this, for example). See the next step for more on this.
 
 ### 5) Find Local DNS Server {#step-5}
 
+If you still have not discovered the cause, then it is possible you have a local DNS server that is intercepting requests and at fault.
+
 **As root**, run:
 
-```
-lsof -i 4udp@IP:53 | grep -v ^COMMAND | awk '{print $1}'
+```shell
+lsof -i 4udp@127.0.0.1:53 | grep -v ^COMMAND | awk '{print $1}'
 ```
 
-this will tell you the program that is responding to DNS requests.
+this will tell you if any program is responding to DNS requests.
 
 If the output is:
 
-- DNSMasq, then go to TODO: networking:dnsmasq-failing
+- `dnsmasq`, then dnsmasq may be at fault
 
-- (Others TODO)
+If you want to explore further, there may be other programs listening for UDP requests on your hosts. This command, *run as root* will show you these:
 
+```shell
+lsof -i 4udp@127.0.0.1 | grep -v ^COMMAND | awk '{print $1}'
+```
 
-## Solutions {#solutions}
+## Solutions List {#solutions-list}
 
 A) [Edit /etc/hosts](#solution-a)
 
 B) [Disable IPTables](#solution-b)
 
 C) [Change DNS Server in `/etc/resolv.conf`](#solution-c)
+
+## Solutions Detail {#solutions-detail}
 
 ### Solution A) Edit `/etc/hosts` {#solution-a}
 

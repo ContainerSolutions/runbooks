@@ -9,7 +9,7 @@ This issue happens when Kubernetes tries to create a container (a precursor to t
 
 It generally implies some kind of issue with the container runtime, but can also indicate a problem starting up the container, such as the command not existing.
 
-This symptom can also lead to CrashLoopBackOff errors, so it may be worth looking at [that runbook]({{< relref "crashloopbackoff.md" >}}) if this one does not resolve your issue.
+This symptom can also lead to CrashLoopBackOff errors, so it may be worth looking at [that runbook]({{ relref . "crashloopbackoff.md" }}) if this one does not resolve your issue.
 
 ## Check RunBook Match {#check-runbook-match}
 
@@ -32,7 +32,7 @@ nginx-7ef9efa7cd-qasd2   0/1       CreateContainerError  2          1m
 
 To determine the root cause here, first gather relevant information that you may need to refer back to later:
 
-```
+```shell
 kubectl describe pod -n [NAMESPACE] -p [POD_NAME] > /tmp/runbooks_describe_pod.txt
 ```
 
@@ -48,7 +48,7 @@ Like this:
 Warning  Failed     116s                kubelet, dali      Error: failed to generate container "be3707fcf873ecc052ff73d3ffe7ed3a51eec0756b84839f908f7c9ab730ae74" spec: no command specified
 ```
 
-then the error is caused by both the image and pod specification not specifying a command to run. See the [CrashLoopBackOff runbook]({{< relref "crashloopbackoff.md#solution-b" >}}) solution B.
+then the error is caused by both the image and pod specification not specifying a command to run. See the [CrashLoopBackOff runbook]({{ relref . "crashloopbackoff.md#solution-b" }}) solution B.
 
 #### 2.2) If you see `starting container process caused`
 
@@ -60,7 +60,7 @@ For example, if the error looks like this:
 Warning  Failed                 8s (x3 over 22s)  kubelet, nginx-7ef9efa7cd-qasd2  Error: container create failed: container_linux.go:296: starting container process caused "exec: \"mycommand\": executable file not found in $PATH"
 ```
 
-then starting command might not be available on the image. Correct the container start command - or the image's contents - accordingly. See the [CrashLoopBackOff runbook]({{< relref "crashloopbackoff.md#solution-c" >}}) solution C.
+then starting command might not be available on the image. Correct the container start command - or the image's contents - accordingly. See the [CrashLoopBackOff runbook]({{ relref . "crashloopbackoff.md#solution-c" }}) solution C.
 [//]: # (https://bugzilla.redhat.com/show_bug.cgi?id=1537478 DONE)
 
 #### 2.3) If you see `container name [...] already in use by container`

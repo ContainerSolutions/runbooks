@@ -11,7 +11,7 @@ This issue happens when Python attempts to load a module and cannot find the mod
 
 When you run a Python application, script, or interactive terminal, you see an error that looks like this:
 
-```
+```python
 Traceback (most recent call last):
   File "afile.py", line 1, in <module>
     import doesnotexist
@@ -46,7 +46,7 @@ There are a number of ways to determine this if you are unsure how to proceed.
 
 If you have a system with locatedb installed on it and have access to update it, and are looking for a module called `modulename`, you can try running:
 
-```
+```shell
 sudo updatedb
 locate modulename | grep -w modulename$
 ```
@@ -59,7 +59,7 @@ If `locatedb` is not installed, or not up to date/under your control, then you c
 
 If you know the version of Python you are using on the command line is correct (see [step 2.1](#step-2-1)), then you can check the default path where Python modules are searched for by starting up Python on the command line and running:
 
-```
+```python
 >>> import sys
 >>> sys.path
 ```
@@ -74,7 +74,7 @@ After you have determined that the module exists, check that the module loads wh
 
 You can do this by running Python on the command line, and typing at the prompt:
 
-```
+```python
 import modulename
 ```
 
@@ -88,7 +88,7 @@ It may be that you are using Python version 2.x instead of 3.x, or vice versa. O
 
 If your Python module was in a folder with a version number in it, eg:
 
-```
+```shell
 /Library/Python/3.7/site-packages
 ```
 

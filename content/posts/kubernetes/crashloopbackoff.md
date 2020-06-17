@@ -43,7 +43,7 @@ then continue with this runbook, bearing in mind that the problem is likely spec
 
 Run these commands to gather relevant information in one step:
 
-```
+```shell
 kubectl describe -n [NAMESPACE_NAME] pod [POD_NAME] > /tmp/runbooks_describe_pod.txt
 kubectl logs --all-containers -n [NAMESPACE_NAME] > /tmp/runbooks_pod_logs.txt
 kubectl logs --all-containers --previous -n [NAMESPACE_NAME] > /tmp/runbooks_previous_pod_logs.txt
