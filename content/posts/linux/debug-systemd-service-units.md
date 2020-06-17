@@ -38,11 +38,11 @@ When you run `sudo servicectl status <servicename>.service` you see an error tha
 
 ### 1) Unit Environment variables need to be set {#step-1}
 
-`systemd` will not inherit the `PATH` or any other environment variables of the User you have specified in the unit file. 
+`systemd` will not inherit the `PATH` or any other environment variables of the User you have specified in the unit file.
 
 In an environment where you know your command works try running `env` and then search through the output for any variables that your command might need. Unless you have specified these in your Unit file, they will not be set. This includes the `PATH` which is used to determine how to find your service.
 
-### 1.1 PATH needs to be set {#step-1-1}
+#### 1.1) PATH needs to be set {#step-1-1}
 Run this:
 `env | grep -i ^path`
 
@@ -63,7 +63,7 @@ sudo systemctl status "${service_name}"
 
 If it's working, make sure to go back and strip it down to the paths you actually need.
 
-### 1.2 Other variables {#step-1-2}
+#### 1.2) Other variables {#step-1-2}
 
 While a misconfigured `PATH` (see [step 1.1](#step-1-1)) is usually the cause, many languages depend on other environment variables being set so that they can find packages that they depend on.
 eg. GOPATH, CARGO_HOME, GEM_HOME, NODE_PATH, ASDF_DIR etc
