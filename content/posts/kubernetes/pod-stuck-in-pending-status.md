@@ -40,7 +40,7 @@ nginx-7ef9efa7cd-qasd2   0/1       Pending            0          1h
 
 To determine the root cause here, first gather relevant information that you may need to refer back to later:
 
-```
+```shell
 kubectl describe pod -n [NAMESPACE] -p [POD_NAME] > /tmp/runbooks_describe_pod.txt
 kubectl describe nodes > /tmp/runbooks_describe_nodes.txt
 kubectl get componentstatuses > /tmp/runbooks_componentstatuses.txt
@@ -113,13 +113,13 @@ If your pod has been assigned to a node, and you have admin access to that node,
 
 Otherwise, you can run:
 
-```
+```shell
 kubectl get nodes -o wide [NODE_NAME]
 ```
 
 to check on the status of that node. If it does not appear ready, then run:
 
-```
+```shell
 kubectl describe nodes [NODE_NAME]
 ```
 
@@ -192,7 +192,9 @@ C) [Repair your CNI](#solution-c)
 
 How exactly to restart the kubelet will depend on its process supervisor. The most common one is `systemctl`:
 
-```systemctl restart [SERVICE_NAME]```
+```shell
+systemctl restart [SERVICE_NAME]
+```
 
 If you don't know how to restart the kubelet, you may need to contact your system administrator.
 
@@ -209,7 +211,7 @@ These links may help you resolve this problem:
 
 More rarely, this has been suggested as a solution:
 
-```Check if docker and kubernetes are using the same cgroup driver. I faced the same issue (CentOS 7, kubernetes v1.14.1), and setting same cgroup driver (systemd) fixed it.``` [Source](https://stackoverflow.com/questions/52609257/coredns-in-pending-state-in-kubernetes-cluster)
+`Check if docker and kubernetes are using the same cgroup driver. I faced the same issue (CentOS 7, kubernetes v1.14.1), and setting same cgroup driver (systemd) fixed it.` [Source](https://stackoverflow.com/questions/52609257/coredns-in-pending-state-in-kubernetes-cluster)
 
 ## Check Resolution {#check-resolution}
 

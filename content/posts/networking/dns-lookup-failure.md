@@ -37,13 +37,13 @@ First, check whether you have internet access at all. Surprisingly often, this i
 
 To determine this without relying on DNS lookups, run:
 
-```
+```shell
 ping -c1 8.8.8.8
 ```
 
 If you see output similar to this:
 
-```
+```shell
 64 bytes from 8.8.8.8: icmp_seq=0 ttl=116 time=13.681 ms
 
 --- 8.8.8.8 ping statistics ---
@@ -59,13 +59,13 @@ If you do not, then the root cause is that you don't.
 
 Run a DNS lookup against a stable site:
 
-```
+```shell
 dig google.com
 ```
 
 The output should look similar to this:
 
-```
+```shell
 Server:		192.168.1.25
 Address:	192.168.1.254#53
 
@@ -76,7 +76,7 @@ Address: 216.58.201.46
 
 Now run this command:
 
-```
+```shell
 dig @8.8.8.8 google.com
 ```
 
@@ -98,7 +98,7 @@ There are numerous ways DNS lookups can be performed. We now need to gather some
 
 Run this command:
 
-```
+```shell
 grep ^hosts: /etc/nsswitch.conf
 ```
 
@@ -130,7 +130,7 @@ If you are using nsswitch, and `dns` **was not** in your 'nsswitch methods' then
 
 If you are using nsswitch, and `dns` **was** in your 'nsswitch methods', then run this command:
 
-```
+```shell
 grep ^nameserver /etc/resolv.conf
 ```
 
@@ -158,7 +158,7 @@ To determine the answer to the above, follow the instructions below:
 
 Run this script:
 
-```
+```shell
 iptables -vL -t filter | grep -E -w '(53|domain)'
 iptables -vL -t nat | grep -E -w '(53|domain)'
 iptables -vL -t mangle | grep -E -w '(53|domain)'
@@ -168,7 +168,7 @@ iptables -vL -t security | grep -E -w '(53|domain)
 
 If this produces any output lines at all, it may be that IPTables/NetFilter is diverting the DNS request and causing the issue. Try going to [Solution B](#solution-b) to see if that works.
 
-If you are unsure whether IPTables/NetFilter are in place at all on your system, see [here]({{< relref "../how-to/determine-using-iptables.md}}).
+If you are unsure whether IPTables/NetFilter are in place at all on your system, see [here]({{< relref "../how-to/determine-using-iptables-or-netfilter.md" >}}).
 
 Your IPTables output might suggest that requests to port 53 are being diverted to another local DNS server (Vagrant's landrush plugin does this, for example). See the next step for more on this.
 
@@ -178,7 +178,7 @@ If you still have not discovered the cause, then it is possible you have a local
 
 **As root**, run:
 
-```
+```shell
 lsof -i 4udp@127.0.0.1:53 | grep -v ^COMMAND | awk '{print $1}'
 ```
 
@@ -190,7 +190,7 @@ If the output is:
 
 If you want to explore further, there may be other programs listening for UDP requests on your hosts. This command, *run as root* will show you these:
 
-```
+```shell
 lsof -i 4udp@127.0.0.1 | grep -v ^COMMAND | awk '{print $1}'
 ```
 

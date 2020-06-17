@@ -54,7 +54,7 @@ Environment=PATH=/home/username/.asdf/shims:/home/username/.asdf/bin:/home/usern
 ```
 
 Then reload your service and see if it's working:
-```sh
+```shell
 service_name='test.service'
 sudo systemctl daemon-reload
 sudo systemctl restart "${service_name}"
@@ -112,7 +112,7 @@ When all else fails it's time to  attempt to emulate what `systemd` is trying to
 #### 4.1) Constructing the command {#step-4-1}
 We want to construct and run something like the following:
 
-```
+```shell
 sudo runuser -l <User> -g <Group> -c "cd <WorkingDirectory> && <EnvironmentFile contents> <Environment> <ExecStart>"
 ```
 
@@ -132,13 +132,13 @@ Finally `<ExecStart>` is simply just the value of the command to run.
 
 In case the section above wasn't clear, here is an example:
 
-```
+```shell
 # contents of /etc/default/extra
 PATH="/home/test/bin"
 DISPLAY=:2
 ```
 
-```
+```ini
 # contents of /etc/systemd/system/test.service
 [Unit]
 Description=Amazing Test Service
@@ -158,7 +158,8 @@ WantedBy=multi-user.target
 ```
 
 This would become the following command:
-```
+
+```shell
 sudo runuser -l deploy -c "cd /home/test/app && PATH=/home/test/bin DISPLAY=:2 NPM_DIR=/home/test/.npm /home/test/app/bin/start_server"
 ```
 

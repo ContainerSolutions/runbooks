@@ -32,7 +32,7 @@ nginx-7ef9efa7cd-qasd2   0/1       CreateContainerError  2          1m
 
 To determine the root cause here, first gather relevant information that you may need to refer back to later:
 
-```
+```shell
 kubectl describe pod -n [NAMESPACE] -p [POD_NAME] > /tmp/runbooks_describe_pod.txt
 ```
 

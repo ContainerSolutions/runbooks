@@ -38,7 +38,7 @@ nginx-7ef9efa7cd-qasd2   1/1       Terminating        0          1h
 
 ### 1) Gather information {#detailed-step-1}
 
-```
+```shell
 kubectl get pod -n [NAMESPACE] -p [POD_NAME] -o yaml
 ```
 
@@ -48,7 +48,7 @@ First we check to see whether the pod has any finalizers. If it does, their fail
 
 Get the pod's configuration:
 
-```
+```shell
 kubectl get pod -n [NAMESPACE] -p [POD_NAME] -o yaml > /tmp/runbooks_pod_configuration.txt
 ```
 
@@ -90,7 +90,7 @@ C) [Restart kubelet](#solution-c)
 
 To remove any finalizers from the pod, run:
 
-```
+```shell
 kubectl patch pod [POD_NAME] -p '{"metadata":{"finalizers":null}}'
 ```
 
@@ -100,7 +100,7 @@ Please note that this is more of a workaround than a solution, and should be don
 
 To force-delete the pod, run:
 
-```
+```shell
 kubectl delete pod --grace-period=0 --force --namespace [NAMESPACE] [POD_NAME]
 ```
 
@@ -117,7 +117,7 @@ Before you do this (and if you have access), check the kubelet logs to see wheth
 
 If the specific pod no longer shows up when running `kubectl get pods`
 
-```
+```shell
 $ kubectl get pod -n mynamespace -p nginx-7ef9efa7cd-qasd2
 NAME                     READY     STATUS             RESTARTS   AGE
 ```

@@ -38,7 +38,7 @@ Next, determine which DNS servers you are using.
 
 If your OS is `Darwin`/Mac/iOS, then run
 
-```
+```shell
 scutil --dns > /tmp/runbooks-dns-servers.txt
 ```
 
@@ -46,7 +46,7 @@ and capture the output.
 
 If your OS is `Linux`, then run:
 
-```
+```shell
 cat /etc/resolv.conf | grep ^nameserver > /tmp/runbooks-dns-servers.txt
 ```
 
@@ -76,7 +76,7 @@ TODO: Background on DNS proxy
 
 - Are you running DNSMasq? Running this may help determine that:
 
-```
+```shell
 ps -ef | grep -i dnsmasq
 ```
 
@@ -94,7 +94,7 @@ Try connecting to localhost 53 with telnet
 
 First, try and reproduce the problem by running a lookup on your machine
 
-```
+```shell
 dig [DOMAIN]
 ```
 
@@ -104,7 +104,7 @@ If you can't reproduce the problem, then it may be that your application is usin
 
 Then, do the same lookup on each nameserver you extracted from [step 1.2](#step-1-2).
 
-```
+```shell
 dig @1.2.3.4 [DOMAIN]
 ```
 
@@ -114,7 +114,7 @@ If one of the nameservers is delayed, and the others are fast, consider moving t
 
 Use a well-known public DNS server, for example Google's `8.8.8.8`:
 
-```
+```shell
 dig @8.8.8.8 [DOMAIN]
 ```
 
@@ -138,13 +138,13 @@ If you are using DNSMasq (a popular local DNS server), consider:
 
 - whether DNSMasq could be causing the problem. Config to consider includes:
 
-```
+```shell
 IGNORE_RESOLVCONF=yes
 ```
 
 #### 4.2) `/etc/resolv.conf` DNSMasq Config {#step-4-2}
 
-```
+```shell
 [...]
 nameserver [...]
 
