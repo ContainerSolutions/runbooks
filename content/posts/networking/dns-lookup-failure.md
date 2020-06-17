@@ -13,7 +13,7 @@ If your application is pausing when a network request happens, this runbook may 
 
 This failure might be intermittent (due to caching of DNS responses in the application), or consistent.
 
-If the DNS response is _delayed_, but returns a correct IP address see the [DNS lookup delay]({{< relref "dns-lookup-delay.md" >}}) runbook.
+If the DNS response is _delayed_, but returns a correct IP address see the [DNS lookup delay]({{ relref . "dns-lookup-delay.md" }}) runbook.
 
 This runbook assumes you are on a Linux machine.
 
@@ -152,7 +152,7 @@ To determine the answer to the above, follow the instructions below:
 
 - If your DNSSIPA is in any of the following ranges: ''10.0.0.0-10.255.255.255'', ''172.16.0.0-172.31.255.255'', or ''192.168.0.0-192.168.255.255'', then your DNSSIPA is pointed to a local network. Otherwise, it's likely to be pointed at an internet address. If you're still unsure run: ''dig +short @8.8.8.8 -x DNSSIPA'', where DNSSIPA should be replaced with the actual IP address. If the output is empty then the IPA is pointed to your local network. If it is not empty, then it is pointed to the internet.
 
-- If your DNSSIPA is pointed at the internet, then proceed to the solution [here]({{< relref "dns-lookup-delay.md#solution-a" >}}). If that solution does not resolve, continue.
+- If your DNSSIPA is pointed at the internet, then proceed to the solution [here]({{ relref . "dns-lookup-delay.md#solution-a" }}). If that solution does not resolve, continue.
 
 ### 4) Check IPTables / Netfilter {#step-4}
 
@@ -168,7 +168,7 @@ iptables -vL -t security | grep -E -w '(53|domain)
 
 If this produces any output lines at all, it may be that IPTables/NetFilter is diverting the DNS request and causing the issue. Try going to [Solution B](#solution-b) to see if that works.
 
-If you are unsure whether IPTables/NetFilter are in place at all on your system, see [here]({{< relref "../how-to/determine-using-iptables-or-netfilter.md" >}}).
+If you are unsure whether IPTables/NetFilter are in place at all on your system, see [here]({{ relref . "../how-to/determine-using-iptables-or-netfilter.md" }}).
 
 Your IPTables output might suggest that requests to port 53 are being diverted to another local DNS server (Vagrant's landrush plugin does this, for example). See the next step for more on this.
 
