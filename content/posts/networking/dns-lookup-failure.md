@@ -43,7 +43,7 @@ ping -c1 8.8.8.8
 
 If you see output similar to this:
 
-```shell
+```
 64 bytes from 8.8.8.8: icmp_seq=0 ttl=116 time=13.681 ms
 
 --- 8.8.8.8 ping statistics ---
@@ -65,7 +65,7 @@ dig google.com
 
 The output should look similar to this:
 
-```shell
+```
 Server:		192.168.1.25
 Address:	192.168.1.254#53
 
@@ -148,9 +148,9 @@ For the first item in your 'dns servers in resolv.conf' list, determine:
 
 To determine the answer to the above, follow the instructions below:
 
-- If the DNSSIPA matches: 127.0.0.x, where x is any number between 0 and 255, then your DNS server is running locally. Proceed to [Find local DNS server](#step-5)
+- If the DNSSIPA matches: `127.0.0.x`, where `x` is any number between `0` and `255`, then your DNS server is running locally. Proceed to [Find local DNS server](#step-5)
 
-- If your DNSSIPA is in any of the following ranges: ''10.0.0.0-10.255.255.255'', ''172.16.0.0-172.31.255.255'', or ''192.168.0.0-192.168.255.255'', then your DNSSIPA is pointed to a local network. Otherwise, it's likely to be pointed at an internet address. If you're still unsure run: ''dig +short @8.8.8.8 -x DNSSIPA'', where DNSSIPA should be replaced with the actual IP address. If the output is empty then the IPA is pointed to your local network. If it is not empty, then it is pointed to the internet.
+- If your DNSSIPA is in any of the following ranges: `10.0.0.0-10.255.255.255`, `172.16.0.0-172.31.255.255`, or `192.168.0.0-192.168.255.255`, then your DNSSIPA is pointed to a local network. Otherwise, it's likely to be pointed at an internet address. If you're still unsure run: `dig +short @8.8.8.8 -x DNSSIPA`, where DNSSIPA should be replaced with the actual IP address. If the output is empty then the IPA is pointed to your local network. If it is not empty, then it is pointed to the internet.
 
 - If your DNSSIPA is pointed at the internet, then proceed to the solution [here]({{< relref "dns-lookup-delay.md#solution-a" >}}). If that solution does not resolve, continue.
 
@@ -204,15 +204,15 @@ C) [Change DNS Server in `/etc/resolv.conf`](#solution-c)
 
 ## Solutions Detail {#solutions-detail}
 
-### Solution A) Edit `/etc/hosts` {#solution-a}
+### A) Edit `/etc/hosts` {#solution-a}
 
 Comment out the identified entry in `/etc/hosts` and go to [Check Resolution](#check-resolution).
 
-### Solution B) Disable `iptables` {#solution-b}
+### B) Disable `iptables` {#solution-b}
 
 Use `systemctl disable` (or whichever method of disabling services exists on your system) to disable `iptables`.
 
-If it works (see [Check Resolution](#check-resolution), then it may be that IPTables is redirecting your requests to a different location.
+If it works (see [Check Resolution](#check-resolution)), then it may be that IPTables is redirecting your requests to a different location.
 
 In this case, you will need to determine why this IPTables rule exists and fix accordingly. The fix will be context-dependent.
 
@@ -220,7 +220,7 @@ Examples of legitimate reasons for doing this include:
 
   * Vagrant plugins (eg Landrush: https://github.com/vagrant-landrush/landrush/blob/master/README.adoc)
 
-### Solution C) Change DNS Server in `/etc/resolv.conf` {#solution-c}
+### C) Change DNS Server in `/etc/resolv.conf` {#solution-c}
 
 As root, replace the IP address of the DNS server on the first line beginning `nameserver` with a public DNS server that is likely to be available, eg Google's DNS server on: `8.8.8.8`.
 
@@ -230,7 +230,7 @@ Then go to [Check Resolution](#check-resolution).
 
 Try running `dig` or `curl` against any domains that caused issues before, eg
 
-```
+```shell
 dig google.com
 curl google.com
 ```
