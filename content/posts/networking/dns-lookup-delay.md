@@ -1,7 +1,6 @@
 ---
 title: "DNS Lookup Delay"
 summary: "Delay in DNS server response"
-draft: true
 ---
 
 ## Overview {#overview}
@@ -30,7 +29,7 @@ If your application regularly pauses when doing anything on the network, but suc
 
 #### 1.1) Operating system {#step-1-1}
 
-First, determine which OS you are running. See the [Determine Operating System How-To ]({{ relref . "../how-to/determine-operating-system.md" }})
+First, determine which OS you are running. See the [Determine Operating System How-To ]({{< relref "../how-to/determine-operating-system.md" >}})
 
 #### 1.2) DNS servers {#step1-2}
 
