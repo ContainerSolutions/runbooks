@@ -1,6 +1,6 @@
 ---
-title: "Debug Systemd service units"
-summary: "Debugging a Systemd service unit file, when systemctl status and journalctl just isn't enough"
+title: "Debug Systemd Service Units"
+summary: "Debugging a systemd service unit file, when systemctl status and journalctl just isn't enough"
 ---
 
 ## Overview {#overview}

@@ -19,7 +19,7 @@ If your application regularly pauses when doing anything on the network, but suc
 
 3) [Subset of URLs?](#step-3)
 
-4) [Using DNSMasq?] (#step-4)
+4) [Using DNSMasq?](#step-4)
 
 5) [IPTables?](#step-5)
 
@@ -49,8 +49,6 @@ If your OS is `Linux`, then run:
 cat /etc/resolv.conf | grep ^nameserver > /tmp/runbooks-dns-servers.txt
 ```
 
-If your nameservers are
-
 #### 1.3) Get host you are trying to look up {#step1-3}
 
 You may need to get this from your application logs.
@@ -61,7 +59,7 @@ This domain will be referred to as `[DOMAIN]` from here on.
 
 #### 1.4) Figure Out When This Started {#step1-4}
 
-If this behaviour was not always
+If this behaviour was not always happening on this host, then try and work out when it started.
 
 #### 1.5) How widespread is the problem {#step1-5}
 
@@ -73,6 +71,20 @@ If it's just a subset, then you may want to skip to [Step 3](#step-3)
 
 TODO: Background on DNS proxy
 
+First try connecting to localhost on port 53 with telnet, eg if you run:
+
+```shell
+netstat -l | grep -w 53
+```
+
+and get a response that contains a line like:
+
+```
+udp        0      0 127.0.0.53:domain       0.0.0.0:*
+```
+
+then you have a server running on the DNS port on your local machine.
+
 - Are you running DNSMasq? Running this may help determine that:
 
 ```shell
@@ -82,10 +94,6 @@ ps -ef | grep -i dnsmasq
 - Vagrant landrush?
 
 TODO
-
-- Others?
-
-Try connecting to localhost 53 with telnet
 
 ### 2) Run lookup on the command line {#step-2}
 
