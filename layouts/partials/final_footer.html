@@ -15,4 +15,14 @@
     Runbooks is sponsored by <a href="https://container-solutions.com">Container Solutions</a>. We bring culture, strategy, and technology together<br/>&mdash;to make sure your Cloud Native migration is done right. <a href="https://www.container-solutions.com">See how we can help</a>
   </div>
 </div>
-<div class="container-lg bg-white h-10">&nbsp;</div>
+
+<div class="bg-white h-10">
+  {{/* Credits and Copyright */}}
+  <div class="text-small text-gray credits">
+    {{ with .Site.Copyright }}{{ . | markdownify }} &middot; {{ end }}
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </div>
+</div>

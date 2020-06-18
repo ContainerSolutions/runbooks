@@ -9,7 +9,7 @@
   justify-content: center;
   color: white;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   font-size: 1.2em;
   align-items: flex-end;
 }
@@ -29,4 +29,11 @@
 
 div#holy {
   height: auto;
+}
+
+.credits {
+  margin-bottom: 15px;
+  right: 0;
+  margin-right: 70px;
+  text-align: right;
 }
