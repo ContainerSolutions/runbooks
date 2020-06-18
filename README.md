@@ -4,11 +4,7 @@
 
 - We are tired of haphazardly hunting through messy threads of GitHub issues and StackOverflow when we hit a problem
 
-- We want a coherent way to investigate problems that helps us understand the context of our problem
-
 - We don't want a one-off fix, we want to deepen our understanding of the problem space
-
-- We want to share our learnings so that the same knowledge and effort doesn’t end up on a million private wikis
 
 ## What
 
