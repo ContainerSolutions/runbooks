@@ -8,6 +8,9 @@ enableGitInfo = "true"
 
 googleAnalytics = "UA-53586058-2"
 
+[privacy.googleAnalytics]
+respectDoNotTrack = true
+
 [params]
 showFooterCredits = false
 
