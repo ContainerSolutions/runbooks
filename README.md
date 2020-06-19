@@ -1,5 +1,13 @@
 # Runbooks
 
+## The Manifesto
+
+- We are tired of haphazardly hunting through messy threads of GitHub issues and StackOverflow when we hit a problem
+
+- We don't want a one-off fix, we want to deepen our understanding of the problem space
+
+## What
+
 A collection of step by step guides for fixing common tech problems. The goal here is to use this as another avenue for reaching customers.
 
 The content is published [here](https://containersolutions.github.io/runbooks/)
@@ -42,3 +50,7 @@ First [install hugo](https://gohugo.io/getting-started/installing/) then from th
 ```
 hugo serve -D
 ```
+
+## License
+
+See [LICENSE](LICENSE)
