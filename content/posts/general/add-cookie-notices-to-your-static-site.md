@@ -7,7 +7,7 @@ summary: "Summary here"
 
 You see them everywhere, including this site, annoying cookie consent boxes obscuring the content you actually want to see. Some users actually really like them as they "give control over privacy". I don't think they would be so happy about all those boxes if they had seen how many cookies most sites are setting tracking cookies before consent has been given. In many cases, it seems these sites are doing the bare minimum to add plausible deniability, but it's also the case that implementing such a system is actually incredibly complicated.
 
-![Image of cookies before consent]({{< static "images/cookie-consent.png" >}})
+![Image of cookies before consent]({{< static "images/bad-cookie-warning.png" >}})
 
 Just have a look at this conversation between a group of very intelligent people who are just trying to make their popular Open Source blogging platform compliant with privacy regulations. There is no benefit to them to infringe on user privacy, but stripping everything down to purely functional cookies turned out to be a lot more work than anybody would expect. I'm still not sure the goal was completely reached. https://github.com/gohugoio/hugo/issues/4616
 

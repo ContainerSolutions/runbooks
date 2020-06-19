@@ -5,7 +5,7 @@ summary: "Summary here"
 
 ## Overview {#overview}
 
-![Image of cookies before consent]({{< static "images/cookie-consent.png" >}})
+![Image of cookies before consent]({{< static "images/bad-cookie-warning.png" >}})
 
 You know the story, you're just browsing for amazing cookie recipes, or just reading a runbook &#x1F609; and you are rudely interrupted by one of those annoying cookie consent warnings begging you to give up your privacy. Any site, including this one, that wants to do even basic things like embedding Youtube videos, needs one of these annoying consent boxes. Even the government bodies that required websites to introduce these banners are starting to realise [there might have been a less intrusive way](https://www.bbc.com/news/business-38583001).
 
