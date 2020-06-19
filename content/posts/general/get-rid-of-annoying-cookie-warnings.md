@@ -5,7 +5,7 @@ summary: "Summary here"
 
 ## Overview {#overview}
 
-![Image of cookies before consent](/runbooks/images/cookie-consent.png)
+![Image of cookies before consent]({{< static "images/cookie-consent.png" >}})
 
 You know the story, you're just browsing for amazing cookie recipes, or just reading a runbook &#x1F609; and you are rudely interrupted by one of those annoying cookie consent warnings begging you to give up your privacy. Any site, including this one, that wants to do even basic things like embedding Youtube videos, needs one of these annoying consent boxes. Even the government bodies that required websites to introduce these banners are starting to realise [there might have been a less intrusive way](https://www.bbc.com/news/business-38583001).
 
@@ -27,7 +27,7 @@ Here are the download links for various browsers:
   - Safari: Unfortunately Apple has put an end to this extension on Safari
 ### 2) Open the "Option" window
 Right-click on Ublock Origin icon and select "Options" from the menu:  
-  ![right click on Ublock Origin icon and select "Options"](/runbooks/images/ublock-right-click-options.png)
+  ![right click on Ublock Origin icon and select "Options"]({{< static "images/ublock-right-click-options.png" >}})
 ### 3) Enable EasyList Cookie
 1) Select the "Filter lists" tab
 2) Expand the "Annoyances" section
@@ -35,7 +35,7 @@ Right-click on Ublock Origin icon and select "Options" from the menu:
 4) Click "Update now" to make sure the List has been updated
 5) Click "Apply changes" to activate the EasyList Cookie filter  
 
-  ![showing filter list tab with EasyList Cookie selected](/runbooks/images/ublock-enable-easycookie.png)
+  ![showing filter list tab with EasyList Cookie selected]({{< static "images/ublock-enable-easycookie.png" >}})
 
 ## Success
 

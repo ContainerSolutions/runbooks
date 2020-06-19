@@ -1,5 +1,5 @@
 ---
-title: "Add cookie notices to your static site or JAM stack"
+title: "Cookie notices for your static site or JAM stack"
 summary: "Summary here"
 ---
 
@@ -7,9 +7,11 @@ summary: "Summary here"
 
 You see them everywhere, including this site, annoying cookie consent boxes obscuring the content you actually want to see. Some users actually really like them as they "give control over privacy". I don't think they would be so happy about all those boxes if they had seen how many cookies most sites are setting tracking cookies before consent has been given. In many cases, it seems these sites are doing the bare minimum to add plausible deniability, but it's also the case that implementing such a system is actually incredibly complicated.
 
-![Image of cookies before consent](/runbooks/images/cookie-consent.png)
+![Image of cookies before consent]({{< static "images/cookie-consent.png" >}})
 
 Just have a look at this conversation between a group of very intelligent people who are just trying to make their popular Open Source blogging platform compliant with privacy regulations. There is no benefit to them to infringe on user privacy, but stripping everything down to purely functional cookies turned out to be a lot more work than anybody would expect. I'm still not sure the goal was completely reached. https://github.com/gohugoio/hugo/issues/4616
+
+## So, just check for consent cookie? {#check-for-consent}
 
 On the surface, it all seems very trivial, until you really start thinking about it...
 
@@ -31,7 +33,7 @@ So what's a dev to do. We don't want to spend our lives dealing with what is act
 
 Meet [Osano](https://www.osano.com/cookieconsent) and no, there are no kickbacks here, they are have just made a complicated problem simple and so deserve the kudos. When I saw their pricing I was a bit thrown back, but the more I've looked into this the more of a reasonable price this seems, especially when you can start off on a free plan.
 
-So what's so good about it? Well it's mostly managed for you with very few changes required on your end. You add an Osano script to the top of your page, set the settings to strict and it will immediately start removing scripts third-party scripts, iframes and other resources when the page is loaded. It will report the things it blocks back to Osano so they then show up in your Osano admin panel. It will then allow you to categorise each of these and provide suggestions for some common ones based on what Osano's lawyers have determined.
+So what's so good about it? Well it's mostly managed for you with very few changes required on your end. You add an Osano script to the top of your page, set the settings to strict and it will immediately start removing third-party scripts, iframes and other resources when the page is loaded. It will report the things it blocks back to Osano so they then show up in your Osano admin panel. It will then allow you to categorise each of these and provide suggestions for some common ones based on what Osano's lawyers have determined.
 
 When a user comes to your site they are asked which categories of cookies they want to accept and based on what they select the Osano script will allow scripts or other resources in those specific categories to load. The best part about this is that it removes human error as anything new can just be blocked by default until the person managing your Osano account account has categorised it.
 
