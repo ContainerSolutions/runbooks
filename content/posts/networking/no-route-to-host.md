@@ -85,7 +85,7 @@ If it's intermittent, consider whether there are multiple hosts that could be ul
 
 Check whether the host you are trying to reach is up.
 
-### 2.1) Use nmap {#step-2-1}
+### 2.1) Use `nmap` {#step-2-1}
 
 Run:
 
