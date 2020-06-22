@@ -1,16 +1,13 @@
 ---
 title: "No Route to Host"
 summary: "Errors that contain the phrase 'no route to host'"
-draft: true
 ---
 
 ## Overview {#overview}
 
-This issue happens when a network request is attempted
+This issue happens when a network request is attempted to a remote host, and an error is thrown containing the phrase `No route to host`, or the error code `EHOSTUNREACH`.
 
 ## Check RunBook Match {#check-runbook-match}
-
-If you see the words `No route to host` or `EHOSTUNREACH` in an error message
 
 This runbook is limited to Linux hosts, although some steps may help trigger productive investigations on other OSes.
 
@@ -60,7 +57,7 @@ You can take the first address returned as the IP to use, eg for the above outpu
 
 If you can find out the 'correct' IP that you are trying to reach by some means independent from your machine, do so. This might involve contacting another user, or figuring out the IP address by introspecting on the host.
 
-TODO: HOW-TO work out my host's IP?
+[//]: # (TODO: HOW-TO work out my host's IP? - article to write)
 
 #### 1.3) Determine the port {#step-1-3}
 
@@ -189,21 +186,76 @@ Then the issue appears to be resolved. If your application is still having the s
 
 #### 3.2) From remote host {#step-3-2}
 
-TODO
+[//]: # (TODO: HOW-TO work out if my port is open? - article to write)
 
-TODO: check the interface.
+There are several ways to determine whether a given port is open on your host.
+
+- Netstat:
+
+```shell
+netstat -ln | grep -w tcp | grep -w [PORT]
+```
+
+If the output looks like this:
+
+```
+tcp        0      0 0.0.0.0:[PORT]          0.0.0.0:*               LISTEN
+```
+
+then the port is open on _all_ network interfaces (that's what `0.0.0.0` means). If you see another set of numbers in place of the `0.0.0.0:[PORT]`, then .
+Similarly, if you see something else in place of the `0.0.0.0:*` (the 'Foreign Address'), then the port may not be accessible only to clients from specific IP addresses. For example, if you see `127.0.0.1:*` then it is only accessible from the localhost (using any port).
+
+Alternatively, you can try:
+
+- `ss`:
+
+```shell
+ss -ln | grep -w tcp | grep -w [PORT]
+```
+
+Which produces similar output:
+
+```
+tcp                LISTEN              0                    128                                                                                         0.0.0.0:22                                    0.0.0.0:*
+```
+
+Alternatively, you can try:
+
+- telnet
+
+You can try connecting direct to the port using telnet, as per [step 3.1](#step-3-1). However be aware that this just proves that you can connect from the same host (see notes on interfaces in this section above).
 
 #### 3.3) Conclusions {#step-3-3}
 
-If the port appears to be open from the point of view of the remote host, but not from the point of view of the client, this suggests that there is an intervening firewall that is blocking requests from reaching the server.
+If:
+
+- the port appears to be open from the point of view of the remote host
+
+- the port appears to be closed from the point of view of the client
+
+this suggests that there is an intervening firewall that is blocking requests from reaching the server.
+
+The firewall may be on the remote host.
 
 ### 4) Check IPTables / NetFilter {#step-4}
 
-TODO
+First, if you want to (optionally) know whether you are using IPTables or NetFilter, go [here]({{< relref "../how-to/determine-using-iptables-or-netfilter.md" >}}).
+
+To determine your IPTables/NetFilter rules and whether they affect your port or host, run *as root*:
+
+```shell
+iptables -S | grep -w [PORT]
+iptables -S | grep -w [IP]
+iptables -S | grep -w [HOST]
+```
+
+If any lines match, then IPTables _may_ be blocking or redirecting your attempts to connect to the remote server.
+
+Understanding IPTables more deeply to fully debug this is outside the scope of this article. There are many resources on the web that attempt to explain it for various levels of experience.
 
 ### 5) Check routing tables {#step-5}
 
-TODO - explain context, advise.
+At this point, you may want to consider whether your routing tables are misconfigured.
 
 This command gives a list of your machine's routes:
 
@@ -217,15 +269,27 @@ If the `ip` command is unavailable, try `route`:
 route
 ```
 
+Determining whether the routing tables are correctly configured requires more network knowledge than can be reasonably placed here, and likely some knowledge of the local network topology.
+
+There are many good resources on the internet for this, see [Further Information](#further-information) below for links.
+
 ### 6) Check intervening firewalls {#step-6}
 
-TODO
+At this point you've checked connectivity at your client machine and the server. Now it is worth considering whether there is an intervening firewall between client and server blocking the connection.
 
 - Local firewall (ie on way out)
 
-- External firewall
+We have already considered IPTables/NetFilter, but it is possible that there is some other kind of firewall running on your host that is preventing egress.
 
-- AWS/cloud provider?
+- If you are using AWS, or any other cloud provider...
+
+then consider whether there are network rules set up to prevent egress. On AWS these come in the form of 'Security Groups' and 'Network ACLs'.
+
+- External/3rd party firewall
+
+Any number of firewalls/hosts may be relaying your request to the destination host. Any of these may be blocking the request from going further.
+
+Using `traceroute` might be considered at this point to determine which (and how many) hosts are being hit may help you debug further. See [here](https://en.wikipedia.org/wiki/Traceroute) for more background on this tool.
 
 ## Solutions List {#solutions-list}
 
@@ -249,6 +313,8 @@ net/9p/error.c:114:     {"No route to host", EHOSTUNREACH},
 
 It can be thrown within the kernel for a number of different reasons, which makes interpreting the error tricky.
 
+[Routing tables](https://geek-university.com/ccna/routing-table-explained/)
+
 ## Owner {#owner}
 
 [Ian Miell](https://github.com/ianmiell)
@@ -257,6 +323,6 @@ It can be thrown within the kernel for a number of different reasons, which make
 [//]: # (https://stackoverflow.com/questions/12522396/tcp-ip-client-ehostunreach-no-route-to-host DONE)
 [//]: # (https://www.maketecheasier.com/fix-no-route-to-host-error-linux/#:~:text=When%20you're%20trying%20to,that%20could%20be%20causing%20it DONE)
 [//]: # (https://www.tecmint.com/fix-no-route-to-host-ssh-error-in-linux/ DONE)
-[//]: # (https://superuser.com/questions/720851/connection-refused-vs-no-route-to-host TODO)
-[//]: # (https://networkengineering.stackexchange.com/questions/33397/debugging-no-route-to-host-over-ethernet TODO)
+[//]: # (https://superuser.com/questions/720851/connection-refused-vs-no-route-to-host DONE)
+[//]: # (https://networkengineering.stackexchange.com/questions/33397/debugging-no-route-to-host-over-ethernet DONE)
 [//]: # ()
