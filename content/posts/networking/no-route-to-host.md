@@ -46,10 +46,10 @@ host [HOST]
 which outputs, eg:
 
 ```
-bbc.co.uk has address 151.101.0.81
-bbc.co.uk has address 151.101.128.81
-bbc.co.uk has address 151.101.64.81
-bbc.co.uk has address 151.101.192.81
+[HOST] has address 151.101.0.81
+[HOST] has address 151.101.128.81
+[HOST] has address 151.101.64.81
+[HOST] has address 151.101.192.81
 [...]
 ```
 
@@ -83,9 +83,9 @@ If it's intermittent, consider whether there are multiple hosts that could be ul
 
 ### 2) Is host up? {#step-2}
 
-### 2.1) Use nmap {#step-2-1}
-
 Check whether the host you are trying to reach is up.
+
+### 2.1) Use nmap {#step-2-1}
 
 Run:
 
@@ -112,9 +112,9 @@ then this is a DNS lookup failure. See the [DNS Lookup Failure]({{< relref "dns-
 If you see output that mentions `Host is up`, like this:
 
 ```
-Nmap scan report for bbc.com (151.101.128.81)
+Nmap scan report for [HOST] ([IP])
 Host is up (0.016s latency).
-Other addresses for bbc.com (not scanned): 151.101.64.81 151.101.192.81 151.101.0.81
+Other addresses for [HOST] (not scanned): [IP2] [IP3]
 Not shown: 998 filtered ports
 PORT    STATE SERVICE
 80/tcp  open  http
@@ -133,7 +133,7 @@ If you can not install `nmap`, then you can try to `ping` the host:
 ping [HOST|IP]
 ```
 
-### 2.3) Use ping {#step-2-3}
+### 2.3) Use `nmap` on the IP {#step-2-3}
 
 If you are certain of the IP you are trying to connect to, you can try using `nmap` to access that host directly as per [step 2.1](#step-2-1). If the output differs from that of [step 2.1](#step-2-1), then you may have an issue with DNS lookup for the host not returning the correct IP address.
 
@@ -178,7 +178,7 @@ If you connect, with a response like this:
 
 ```
 Trying 151.101.0.81...
-Connected to bbc.co.uk.
+Connected to [HOST]
 Escape character is '^]'.
 ```
 
@@ -190,7 +190,7 @@ Then the issue appears to be resolved. If your application is still having the s
 
 There are several ways to determine whether a given port is open on your host.
 
-- Netstat:
+- `netstat`
 
 ```shell
 netstat -ln | grep -w tcp | grep -w [PORT]
@@ -205,9 +205,7 @@ tcp        0      0 0.0.0.0:[PORT]          0.0.0.0:*               LISTEN
 then the port is open on _all_ network interfaces (that's what `0.0.0.0` means). If you see another set of numbers in place of the `0.0.0.0:[PORT]`, then .
 Similarly, if you see something else in place of the `0.0.0.0:*` (the 'Foreign Address'), then the port may not be accessible only to clients from specific IP addresses. For example, if you see `127.0.0.1:*` then it is only accessible from the localhost (using any port).
 
-Alternatively, you can try:
-
-- `ss`:
+- `ss`
 
 ```shell
 ss -ln | grep -w tcp | grep -w [PORT]
@@ -218,8 +216,6 @@ Which produces similar output:
 ```
 tcp                LISTEN              0                    128                                                                                         0.0.0.0:22                                    0.0.0.0:*
 ```
-
-Alternatively, you can try:
 
 - telnet
 
@@ -290,10 +286,6 @@ then consider whether there are network rules set up to prevent egress. On AWS t
 Any number of firewalls/hosts may be relaying your request to the destination host. Any of these may be blocking the request from going further.
 
 Using `traceroute` might be considered at this point to determine which (and how many) hosts are being hit may help you debug further. See [here](https://en.wikipedia.org/wiki/Traceroute) for more background on this tool.
-
-## Solutions List {#solutions-list}
-
-## Solutions Detail {#solutions-detail}
 
 ## Check Resolution {#check-resolution}
 
