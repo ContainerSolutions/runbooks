@@ -40,9 +40,15 @@ First [install hugo](https://gohugo.io/getting-started/installing/) then from th
 hugo serve -D
 ```
 
-#### Key Management
+#### Github pages deploy
 
-See [here](https://github.com/marketplace/actions/hugo-for-github-pages)
+The deploy to Github Pages is controlled by [this action](https://github.com/containersolutions/gh-actions-hugo-deploy-gh-pages). The reference to this is found in [.github/workflows/main.yml](https://github.com/ContainerSolutions/runbooks/blob/80767a47c4ed2db5176bea6b489df9069c1282ff/.github/workflows/main.yml#L15).
+
+To update the key used
+1) create an SSH key and put the private key into a secret called `GIT_DEPLOY_KEY` [here](https://github.com/ContainerSolutions/runbooks/settings/secrets).
+2) add the public key as a deploy key with write access [here](https://github.com/ContainerSolutions/runbooks/settings/keys).
+
+More granular details are available on the [action page](https://github.com/containersolutions/gh-actions-hugo-deploy-gh-pages#secrets).
 
 ## License
 
