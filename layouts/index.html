@@ -1,0 +1,46 @@
+{{ define "title" }}
+  {{ .Title }} &ndash; {{ .Site.Title }}
+{{ end }}
+
+
+{{ define "main" }}
+<div>
+
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  <h2>Sections</h2>
+
+  <h3>
+    <ul class="sub-menu">
+      <li class="active">
+        <a href="{{ .Site.BaseURL }}posts/kubernetes/" target="_blank">Kubernetes</a>
+      </li>
+    </ul>
+    <ul class="sub-menu">
+      <li class="active">
+        <a href="{{ .Site.BaseURL }}posts/linux/" target="_blank">Linux</a>
+      </li>
+    </ul>
+    <ul class="sub-menu">
+      <li class="active">
+        <a href="{{ .Site.BaseURL }}posts/networking/" target="_blank">Networking</a>
+      </li>
+    </ul>
+    <ul class="sub-menu">
+      <li class="active">
+        <a href="{{ .Site.BaseURL }}posts/python/" target="_blank">Python</a>
+      </li>
+    </ul>
+    <ul class="sub-menu">
+      <li class="active">
+        <a href="{{ .Site.BaseURL }}posts/how-to/" target="_blank">How-Tos</a>
+        <h6>Commonly-needed sub-tasks when following a Runbook</h6>
+      </li>
+    </ul>
+    </h3>
+  </h3>
+
+</div>
+
+{{ end }}
