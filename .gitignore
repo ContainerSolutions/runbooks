@@ -5,3 +5,7 @@ public
 
 # Resources folder generated when running locally
 resources
+
+# Never include created keys
+hugo
+hugo.pub

@@ -40,6 +40,10 @@ First [install hugo](https://gohugo.io/getting-started/installing/) then from th
 hugo serve -D
 ```
 
+#### Key Management
+
+See [here](https://github.com/marketplace/actions/hugo-for-github-pages)
+
 ## License
 
 See [LICENSE](LICENSE)
