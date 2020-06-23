@@ -21,30 +21,23 @@ date = [":git", "lastmod", "date", "publishDate"]
 
 [[menu.main]]
 name = "Nav Menu"
-weight = 1
+weight = 10
 identifier = "navmenu"
 url = "/"
 
 [[menu.main]]
 name = "Home"
 parent = "navmenu"
-weight = 2
+weight = 20
 identifier = "home"
 url = "/"
 permalink = "/"
-
-[[menu.main]]
-name = "How-Tos"
-parent = "navmenu"
-weight = 3
-identifier = "how-to"
-url = "/posts/how-to/"
-permalink = "/posts/how-to"
+hide = true
 
 [[menu.main]]
 name = "Kubernetes"
 parent = "navmenu"
-weight = 4
+weight = 30
 identifier = "kubernetes"
 url = "/posts/kubernetes/"
 permalink = "/posts/kubernetes"
@@ -52,7 +45,7 @@ permalink = "/posts/kubernetes"
 [[menu.main]]
 name = "Linux"
 parent = "navmenu"
-weight = 5
+weight = 40
 identifier = "linux"
 url = "/posts/linux/"
 permalink = "/posts/linux"
@@ -60,7 +53,7 @@ permalink = "/posts/linux"
 [[menu.main]]
 name = "Networking"
 parent = "navmenu"
-weight = 6
+weight = 50
 identifier = "networking"
 url = "/posts/networking/"
 permalink = "/posts/networking"
@@ -68,7 +61,15 @@ permalink = "/posts/networking"
 [[menu.main]]
 name = "Python"
 parent = "navmenu"
-weight = 7
+weight = 60
 identifier = "python"
 url = "/posts/python/"
 permalink = "/posts/python"
+
+[[menu.main]]
+name = "How-Tos"
+parent = "navmenu"
+weight = 70
+identifier = "how-to"
+url = "/posts/how-to/"
+permalink = "/posts/how-to"

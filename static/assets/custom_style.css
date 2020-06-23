@@ -37,3 +37,7 @@ div#holy {
   margin-right: 70px;
   text-align: right;
 }
+
+.spaced-list li{
+  margin-bottom: 16px;
+}
