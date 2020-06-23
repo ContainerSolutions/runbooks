@@ -40,6 +40,6 @@ First [install hugo](https://gohugo.io/getting-started/installing/) then from th
 hugo serve -D
 ```
 
-## License
+## License
 
 See [LICENSE](LICENSE)
