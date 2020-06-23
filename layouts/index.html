@@ -12,34 +12,18 @@
   <h2>Sections</h2>
 
   <h3>
-    <ul class="sub-menu">
-      <li class="active">
-        <a href="{{ .Site.BaseURL }}posts/kubernetes/" target="_blank">Kubernetes</a>
-      </li>
+    <ul class="spaced-list">
+      {{ range .Site.Menus.main }}
+        {{ range sort .Children }}
+          {{ if ne .Identifier "home" }}
+            <li>
+              <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+          {{ end }}
+        {{ end }}
+      {{ end }}
     </ul>
-    <ul class="sub-menu">
-      <li class="active">
-        <a href="{{ .Site.BaseURL }}posts/linux/" target="_blank">Linux</a>
-      </li>
-    </ul>
-    <ul class="sub-menu">
-      <li class="active">
-        <a href="{{ .Site.BaseURL }}posts/networking/" target="_blank">Networking</a>
-      </li>
-    </ul>
-    <ul class="sub-menu">
-      <li class="active">
-        <a href="{{ .Site.BaseURL }}posts/python/" target="_blank">Python</a>
-      </li>
-    </ul>
-    <ul class="sub-menu">
-      <li class="active">
-        <a href="{{ .Site.BaseURL }}posts/how-to/" target="_blank">How-Tos</a>
-      </li>
-    </ul>
-    </h3>
   </h3>
-
 </div>
 
 {{ end }}
