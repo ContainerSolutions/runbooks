@@ -2,5 +2,8 @@
 title: "Runbooks"
 ---
 
-Here we showcase some of our best recipes for solving tricky or common tech problems in simple steps.
+## The Manifesto
+
+- We are tired of haphazardly hunting through messy threads of GitHub issues and StackOverflow when we hit a problem
+- We don't want a one-off fix, we want to deepen our understanding of the problem space
 
