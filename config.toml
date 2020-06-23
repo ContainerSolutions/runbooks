@@ -35,14 +35,6 @@ permalink = "/"
 hide = true
 
 [[menu.main]]
-name = "How-Tos"
-parent = "navmenu"
-weight = 70
-identifier = "how-to"
-url = "/posts/how-to/"
-permalink = "/posts/how-to"
-
-[[menu.main]]
 name = "Kubernetes"
 parent = "navmenu"
 weight = 30
@@ -73,3 +65,11 @@ weight = 60
 identifier = "python"
 url = "/posts/python/"
 permalink = "/posts/python"
+
+[[menu.main]]
+name = "How-Tos"
+parent = "navmenu"
+weight = 70
+identifier = "how-to"
+url = "/posts/how-to/"
+permalink = "/posts/how-to"
