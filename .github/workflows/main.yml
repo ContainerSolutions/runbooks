@@ -16,4 +16,4 @@ jobs:
       env:
         GIT_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
         HUGO_VERSION: "0.71.0"
-        GITHUB_ACTOR: gerrywastaken
+        GITHUB_ACTOR: ianmiell
