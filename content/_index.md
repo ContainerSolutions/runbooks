@@ -6,4 +6,5 @@ title: "Runbooks"
 
 - We are tired of haphazardly hunting through messy threads of GitHub issues and StackOverflow when we hit a problem
 - We don't want a one-off fix, we want to deepen our understanding of the problem space
+- We want to give people a resource where they can benefit from our experience without taking up our time
 

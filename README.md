@@ -6,6 +6,8 @@
 
 - We don't want a one-off fix, we want to deepen our understanding of the problem space
 
+- We want to give people a resource where they can benefit from our experience without taking up our time
+
 ## What
 
 A collection of step by step guides for fixing common tech problems.
