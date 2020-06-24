@@ -37,6 +37,8 @@ In your terminal, run `uname`.
 
 - If you see [TODO] then you are on a Windows machine. Go to [Step 5](#step-5)
 
+*NOTE* If you run this on a container, the output will refer to the host machine's operating system, not the container's (technically, the container doesn't have an operating system, it has a distribution, eg Debain).
+
 ### 3) Get Linux OS Details {#step-3}
 
 ### 3.1) Run `uname -a` {#step-3-1}
@@ -47,7 +49,7 @@ Running this command will get you information about the running kernel:
 uname -a
 ```
 
-The output:
+The example output:
 
 ```
 Linux dali 5.4.0-37-generic #41-Ubuntu SMP Wed Jun 3 18:57:02 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
@@ -55,22 +57,23 @@ Linux dali 5.4.0-37-generic #41-Ubuntu SMP Wed Jun 3 18:57:02 UTC 2020 x86_64 x8
 
 tells you (in order) the:
 
-- OS / Kernel name (`Linux`)
+- OS / Kernel name (`Linux` above)
 
-- Nodename / short hostname (`dali`)
+- Nodename / short hostname (`dali` above)
 
-- Kernel release (`5.4.0-37-generic`)
+- Kernel release (`5.4.0-37-generic` above)
 
-- Kernel version (`#41-Ubuntu SMP Wed Jun 3 18:57:02 UTC 2020`)
+- Kernel version (`#41-Ubuntu SMP Wed Jun 3 18:57:02 UTC 2020` above)
 
-- Machine hardware name (`x86_64`)
+- Machine hardware name (`x86_64` above)
 
-- Processor type (`x86_64`)
+- Processor type (`x86_64` above)
 
-- Hardware platform (`x86_64`)
+- Hardware platform (`x86_64` above)
 
-- Operating system (`GNU/Linux`)
+- Operating system (`GNU/Linux` above)
 
+*NOTE* If you run this on a container, the output will refer to the host machine's operating system, not the container's (technically, the container doesn't have an operating system, it has a distribution, eg Debain).
 
 ### 3.2) Get Linux OS Details {#step-3-2}
 
@@ -99,6 +102,19 @@ There are some `/etc` files that may give you more information:
 cat /etc/issue
 cat /etc/issue.net
 cat /etc/os-release
+```
+
+### 3.4) Per-Distribution Information {#step-3-4}
+
+Depending on your distribution, more information may be gleaned.
+
+#### 3.4.1) RedHat / CentOS {#step-3-4-1}
+
+```shell
+cat /etc/centos-release
+cat /etc/redhat-release
+cat /etc/system-release
+cat /etc/system-release-cpe
 ```
 
 ### 4) Get Mac OS Details {#step-4}
