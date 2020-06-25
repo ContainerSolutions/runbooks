@@ -13,7 +13,7 @@ It assumes you are on Linux. If you are not sure about that, see [here]({{< relr
 
 1) [Run `lsmod`](#step-1)
 
-2) [Run `iptables -L`](#step-2)
+2) [Run `iptables-save`](#step-2)
 
 ## Detailed Steps {#detailed-steps}
 
@@ -30,6 +30,16 @@ If this command generates any output, then NetFilter is in effect on the system:
 ```shell
 lsmod | grep -i netfilter
 ```
+
+### 2) Run `iptables-save` {#step-2}
+
+To extract the existing rules in effect, run:
+
+```shell
+iptables-save
+```
+
+redirecting to a file if you want to keep the rules for later reference.
 
 ## Further Information {#further-information}
 
