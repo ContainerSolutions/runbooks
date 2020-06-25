@@ -59,14 +59,14 @@ If `locatedb` is not installed, or not up to date/under your control, then you c
 
 ### 1.2) Use the sys.path {#step-1-2}
 
-If you know the version of Python you are using on the command line is correct (see [step 2.1](#step-2-1)), then you can check the default path where Python modules are searched for by starting up Python on the command line and running:
+If you know the version of Python you are using on the command line is correct (see [step 2.1](#step-2-1)), then you can check the default path where Python modules are searched for by adding the following to the file that is trying to load the module:
 
 ```python
->>> import sys
->>> sys.path
+import sys
+print("sys.path:\n" + "\n".join(sys.path))
+exit()
 ```
-
-The output will show you the folders that python searches through looking for Python packages in their immediate subfolders.
+You could run this from the Python Interpreter, however doing so will lead to the first entry being blank instead of showing the current working directory that your script would check. The output will show you the folders that python searches through looking for Python packages in their immediate subfolders.
 
 The `sys.path` value is figured out on startup by Python running a `site.py` located under the Python installation. This dynamically picks up relevant folders based on the code in that file.
 
