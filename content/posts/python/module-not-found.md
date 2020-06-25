@@ -88,6 +88,14 @@ If this doesn't solve your problem because the program you were running was not 
 
 It may be that you are using Python version 2.x instead of 3.x, or vice versa. Or even a different minor or point version of Python. Different Python versions can look in different locations for their libraries, and so using the wrong version can mean that the library can't be found.
 
+You can check your version directly from your script by adding the following snippet just above your failing import:
+```python
+import sys
+print("sys.version: " + sys.version)
+print(str(sys.version_info))
+exit()
+```
+
 If your Python module was in a folder with a version number in it, eg:
 
 ```shell
