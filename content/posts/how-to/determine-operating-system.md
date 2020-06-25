@@ -17,7 +17,11 @@ Use this runbook if you want to know details of the operating system you are run
 
 2) [Run `uname`](#step-2)
 
-2) [Run `uname`](#step-2)
+3) [Get Linux OS Details](#step-3)
+
+4) [Get Mac OS Details](#step-4)
+
+5) [Get Windows OS Details](#step-5)
 
 ## Detailed Steps {#detailed-steps}
 
