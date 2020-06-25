@@ -59,14 +59,14 @@ If `locatedb` is not installed, or not up to date/under your control, then you c
 
 ### 1.2) Use the sys.path {#step-1-2}
 
-If you know the version of Python you are using on the command line is correct (see [step 2.1](#step-2-1)), then you can check the default path where Python modules are searched for by starting up Python on the command line and running:
+If you know the version of Python you are using on the command line is correct (see [step 2.1](#step-2-1)), then you can check the default path where Python modules are searched for by adding the following to the file that is trying to load the module:
 
 ```python
->>> import sys
->>> sys.path
+import sys
+print("sys.path:\n" + "\n".join(sys.path))
+exit()
 ```
-
-The output will show you the folders that python searches through looking for Python packages in their immediate subfolders.
+You could run this from the Python Interpreter, however doing so will lead to the first entry being blank instead of showing the current working directory that your script would check. The output will show you the folders that python searches through looking for Python packages in their immediate subfolders.
 
 The `sys.path` value is figured out on startup by Python running a `site.py` located under the Python installation. This dynamically picks up relevant folders based on the code in that file.
 
@@ -87,6 +87,14 @@ If this doesn't solve your problem because the program you were running was not 
 #### 2.1) You are using the wrong Python version {#step-2-1}
 
 It may be that you are using Python version 2.x instead of 3.x, or vice versa. Or even a different minor or point version of Python. Different Python versions can look in different locations for their libraries, and so using the wrong version can mean that the library can't be found.
+
+You can check your version directly from your script by adding the following snippet just above your failing import:
+```python
+import sys
+print("sys.version: " + sys.version)
+print(str(sys.version_info))
+exit()
+```
 
 If your Python module was in a folder with a version number in it, eg:
 
@@ -118,7 +126,7 @@ If you installed the module using `pip` or some similar package management metho
 
 - Did you install as a user other than the user running the Python import?
 
-### 5) Check installation method {#step-5}
+### 5) Module in a subfolder? {#step-5}
 
 Is the module you are trying to load in a subfolder?
 
@@ -126,7 +134,7 @@ If so, you may need to more carefully qualify your module import. See [here](htt
 
 ### 6) Double import trap? {#step-6}
 
-If you have `PYTHONPATH` set in your environment, or are adding to your `sys.path` within your code or configuration, you may be falling victim to this trap, which can cause havoc with relative imports and the like. See [here](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html) for more background.
+If you have `PYTHONPATH` set in your environment, or are adding to your `sys.path` within your code or configuration, you may be falling victim to this trap, which can cause havoc with relative imports and the like. See [here](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html#the-double-import-trap) for more background.
 
 ### 7) Virtualenv activated? {#step-6}
 
