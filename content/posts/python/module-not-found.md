@@ -126,7 +126,7 @@ If you installed the module using `pip` or some similar package management metho
 
 - Did you install as a user other than the user running the Python import?
 
-### 5) Check installation method {#step-5}
+### 5) Module in a subfolder? {#step-5}
 
 Is the module you are trying to load in a subfolder?
 
