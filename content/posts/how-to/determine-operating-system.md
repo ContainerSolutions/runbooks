@@ -41,7 +41,7 @@ In your terminal, run `uname`.
 
 - If you see [TODO] then you are on a Windows machine. Go to [Step 5](#step-5)
 
-*NOTE* If you run this on a container, the output will refer to the host machine's operating system, not the container's (technically, the container doesn't have an operating system, it has a distribution, eg Debain).
+__NOTE:__ If you run this on a container, the output will refer to the host machine's operating system, not the container's (technically, the container doesn't have an operating system, it has a distribution, eg Debian).
 
 ### 3) Get Linux OS Details {#step-3}
 
