@@ -34,6 +34,8 @@ ImportError: No module named doesnotexist
 
 6) [Double import trap?](#step-6)
 
+7) [Virtualenv activated?](#step-7)
+
 ## Detailed Steps {#detailed-steps}
 
 ### 1) Check module exists {#step-1}
@@ -120,11 +122,32 @@ If you installed the module using `pip` or some similar package management metho
 
 Is the module you are trying to load in a subfolder?
 
-If so, you may need to more carefully quality your module import. See [here](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html) for more background.
+If so, you may need to more carefully qualify your module import. See [here](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html) for more background.
 
 ### 6) Double import trap? {#step-6}
 
 If you have `PYTHONPATH` set in your environment, or are adding to your `sys.path` within your code or configuration, you may be falling victim to this trap, which can cause havoc with relative imports and the like. See [here](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html) for more background.
+
+### 7) Virtualenv activated? {#step-6}
+
+If your python code runs in a [virtualenv](https://docs.python.org/3/tutorial/venv.html), you may need to activate it for this error to be resolved. See [solution A](#solution-a) for more on this.
+
+## Solutions List {#solutions-list}
+
+A) [Activate your virtualenv](#solution-a)
+
+## Solutions Detail {#solutions-detail}
+
+### A) Activate your virtualenv {#solution-a}
+
+Typically, this will require you to run:
+
+```shell
+virtualenv .
+source bin/activate
+```
+
+before you re-run your code.
 
 ## Check Resolution {#check-resolution}
 
@@ -139,6 +162,8 @@ General primer on Python packages:
 - [Python packages, v2](https://docs.python.org/2/tutorial/modules.html#packages)
 
 - [Python packages, v3](https://docs.python.org/3/tutorial/modules.html#packages)
+
+[Virtualenvs](https://docs.python.org/3/tutorial/venv.html)
 
 ## Owner {#owner}
 
