@@ -13,7 +13,7 @@ It assumes you are on Linux. If you are not sure about that, see [here]({{< relr
 
 1) [Run `lsmod`](#step-1)
 
-2) [Run `iptables -L`](#step-2)
+2) [Run `iptables-save`](#step-2)
 
 ## Detailed Steps {#detailed-steps}
 
