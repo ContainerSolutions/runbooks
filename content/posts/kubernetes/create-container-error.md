@@ -73,7 +73,7 @@ The container name "/k8s_kube-apiserver_kube-apiserver-master_kube-system_ce0f74
 
 Then it is likely there is a problem with the container runtime on that host not cleaning up old containers. If you have admin access, check the kubelet logs on the node the container was assigned to.
 
-#### 2.4) If you see `is waiting to start`
+#### 2.4) If you see `is waiting to start`
 
 In the error message, like this:
 
@@ -85,14 +85,13 @@ then the issue may be to do with
 
 - Volume/secrets mounting.
 
-If there is an [Init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/), then look at the logs for that, as it may be responsible for provisioning the volume. (TODO: more detail on this)
+If there is an [Init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/), then look at the logs for that, as it may be responsible for provisioning the volume.
 
 Check any secrets and/or configmaps in the pod are available to your pods in your namespace.
 
-
-[//]: # (## Solutions {#solutions})
-[//]: # ()
-[//]: # (### Solution A {#solution-a})
+[//]: # (## Solutions {#solutions})
+[//]: # ()
+[//]: # (### Solution A {#solution-a})
 
 ## Check Resolution {#check-resolution}
 
