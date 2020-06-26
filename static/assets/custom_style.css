@@ -41,3 +41,62 @@ div#holy {
 .spaced-list li{
   margin-bottom: 16px;
 }
+
+.edit-header {
+  /* display: flex; */
+  /* width: 100%; */
+  /* position: sticky; */
+  /* justify-content: flex-end; */
+  padding: 17px 5px 16px 5px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #586069;
+  text-align: center;
+}
+
+.pseudo-menu-item {
+  display: flex;
+  margin-bottom: -1px;
+}
+
+.pseudo-flex-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.pseudo-nav-item {
+  padding: 16px 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #586069;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+}
+
+@media only screen and (min-width: 1400px) {
+  .pseudo-menu-item {
+    display: flex;
+    position: fixed;
+    margin-right: 15px;
+    top: 0;
+    right: 0;
+  }
+
+  #header {
+    margin-top: 10px;
+  }
+}
+
+.pencil {
+  display:inline-block;
+  fill:currentColor;
+  /* user-select:none; */
+  vertical-align:text-bottom
+}
+
+.edit-link {
+  color: #586069 !important;
+  text-decoration: none;
+}
