@@ -1,0 +1,22 @@
+{{ $repository := "https://github.com/containersolutions/runbooks"}}
+{{/* Index pages only contain the title so we link to issues instead */}}
+{{ $index_page := .File.Filename | findRE "_index\\.md$" }}
+{{ $repo_path := "/issues" }}
+{{ $link_text := "Suggest a change" }}
+{{ if not $index_page }}
+  {{ $repo_path = .File.Filename | replaceRE "^.*/content/(.*)" "/edit/master/content/$1" }}
+  {{ $link_text = "Improve this page" }}
+{{ end }}
+<!-- edit-header -->
+  <div class="pseudo-menu-item text-gray">
+    <div class="pseudo-flex-item">
+      <span class="pseudo-nav-item">
+        <a href="{{$repository }}{{ $repo_path }}" class="edit-link">
+          <svg aria-hidden="true" height="16" role="img" viewBox="0 0 14 16" width="14" class="pencil">
+            <path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 011.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path>
+          </svg>&nbsp;
+          {{ $link_text }}
+        </a>
+      </span>
+    </div>
+  </div>
