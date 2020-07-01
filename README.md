@@ -52,6 +52,24 @@ To update the key used
 
 More granular details are available on the [action page](https://github.com/containersolutions/gh-actions-hugo-deploy-gh-pages#secrets).
 
+## Debugging
+
+The Hugo docs can occasionally be a bit vague about what methods are available or what they return. There also seems to be quite a bit of [push](https://github.com/gohugoio/hugo/issues/4081#issuecomment-442384273)-[back](https://github.com/gohugoio/hugo/issues/3957#issuecomment-364657015) to adding general debugging tools. One user has created a theme that includes a partial and a shortcode to work around this limitation.
+
+If you are working from inside a partial or layout file you can include the following partial and pass the property that you wish to inspect. I'm using `.File` in the example below.
+
+    {{ partial "debugprint.html" .File }}
+
+This will show you various properties available via `.File`.
+
+If working within a content file things are a lot more limited but you can pass the following variants to get appropriate output:
+
+    {{< debug "params" >}}
+    {{< debug "site" >}}
+    {{< debug param="title" >}}
+
+but generally you will get more use when invoking the `debugprint` partial directly.
+
 ## License
 
 See [LICENSE](LICENSE)

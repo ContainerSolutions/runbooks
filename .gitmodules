@@ -1,3 +1,6 @@
 [submodule "themes/hugo-primer-cs"]
 	path = themes/hugo-primer-cs
 	url = https://github.com/ContainerSolutions/hugo-primer
+[submodule "themes/hugo-debugprint"]
+	path = themes/hugo-debugprint
+	url = https://github.com/kaushalmodi/hugo-debugprint
