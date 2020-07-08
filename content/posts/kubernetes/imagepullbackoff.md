@@ -68,7 +68,7 @@ Warning  Failed     10m (x4 over 6m)    kubelet, gke-cs-79ec0e47-kfkc  Failed to
 
 then this indicates that the _specific version_ of the Docker repository is not available. Confirm that the image is available, and update accordingly if this is the case.
 
-#### 2.3) Authorization failed: {#step-2-3}
+#### 2.3) Authorization failed: {#step-2-3}
 
 If the error specifies that authorization failed:
 
