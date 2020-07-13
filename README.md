@@ -70,6 +70,17 @@ If working within a content file things are a lot more limited but you can pass 
 
 but generally you will get more use when invoking the `debugprint` partial directly.
 
+## Adding content
+
+Run:
+
+```
+hugo new posts/path/article-name.md
+```
+
+Then git add, commit, raise PR as normal.
+
+
 ## License
 
 See [LICENSE](LICENSE)
