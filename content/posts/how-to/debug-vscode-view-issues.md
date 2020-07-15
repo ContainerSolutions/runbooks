@@ -75,11 +75,10 @@ This process is a **lot** more involved, but if you don't wish to reset the enti
 
   9. Now you can inspect the actual state settings and search for keywords such as `layout`, `workspace` or anything you think might be related to your problem. If you still can't locate the culprit, you can always open a new project that doesn't display this issue and run the same export of its current state. Then go though and look for differences between these files.
 
-## Further Information {#further-information}
-
 ## Authors {#authors}
 
 [@Gerry](https://github.com/gerrywastaken)
+
 
 [//]: # (REFERENCED DOCS)
 [//]: # (Where are breakpoints stored in vscode: https://stackoverflow.com/questions/57767800/where-does-breakpoints-stores)
