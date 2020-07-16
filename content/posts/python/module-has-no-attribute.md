@@ -6,7 +6,7 @@ summary: "Recieving an AttributeError telling you that your module doesn't have 
 ## Overview {#overview}
 
 ```
-python main.py 
+python main.py
 Traceback (most recent call last):
   File "main.py", line 2, in <module>
     foo.bar()

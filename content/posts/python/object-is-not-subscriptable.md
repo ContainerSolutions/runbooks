@@ -5,14 +5,9 @@ summary: "Fixing this cryptic Python TypeError"
 
 ## Overview {#overview}
 
-You get an error complaining:
-`TypeError: object is not subscriptable`
+This problem is caused by trying to access an object that cannot be indexed as though it can be accessed via an index.
 
-Specific examples:
-* `TypeError: 'type' object is not subscriptable`
-* `TypeError: 'function' object is not subscriptable`
-
-e.g.
+For example, given the following error:
 
 ```python
 Traceback (most recent call last):
@@ -21,9 +16,19 @@ Traceback (most recent call last):
 TypeError: 'type' object is not subscriptable
 ```
 
-## Problem {#problem}
+The code is trying to access `map[value]` but `map` is already a built-in type that doesn't support accessing indexes.
 
-This problem is caused when you treat an object that cannot be indexed by trying to access it by an index or "subscript". In the above example, I'm looking for `map[value]` but `map` is already a built-in type that doesn't support accessing indexes. You would get a similar error if you tried to call `print[42]` because `print` is a built-in function.
+You would get a similar error if you tried to call `print[42]`, because `print` is a built-in function.
+
+## Check RunBook Match {#check-runbook-match}
+
+If you get an error complaining:
+
+`TypeError: object is not subscriptable`
+
+Specific examples:
+* `TypeError: 'type' object is not subscriptable`
+* `TypeError: 'function' object is not subscriptable`
 
 ## Initial Steps Overview {#initial-steps-overview}
 
@@ -52,7 +57,7 @@ import builtins
 dir(builtins)
 
 # For Python 2.0
-import __builtin__ 
+import __builtin__
 dir(__builtin__)
 ```
 
@@ -146,7 +151,7 @@ But don't just take our word for it: [see here](https://stackoverflow.com/q/9109
 
 ## Authors {#authors}
 
-[@Gerry](https://github.com/gerrywastaken) 
+[@Gerry](https://github.com/gerrywastaken)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://docs.python.org/2.0/ref/subscriptions.html DONE)
