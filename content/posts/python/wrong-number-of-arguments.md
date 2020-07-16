@@ -1,9 +1,17 @@
 ---
 title: "Wrong Number of Arguments"
-summary: "Summary here"
+summary: "'F() takes X positional arguments but Y were given' errors"
 ---
 
 ## Overview {#overview}
+
+Python can report that you are passing one more argument than it appears you are sending.
+
+For example, you are passing two arguments, but Python claims you have passed three.
+
+## Check RunBook Match {#check-runbook-match}
+
+If you see an error that looks like this:
 
 ```
 Traceback (most recent call last):
@@ -12,58 +20,140 @@ Traceback (most recent call last):
 TypeError: aFunction() takes 2 positional arguments but 3 were given
 ```
 
-But you're only passing two arguments. Python is implicitly passing the object instance.
+Then this runbook is a match.
 
-## Check RunBook Match {#check-runbook-match}
+## Initial Steps Overview {#initial-steps-overview}
 
-When Python says that you are passing one more argument than you are actually sending. eg. You are passing two arguments but Python claims you have passed 3.
+1) [Method in Python class?](#step-1)
 
-This may be because you have set a method to be @classmethod when you meant to use @staticmethod and so the class is automatically passed as the first argument.
+2) [Method outside Python class?](#step-2)
 
-A similar situation is true for instance methods where the instance is automatically passed as the first argument.
+## Detailed Steps {#detailed-steps}
 
-Here's a quick look at situations where arguments are implicitly being passed. Note that in all three we only pass two variables, but in the case of the instance and class methods, Python adds an argument of it's own which needs to be there in the method's definition.
+### 1) Method inside Python class? {#step-1}
+
+This issue occurs because your method is declared in the context of a Python class.
+
+For example, if your method is `bar` it is indented inside a `class` block, like so:
 
 ```python
 class Foo():
     def bar(self, a, b):
         print("bar:", self, a, b)
-
-    @classmethod
-    def tee(cls, a, b):
-        print("tee:", cls, a, b)
-
-    @staticmethod
-    def qux(a, b):
-        print("qux:", a, b)
-
-Foo().bar(1, 2)
-Foo.tee(1, 2)
-Foo.qux(1, 2)
-
-# Output
-
-# bar: <__main__.Foo object at 0x7fdc13acefa0> 1 2
-# tee: <class '__main__.Foo'> 1 2
-# qux: 1 2
 ```
+
+If your method is outside a Python `class`, then go to [step 2](#step-2).
+
+If your method is inside a Python `class`, then there are a number of options to consider.
+
+#### 1.1) Instance method {#step-1-1}
+
+If your method is a straighforward instance method (ie has no decorators such as `@staticmethod` or `@classmethod` above the declaration), then it is likely that you forgot to add a first argument to the method signature.
+
+See [solution A](#solution-a) if this is the case.
+
+#### 1.2) Class method {#step-1-2}
+If your method is a class method (ie has the `@classmethod` decorator above the declaration), then it is likely that you forgot to add a first argument to the method signature.
+
+See [solution B](#solution-b) if this is the case.
+
+#### 1.3) Static method {#step-1-2}
+
+It is also possible that your method should be a static method.
+
+If your method is a utility function that:
+
+- doesn't need an instance of the class to be created to be used, or
+
+- doesn't need to know about the class
+
+then you may want to consider using a static method.
+
+This resolves the problem through the method not receiving an unnecessary first argument (which both [1.1](#step-1-1) and [1.2](#step-1-2) above, do.
+
+### 2) Method outside Python class? {#step-2}
+
+If your method is outside a Python class, then it is likely that you have simply passed the wrong number of variables. Here's some tips that may help:
+
+- Check that the function you believe you are calling is actually the function that is being called
+
+- Look more closely at the function signature to determine what the correct number of arguments is and whether you are passing that number
+
 
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) [Accept self for instance methods](#step-1)
-2) [Aceept class for Class methods](#step-2)
-3) [Switch to a Static method](#step-2)
+## Solutions List {#solutions-list}
 
-## Detailed Steps {#detailed-steps}
+A) [Add `self` to method](#solution-a)
 
-### 1) Accept self for instance methods {#step-1}
-Instance methods receive the instance as their first argument, so you must add this to the list of parameters for your method. By convention, this variable is normally named `self`.
+B) [Add `cls` argument to class method](#solution-b)
 
-### 2) Aceept class for Class methods {#step-2}
-Class methods receive a class, so you must add this to the list of parameters for your method. This is so that you can change values within the class or generate a new instance of the given class (factory method). By convention this variable is normally named `cls`.
+C) [Change method to `@staticmethod`](#solution-c)
 
-### 3) Switch to a Static method {#step-2}
-If you method is just a utility function that doesn't need an instance or to know about the class, then you should probably be using a Static method. This way you will not receive an unnecessary first argument.
+
+### A) Add `self` to method {#solution-a}
+Instance methods receive the instance as their first argument, so you must add this to the list of parameters for your method. By convention, this variable is normally named `self`. For example, change:
+
+
+```python
+[...]
+class Foo():
+    def bar(a, b):
+        print("bar:", self, a, b)
+```
+
+to:
+
+```python
+[...]
+class Foo():
+    def bar(self, a, b):
+        print("bar:", self, a, b)
+```
+
+
+### B) Add `cls` argument to method {#solution-b}
+Class methods receive a class, so you must add this to the list of parameters for your method. This is so that you can change values within the class or generate a new instance of the given class (factory method). By convention this variable is normally named `cls`. For example, change:
+
+```python
+class Foo():
+[...]
+    @classmethod
+    def tee(a, b):
+        print("tee:", cls, a, b)
+```
+
+to:
+
+```python
+class Foo():
+[...]
+    @classmethod
+    def tee(cls, a, b):
+        print("tee:", cls, a, b)
+```
+
+
+### C) Change method to `@staticmethod` {#solution-c}
+
+This is achieved by adding a decorator to the method, eg changing:
+
+```python
+class Foo():
+[...]
+    def qux(a, b):
+        print("qux:", a, b)
+```
+
+to
+
+```python
+class Foo():
+[...]
+    @staticmethod
+    def qux(a, b):
+        print("qux:", a, b)
+```
 
 ## Check Resolution {#check-resolution}
 
@@ -81,3 +171,5 @@ You should no longer receive the error about being given more positional argumen
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://www.geeksforgeeks.org/class-method-vs-static-method-python/)
+[//]: # (https://realpython.com/primer-on-python-decorators/)
+[//]: # ()
