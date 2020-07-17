@@ -5,18 +5,14 @@ summary: "Python 'Module Not Found' Errors"
 
 ## Overview {#overview}
 
-This issue happens when Python attempts to load a module and cannot find the module to load.
-
-## Check RunBook Match {#check-runbook-match}
-
-When you run a Python application, script, or interactive terminal, you see an error that looks like this:
-
 ```python
 Traceback (most recent call last):
   File "afile.py", line 1, in <module>
     import doesnotexist
 ImportError: No module named doesnotexist
 ```
+
+When you run a Python application, script, or interactive terminal, you see an error that looks like the above.
 
 ## Initial Steps Overview {#initial-steps-overview}
 

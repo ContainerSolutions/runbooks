@@ -5,9 +5,15 @@ summary: "Fixing this cryptic Python TypeError"
 
 ## Overview {#overview}
 
-This problem is caused by trying to access an object that cannot be indexed as though it can be accessed via an index.
+Example errors:
 
-For example, given the following error:
+```
+TypeError: object is not subscriptable
+```
+
+Specific examples:
+* `TypeError: 'type' object is not subscriptable`
+* `TypeError: 'function' object is not subscriptable`
 
 ```python
 Traceback (most recent call last):
@@ -16,19 +22,11 @@ Traceback (most recent call last):
 TypeError: 'type' object is not subscriptable
 ```
 
-The code is trying to access `map[value]` but `map` is already a built-in type that doesn't support accessing indexes.
+This problem is caused by trying to access an object that cannot be indexed as though it can be accessed via an index.
+
+For example, in the above error, the code is trying to access `map[value]` but `map` is already a built-in type that doesn't support accessing indexes.
 
 You would get a similar error if you tried to call `print[42]`, because `print` is a built-in function.
-
-## Check RunBook Match {#check-runbook-match}
-
-If you get an error complaining:
-
-`TypeError: object is not subscriptable`
-
-Specific examples:
-* `TypeError: 'type' object is not subscriptable`
-* `TypeError: 'function' object is not subscriptable`
 
 ## Initial Steps Overview {#initial-steps-overview}
 

@@ -5,12 +5,7 @@ summary: "When calling a method on a module's class you get a NameError telling 
 
 ## Overview {#overview}
 
-
-This issue happens when you try to invoke a class within a module without specifying the module anywhere
-
-## Check RunBook Match {#check-runbook-match}
-
-If you see an error like this:
+Example error:
 
 ```
 Traceback (most recent call last):
@@ -19,9 +14,7 @@ Traceback (most recent call last):
 NameError: name 'Foo' is not defined
 ```
 
-then this runbook is a match.
-
-When you call a class method within a from a module you expect to see the result of that call and for that class to be defined.
+This issue happens when you try to invoke a class within a module without specifying the module.
 
 ## Initial Steps Overview {#initial-steps-overview}
 

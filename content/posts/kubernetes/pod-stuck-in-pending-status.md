@@ -202,6 +202,7 @@ If you don't know how to restart the kubelet, you may need to contact your syste
 
 Determine whether you need to increase the resources available, or limit resources your pod requests so as not to breach the limits.
 Which is appropriate depends on your particular circumstances.
+See [the "0 nodes available" runbook]({{< relref "0-nodes-available-insufficient.md" >}}) for further guidance.
 
 ### C) Repair your CNI {#solution-c}
 
