@@ -5,13 +5,7 @@ summary: "'F() takes X positional arguments but Y were given' errors"
 
 ## Overview {#overview}
 
-Python can report that you are passing one more argument than it appears you are sending.
-
-For example, you are passing two arguments, but Python claims you have passed three.
-
-## Check RunBook Match {#check-runbook-match}
-
-If you see an error that looks like this:
+Example error:
 
 ```
 Traceback (most recent call last):
@@ -20,7 +14,9 @@ Traceback (most recent call last):
 TypeError: aFunction() takes 2 positional arguments but 3 were given
 ```
 
-Then this runbook is a match.
+Python can report that you are passing one more argument than it appears you are sending.
+
+For example, you are passing two arguments, but Python claims you have passed three.
 
 ## Initial Steps Overview {#initial-steps-overview}
 

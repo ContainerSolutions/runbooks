@@ -6,15 +6,7 @@ draft: true
 
 ## Overview {#overview}
 
-This issue happens when Python can't correctly work with a string variable.
-
-Strings can contain any sequence of bytes, but when Python is asked to work with the string, it may decide that the string contains invalid bytes.
-
-In these situations, an error is often thrown.
-
-## Check RunBook Match {#check-runbook-match}
-
-If you see an error that looks like this:
+Example errors:
 
 ```
 Traceback (most recent call last):
@@ -23,7 +15,11 @@ Traceback (most recent call last):
 UnicodeEncodeError: 'ascii' codec can't encode character u'\xa1' in position 0: ordinal not in range(128)
 ```
 
-ie one that mentions `ordinal not in range` and/or `codec can't encode character` or `codec can't decode character` then this runbooks is a match.
+This issue happens when Python can't correctly work with a string variable.
+
+Strings can contain any sequence of bytes, but when Python is asked to work with the string, it may decide that the string contains invalid bytes.
+
+In these situations, an error is often thrown that mentions `ordinal not in range`, or `codec can't encode character`, or `codec can't decode character`.
 
 ## Initial Steps Overview {#initial-steps-overview}
 

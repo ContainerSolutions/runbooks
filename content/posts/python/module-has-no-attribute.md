@@ -5,6 +5,8 @@ summary: "Recieving an AttributeError telling you that your module doesn't have 
 
 ## Overview {#overview}
 
+Example error:
+
 ```
 python main.py
 Traceback (most recent call last):
@@ -13,18 +15,13 @@ Traceback (most recent call last):
 AttributeError: module 'foo' has no attribute 'bar'
 ```
 
-This issue happens when you try to invoke a class within a module without specifying the module anywhere
-
-## Check RunBook Match {#check-runbook-match}
-
-When you call a class method within a from a module you expect that class and its methods to be available.
+This issue happens when you try to invoke a class within a module without specifying the module.
 
 ## Initial Steps Overview {#initial-steps-overview}
 
 1) [Call class directly](#step-1)
 
 2) [Change the import to load the class directly](#step-2)
-
 
 ## Detailed Steps {#detailed-steps}
 
@@ -47,7 +44,7 @@ Given the above code a call to `foo.bar()` within `main.py` would result in an e
 
 If we change the import from [step 1](#step-1) to instead be `from <modulename> import <classname>` this will make the class `foo` directly accessible.
 
-e.g.
+eg:
 
 ```python
 # main.py
