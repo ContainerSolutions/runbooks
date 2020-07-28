@@ -1,6 +1,6 @@
 ---
 title: "DNS Lookup Failure"
-summary: "DNS Request Fails"
+summary: "When DNS Fails You"
 ---
 
 ## Overview {#overview}
