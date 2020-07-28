@@ -19,13 +19,13 @@ This issue happens when you try to invoke a class within a module without specif
 
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) [Call class directly](#step-1)
+1) [Call the class directly](#step-1)
 
-2) [Change the import to load the class directly](#step-2)
+2) [Change import to load the class directly](#step-2)
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Call the class direction {#step-1}
+### 1) Call the class directly {#step-1}
 
 ```python
 # foo.py
@@ -40,11 +40,9 @@ import foo
 
 Given the above code a call to `foo.bar()` within `main.py` would result in an error about the module 'foo' not having the attribute 'bar'. This is because we have only made the module accessible and not it's class `foo`. So to call it we could instead do `foo.foo.bar()` with the first foo  being the module name and the second being the class name.
 
-### 2) Change the import to load the class directly {#step-2}
+### 2) Change import to load the class directly {#step-2}
 
-If we change the import from [step 1](#step-1) to instead be `from <modulename> import <classname>` this will make the class `foo` directly accessible.
-
-eg:
+If we change the import from [step 1](#step-1) to instead be `from <modulename> import <classname>` this will make the class `foo` directly accessible, eg:
 
 ```python
 # main.py
