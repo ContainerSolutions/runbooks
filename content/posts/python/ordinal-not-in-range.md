@@ -1,7 +1,6 @@
 ---
 title: "Ordinal Not in Range"
 summary: "Python encoding/decoding errors"
-draft: true
 ---
 
 ## Overview {#overview}
@@ -21,11 +20,19 @@ Strings can contain any sequence of bytes, but when Python is asked to work with
 
 In these situations, an error is often thrown that mentions `ordinal not in range`, or `codec can't encode character`, or `codec can't decode character`.
 
+Here's a bit of code that may reproduce the error in Python 2:
+
+```
+a='\xa1'
+print(a + ' <= problem')
+unicode(a)
+```
+
 ## Initial Steps Overview {#initial-steps-overview}
 
 1) [Check Python version](#step-1)
 
-2) [Check ](#step-2)
+2) [Determine codec and character](#step-2)
 
 ## Detailed Steps {#detailed-steps}
 
@@ -33,31 +40,67 @@ In these situations, an error is often thrown that mentions `ordinal not in rang
 
 The Python version you are using is significant.
 
-### 2) TODO {#step-2}
+You can determine the Python version by running:
 
-[Link to Solution A](#solution-a)
+```
+python --version
+```
+
+or, if you have access to the running code, by logging it:
+
+```
+print(sys.version)
+```
+
+The major number (2 or 3) is the number you are interested in.
+
+It is expected that you are using Python2.
+
+### 2) Determine interpreting codec and character {#step-2}
+
+Get this from the error message:
+
+```
+UnicodeEncodeError: 'ascii' codec can't encode character u'\xa1' in position 0: ordinal not in range(128)
+```
+
+In this case, the code is `ascii` and the character is the hex character `A1`.
+
+What is happening here is that Python is trying to interpret a string, and expects that the bytes in that string are legal for the format it's expecting. In this case, it's expecting a string composed of [ASCII](https://en.wikipedia.org/wiki/ASCII) bytes. These bytes are in the range 0-127 (ie 8 bytes). The hex byte `A1` is 161 in decimal, and is therefore out of range.
+
+When Python comes to interpret this string in a context that requires a codec (for example, when calling the `unicode` function), it tries to 'encode' it with the codec, and can hit this problem.
+
+### 3) Determine desired codec {#step-2}
+
+You need to figure out how the bytes should be interpreted.
+
+Most often in everyday use (eg web scraping or document ingestion), this is `utf-8`.
+
+Once you have determined the desired codec, [solution A](#solution-a) may help you.
 
 ## Solutions List {#solutions-list}
 
-A) [Solution](#solution-a)
+A) [Decode the string](#solution-a)
+
 
 ## Solutions Detail {#solutions-detail}
 
-### Solution A {#solution-a}
+### A) Decode the string {#solution-a}
 
-## Check Resolution {#check-resolution}
+If you have a string `s` that you want to interpret as utf-8 data, you can try:
 
-## Further Steps {#further-steps}
+```
+s = s.decode('utf-8')
+```
 
-1) [Further Step 1](#further-steps-1)
-
-### Further Step 1 {#further-steps-1}
+to re-encode the string with the appropriate codec.
 
 ## Further Information {#further-information}
 
 ## Owner {#owner}
 
-email
+[Ian Miell](https://github.com/ianmiell)
+
 
 [//]: # (REFERENCED DOCS)
 [//]: # (http://effbot.org/pyfaq/what-does-unicodeerror-ascii-decoding-encoding-error-ordinal-not-in-range-128-mean.htm - TODO)
