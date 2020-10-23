@@ -9,7 +9,7 @@ This issue happens when your application pauses a significant period of time whe
 
 ## Check RunBook Match {#check-runbook-match}
 
-If your application regularly pauses when doing anything on the network, but succesfully continues, this runbook may help.
+If your application regularly pauses when doing anything on the network, but successfully continues, this runbook may help.
 
 ## Initial Steps Overview {#initial-steps-overview}
 
