@@ -77,7 +77,7 @@ tells you (in order) the:
 
 - Operating system (`GNU/Linux` above)
 
-*NOTE* If you run this on a container, the output will refer to the host machine's operating system, not the container's (technically, the container doesn't have an operating system, it has a distribution, eg Debain).
+*NOTE* If you run this on a container, the output will refer to the host machine's operating system, not the container's (technically, the container doesn't have an operating system, it has a distribution, eg Debian).
 
 ### 3.2) Get Linux OS Details {#step-3-2}
 
