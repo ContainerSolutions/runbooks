@@ -73,7 +73,7 @@ This process is a **lot** more involved, but if you don't wish to reset the enti
 
   8. In the next window that opens click on the `Export json` button at the top right as this will make searching through the data much simpler.
 
-  9. Now you can inspect the actual state settings and search for keywords such as `layout`, `workspace` or anything you think might be related to your problem. If you still can't locate the culprit, you can always open a new project that doesn't display this issue and run the same export of its current state. Then go though and look for differences between these files.
+  9. Now you can inspect the actual state settings and search for keywords such as `layout`, `workspace` or anything you think might be related to your problem. If you still can't locate the culprit, you can always open a new project that doesn't display this issue and run the same export of its current state. Then go through and look for differences between these files.
 
 ## Authors {#authors}
 
