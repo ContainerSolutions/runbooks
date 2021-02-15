@@ -6,7 +6,7 @@ theme = ["hugo-debugprint", "hugo-primer-cs"]
 disqusShortname = "runbooks"
 enableGitInfo = "true"
 
-googleAnalytics = "UA-53586058-2"
+googleAnalytics = "G-1MRFR0S0VT"
 
 [privacy.googleAnalytics]
 respectDoNotTrack = true
