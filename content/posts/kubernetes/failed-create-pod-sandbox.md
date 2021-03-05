@@ -1,6 +1,6 @@
 ---
 title: "Failed Create Pod Sandbox"
-summary: "Pods not not running with FailedCreatePodSandBox error"
+summary: "Pods not running, with FailedCreatePodSandBox error"
 ---
 
 ## Overview {#overview}
