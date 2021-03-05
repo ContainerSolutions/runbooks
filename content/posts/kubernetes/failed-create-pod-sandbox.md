@@ -64,9 +64,18 @@ Check the events of the pod:
 
 ### 2) Investigate the node the pod is meant to be scheduled on {#step-2}
 
-Describe pod and see what node the pod is meant to be running on:
+Describe pod and see what **node** the pod is meant to be running on:
 
     $ kubectl describe pod-xxx
+
+Ouput will start with something like this, look for the "Node: " part:
+
+```
+Name:         pod-xxx
+Namespace:    office-updates
+Priority:     0
+Node:         node-xxx
+```
 
 ### 3) Investigate the node {#step-3}
 
@@ -100,7 +109,7 @@ The solution was to remove the problematic node, see more details below.
 
 ### 1) Create Extra Node {#further-steps-1}
 
-You may need to create a new node before draining this node. Just check with `kubectl top nodes` to see if the nodes are highly utitlized or not. 
+You may need to create a new node before draining this node. Just check with `kubectl top nodes` to see if the nodes have extra capacity to schedule your drained pods.
 
 If you see you need an extra node before you drain the node, make sure to do so.
 
@@ -114,7 +123,11 @@ Once you are sure there is enough capacity amongst your remaining nodes to sched
 
 ### 3) Delete Problematic Node {#further-steps-3}
 
-Check once all schedules pods have been drained off of the node. Once done you can delete the node:
+Check once all scheduled pods have been drained off of the node. 
+
+    $ kubectl get nodes
+
+Once done you can delete the node:
 
     $ kubectl delete node node-xxx
 
@@ -122,7 +135,7 @@ Check once all schedules pods have been drained off of the node. Once done you c
 
 ## Owner {#owner}
 
-email
+[Cari Liebenberg](https://github.com/CariZa)
 
 [//]: # (REFERENCED DOCS)
 [//]: # (https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/)
