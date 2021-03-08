@@ -71,7 +71,7 @@ Ouput will start with something like this, look for the "Node: " part:
 
 ```
 Name:         pod-xxx
-Namespace:    office-updates
+Namespace:    namespace-xxx
 Priority:     0
 Node:         node-xxx
 ```
