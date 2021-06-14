@@ -11,7 +11,7 @@ While there are networking runbooks for general DNS failures [here]({{< relref "
 
 If you see issues on your pods where you fail to connect to cluster-internal or external services using their hostnames, then this runbook may help you.
 
-## Steps {#steps}
+## Initial Steps Overview {#initial-steps-overview}
 
 1) [Is this affecting all pods?](#step-1)
 
