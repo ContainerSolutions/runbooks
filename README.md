@@ -37,7 +37,7 @@ $ docker-compose up
 Alternatively, without docker compose:
 
 ```
-$ docker build -t runbooks-hugo
+$ docker build -t runbooks-hugo .
 ...
 $ docker run -v $PWD:/src -p 1313:1313 -d runbooks-hugo
 ```
