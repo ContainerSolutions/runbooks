@@ -31,7 +31,15 @@ git clone --recursive git@github.com:ContainerSolutions/runbooks.git
 If you have docker compose installed you can simply call and you should see the blog at http://localhost:1313/runbooks/
 
 ```
-docker-compose up
+$ docker-compose up
+```
+
+Alternatively, without docker compose:
+
+```
+$ docker build -t runbooks-hugo
+...
+$ docker run -v $PWD:/src -p 1313:1313 -d runbooks-hugo
 ```
 
 #### Local Install (runs really fast)
