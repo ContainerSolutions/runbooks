@@ -3,7 +3,7 @@
 FROM alpine:3.11@sha256:9a839e63dad54c3a6d1834e29692c8492d93f90c59c978c1ed79109ea4fb9a54
 
 # config
-ENV HUGO_VERSION=0.71.0
+ENV HUGO_VERSION=0.83.1
 ENV HUGO_TYPE=_extended
 ENV HUGO_DOWNLOAD="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo${HUGO_TYPE}_${HUGO_VERSION}_Linux-64bit.tar.gz"
 
