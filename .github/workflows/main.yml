@@ -15,5 +15,5 @@ jobs:
       uses: ContainerSolutions/gh-actions-hugo-deploy-gh-pages@master
       env:
         GIT_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
-        HUGO_VERSION: "0.71.0"
+        HUGO_VERSION: "0.83.1"
         GITHUB_ACTOR: ianmiell
