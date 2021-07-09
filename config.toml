@@ -68,3 +68,11 @@ weight = 70
 identifier = "how-to"
 url = "/posts/how-to/"
 permalink = "/posts/how-to"
+
+[[menu.main]]
+name = "Go"
+parent = "navmenu"
+weight = 80
+identifier = "golang"
+url = "/posts/golang/"
+permalink = "/posts/golang"
