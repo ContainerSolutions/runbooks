@@ -45,7 +45,7 @@ func main() {
 Instead, we can use `make` to initialize a map of the specified type. We're then free to set and retrieve key:value pairs in the map as usual.
 
 ### 2) Nested maps {#step-2}
-If you are trying to use a map within another map things an be more complicated, but the same principles remain in that `make` is required to initialize a map.
+If you are trying to use a map within another map, for example when building JSON-like data, things can become more complicated, but the same principles remain in that `make` is required to initialize a map.
 ``` golang
 func main() {
 	myMap := make(map[string]map[string]int)
@@ -62,7 +62,7 @@ func main() {
 $ go run main.go
 map[Cows:10 Dogs:2]
 ```
-This kind of structure may be better realised by using structs - for an example check [Solution A](#solution-a).
+This kind of structure may be better realised by using [structs](https://gobyexample.com/structs) or the Go [JSON package](https://blog.golang.org/json).
 
 ## Solutions List {#solutions-list}
 
@@ -70,38 +70,7 @@ A) [Solution](#solution-a)
 
 ## Solutions Detail {#solutions-detail}
 
-### Solution using structs {#solution-a}
-``` golang
-type Zoo struct {
-	Mammals []Animal
-	Birds   []Animal
-}
-
-type Animal struct {
-	Name   string
-	Number int
-}
-
-func main() {
-	zoo := Zoo{}
-	zoo.Mammals = []Animal{
-		{"Cow", 10},
-		{"Dog", 2},
-	}
-
-	zoo.Birds = []Animal{
-		{"Toucan", 5},
-		{"Emu", 4},
-	}
-
-	fmt.Println(zoo.Mammals)
-}
-```
-Though there are situations where nesting maps is the right way to go, the example given here should (hopefully) be easier to understand, and provides more flexibility and ease of access for this particular use case. As evidences  
-```
-go run main.go
-[{Cow 10} {Dog 2}]
-```
+### Solu {#solution-a}
 
 ## Check Resolution {#check-resolution}
 
@@ -117,6 +86,9 @@ go run main.go
 
 email
 
-- [Gotcha assignment](https://yourbasic.org/golang/gotcha-assignment-entry-nil-map/)
-https://stackoverflow.com/questions/35379378/go-assignment-to-entry-in-nil-map
-https://stackoverflow.com/questions/27267900/runtime-error-assignment-to-entry-in-nil-map
+
+
+[//]: # (REFERENCED DOCS)
+[//]: # (https://yourbasic.org/golang/gotcha-assignment-entry-nil-map/)
+[//]: # (https://stackoverflow.com/questions/35379378/go-assignment-to-entry-in-nil-map)
+[//]: # (https://stackoverflow.com/questions/27267900/runtime-error-assignment-to-entry-in-nil-map)
