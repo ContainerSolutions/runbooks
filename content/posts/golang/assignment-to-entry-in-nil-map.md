@@ -15,13 +15,12 @@ This panic occurs when you fail to initialize a map properly
 
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) [Step 1](#step-1)
-
-2) [Another step](#step-2)
+1) [Check the declaration of the map](#step-1)
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Use 'make' to initialize the map {#step-1}
+### 1) Check the declaration of the map 
+If necessary, use the error information to locate the map causing the issue, then find where this map is first declared, which may be as below:
 ``` golang
 func main() {
 	var agesMap map[string]int
@@ -31,11 +30,21 @@ func main() {
 	fmt.Println(agesMap["Amanda"])
 }
 ```
-The block of code above specifies the type of map we want (`string: int`), but doesn't actually create a map for us to use. This will cause a panic when we try to access values in the map.
+The block of code above specifies the kind of map we want (`string: int`), but doesn't actually create a map for us to use. This will cause a panic when we try to assign values to the map. Instead you should use the `make` keyword as outlined in [Solution A](#solution-a). If you are trying to create a series of nested maps (a map similar to a JSON structure, for example), see [Solution B](#solution-b).
+
+## Solutions List {#solutions-list}
+
+A) [Use 'make' to initialize the map](#solution-a)
+
+B) [Nested maps](#solution-b)
+
+## Solutions Detail {#solutions-detail}
+
+### A) Use 'make' to initialize the map {#solution-a}
 
 ``` golang 
 func main() {
-	agesMap := make(map[string]int)
+	var agesMap = make(map[string]int)
 
 	agesMap["Amanda"] = 25
 
@@ -44,7 +53,7 @@ func main() {
 ```
 Instead, we can use `make` to initialize a map of the specified type. We're then free to set and retrieve key:value pairs in the map as usual.
 
-### 2) Nested maps {#step-2}
+### B) Nested Maps {#solution-b}
 If you are trying to use a map within another map, for example when building JSON-like data, things can become more complicated, but the same principles remain in that `make` is required to initialize a map.
 ``` golang
 func main() {
@@ -62,33 +71,37 @@ func main() {
 $ go run main.go
 map[Cows:10 Dogs:2]
 ```
-This kind of structure may be better realised by using [structs](https://gobyexample.com/structs) or the Go [JSON package](https://blog.golang.org/json).
-
-## Solutions List {#solutions-list}
-
-A) [Solution](#solution-a)
-
-## Solutions Detail {#solutions-detail}
-
-### Solu {#solution-a}
-
-## Check Resolution {#check-resolution}
+For a more convenient way to work with this kind of nested structure see [Further Step 1](#further-steps-1). It may also be worth considering using [Go structs](https://gobyexample.com/structs) or the [Go JSON package](https://blog.golang.org/json).
 
 ## Further Steps {#further-steps}
+1) [Use composite literals to create map in-line ](#further-steps-1)
 
-1) [Further Step 1](#further-steps-1)
+### 1) Use composite literals to create map in-line {#further-steps-1}
+Using a composite literal we can skip having to use the `make` keyword and reduce the required number of lines of code. 
+```golang
+func main() {
+	myMap := map[string]map[string]int{
+		"Reptiles": {
+			"Geckos":          5,
+			"Bearded Dragons": 2,
+		},
+		"Amphibians": {
+			"Tree Frogs":  10,
+			"Salamanders": 4,
+		},
+	}
+	fmt.Println(myMap)
+}
 
-### Further Step 1 {#further-steps-1}
+```
 
 ## Further Information {#further-information}
 
+https://yourbasic.org/golang/gotcha-assignment-entry-nil-map/
+https://stackoverflow.com/questions/35379378/go-assignment-to-entry-in-nil-map
+https://stackoverflow.com/questions/27267900/runtime-error-assignment-to-entry-in-nil-map
+
 ## Owner {#owner}
 
-email
+[Joey](https://github.com/jabray5)
 
-
-
-[//]: # (REFERENCED DOCS)
-[//]: # (https://yourbasic.org/golang/gotcha-assignment-entry-nil-map/)
-[//]: # (https://stackoverflow.com/questions/35379378/go-assignment-to-entry-in-nil-map)
-[//]: # (https://stackoverflow.com/questions/27267900/runtime-error-assignment-to-entry-in-nil-map)
