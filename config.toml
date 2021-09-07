@@ -8,6 +8,7 @@ enableGitInfo = "true"
 
 [params]
 showFooterCredits = false
+math = false
 
 [frontmatter]
 date = [":git", "lastmod", "date", "publishDate"]
