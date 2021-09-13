@@ -13,17 +13,23 @@ panic: runtime error: invalid memory address or nil pointer dereference
 
 This issue happens when you reference an unassigned (nil) pointer.
 
+Go uses an asterisk `*` to specify a pointer to a variable, and an ampersand `&` to generate a pointer to a given variable. For example:
+
+* `var p *int` - p is a pointer to a type integer
+* `p := &i` - p is a pointer to variable i
+
 ## Initial Steps Overview {#initial-steps-overview}
 
-1) [Assign a variable to the pointer](#step-1)
+1) [Check if the pointer is being set](#step-1)
 
-2) [Use a direct reference instead of a pointer](#step-2)
-
-3) [Check for nil assignments being made to pointers](#step-3)
+2) [Check for a nil assignment to the pointer](#step-2)
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Assign a variable to the pointer {#step-1}
+### 1) Check if the pointer is being set {#step-1}
+
+Before a pointer can be referenced, it needs to have something assigned to it. 
+
 ```golang
 type person struct {
 	Name string
@@ -31,8 +37,8 @@ type person struct {
 }
 
 func main() {
-	var joey *person
-	fmt.Println(joey.Name)
+	var myPointer *person
+	fmt.Println(myPointer.Name)
 }
 ```
 ```
@@ -40,129 +46,140 @@ $ go run main.go
 panic: runtime error: invalid memory address or nil pointer dereference
 [signal SIGSEGV: segmentation violation code=0x1 addr=0x0 pc=0x497783]
 ```
-Here we use the `*` to declare `joey` as a pointer to a variable of type `person`. When trying to access joey.Name, Go will panic when it finds the pointer doesn't currently point to anything (it is a `nil pointer`).
 
+The above code causes Go to panic because, while `myPointer` has been declared as a pointer to a `person` object, it currently does not point to a particular instance of such an object. This can be solved by assigning a variable to the pointer [(Solution A)](#solution-a) or by creating and referencing a new object [(Solution B)](#solution-b).
 
-```golang
-func main() 
-	var aPerson = person{
-		Name: "Joey",
-		Age:  29,
-	}
+### 2) Check for a nil assignment to the pointer {#step-2}
 
-	var joey *person
-	joey = &aPerson
+Another possibility is that the pointer is being set to `nil` somewhere in your code. This could be, for example, a function returning `nil` after failing to accomplish a task.
 
-	fmt.Println(joey.Name)
-}
-```
-To solve this, we need to tell the pointer what to point to. Here the variable `aPerson` already exists, and is of type `person`, so we can use the Go `&` operator to get this variable's reference (location in memory) and assign it to the pointer. Importantly, both `joey` and `aPerson` now point to the same variable, and modifications made to either one will also be present on the other.
-
-```golang
-func main() 
-	var joey *person
-	joey = &aPerson
-
-	aPerson.Name = "Pete"
-
-	fmt.Println(joey.Name) // This will print "Pete"!
-}
-```
-
-### 2) Create a new variable {#step-2}
-
-Depending on your use case it might be better to use a new varaible and skip using a pointer to an existing one. 
-
-```golang
-func main() {
-	var joey = person{}
-	joey.Name = "Joey"
-	fmt.Println(joey.Name)
-}
-```
-This creates a new variable of type `person`, assigns it to the name `joey`. We can then access joey.Name to update the name value.
-```golang
-func main() {
-	joey := person{
-		Name: "Joey",
-		Age:  29,
-	}
-	fmt.Println(joey.Name)
-}
-```
-This can be further simplified by:
-* using Go's quick assignemnt `:=` syntax
-* populating the fields of our struct in the same expression
-
-### 3) Check for nil assignments being made to pointers {#step-3}
 ``` golang
-type AnswerObject struct {
-	answer bool
+type NumberObject struct {
 	number int
 }
 
-func isFortyTwo(number int) (result *AnswerObject) {
-	// Returns a pointer to an AnswerObject if the function is called with 42,
-	// otherwise returns nil
-	if number == 42 {
-		answerObject := AnswerObject{true, 42}
-		return &answerObject
+func createNumberObj(num int) (result *NumberObject) {
+	// Returns a pointer to a NumberObject if the number is allowed, otherwise returns nil
+	if num < 100 {
+		numberObj := NumberObject{num}
+		return &numberObj // Returns a reference to the new object
 	} else {
 		return nil
 	}
 }
 
 func main() {
-	result := isFortyTwo(12)
-	fmt.Println(result.answer)
+	myNumberObject := createNumberObject(101)
+	fmt.Println(myNumberObject.number) // This will cause Go to panic!
 }
 ```
-Here a variable of type AnswerObject is only created in the event that certain conditions are met. A pointer is returned by the function either way, but the `main()` function is not prepared to handle the `nil` pointer that is returned in the `else` block, which will cause Go to panic. For a simple way to fix this problem as it occurs here, check out  [Solution A](#solution-a).
+Here a `NumberObject` is created only if the input is less than 100. A pointer is returned by the function either way, but the `main()` function is not prepared to handle the `nil` pointer that is returned if the conditions aren't met, causing Go to panic. It would be best to handle this issue by either handling the nil pointer as demonstrated in [Solution B](#solution-b), or by creaing and referencing an empty object as per [Solution C](#solution-c).
 
 ## Solutions List {#solutions-list}
 
-A) [Initialize an empty struct](#solution-a)
+A) [Assign a variable to the pointer](#solution-a)
+
+B) [Handle the nil pointer](#solution-b)
+
+C) [Create and reference a new variable](#solution-c)
 
 ## Solutions Detail {#solutions-detail}
 
-### A) Initialize an empty struct {#solution-a}
+### A) Assign a variable to the pointer{#solution-a}
+
 ```golang
-func isFortyTwo(number int) (result *AnswerObject) {
-	// Returns a reference to an AnswerObject.
-	// If the function is called with 42, sets result.answer to true
-	// otherwise returns blank AnswerObject
-	answerObject := AnswerObject{}
-	if number == 42 {
-		answerObject.answer = true
-		answerObject.number = 42
+type Person struct{
+	Name string
+	Age int
+}
+
+func main() 
+	var myPointer *Person // This is currently a nil pointer
+
+	aPerson := Person{
+		Name: "Joey",
+		Age:  29,
+	} // This is a Person object
+	
+	myPointer = &aPerson // Now the pointer references the same Person as 'aPerson'
+
+	fmt.Println(joey.Name)
+}
+```
+Here the variable `aPerson` is created, after which we can use the Go `&` syntax to get this variable's reference (location in memory) and assign it to `myPointer`. Importantly, both `myPointer` and `aPerson` now point to the same variable in memory, and modifications made to either will apply to both.
+
+```golang
+func main() 
+	var myPointer *person
+	myPointer = &anotherPerson
+
+	anotherPerson.Name = "Pete"
+
+	fmt.Println(myPointer.Name) // This will print "Pete"!
+}
+```
+
+### B) Handle the nil pointer{#solution-b}
+
+Going back to the code used in [Step 2](#step-2), we can expand this to check for and 'handle' a nil value before the code continues.
+
+``` golang
+type NumberObject struct {
+	number int
+}
+
+func createNumberObj(num int) (result *NumberObject) {
+	// Returns a pointer to a NumberObject if the number is allowed, otherwise returns nil
+	if num < 100 {
+		numberObj := NumberObject{num}
+		return &numberObj // Returns a reference to the new object
+	} else {
+		return nil
 	}
-	return &answerObject
 }
 
 func main() {
-	result := isFortyTwo(12)
-	fmt.Println(result.answer, result.number)
+	myNumberObject := createNumberObject(101)
+
+	if myNumberObject == nil {
+		log.Fatal("Failed to create number object!")
+	}
+
+	fmt.Println(myNumberObject.number) // This line is not reached if num >= 100!
 }
 ```
-This could be done in a number of ways - both inside and outside the function - but a simple solution in this case would be to declare the `answerObject` before any conditions are checked. That way the pointer being returned will reference an empty struct, rather than nothing. 
 
-You might wonder if trying to print the values `.answer` and `.number` of the empty struct would cause a similar error, but these values are actually initialised at their 'zero' values when the struct is instantiated. In this case, the program prints:
+There are several ways this situation could be handled; in this particular instance the `log.Fatal` function will terminate the program if myNumberObject is a nil pointer. Another option would be to return an error in the `createNumberObj` function informing the user that the inputted number was too high. A further option, and one which would allow the program to continute executing, would be to create and reference a new variable, as seen in [Solution C](#solution-c).
 
+### C) Create and reference a new variable{#solution-c}
+``` golang
+type NumberObject struct {
+	number int
+}
+
+func createNumberObj(num int) (result *NumberObject) {
+	numberObj := NumberObject{} // Creates a new, empty NumberObject
+	if num < 100 {
+		numberObj.number = num
+	}
+	return &numberObj // Returns a reference to the new object
+}
+
+func main() {
+	myNumberObject := createNumberObject(101)
+
+	fmt.Println(myNumberObject.number) // Will print 0 instead of causing a panic!
+}
 ```
-$ go run main.go
-false 0
-```
 
-## Check Resolution {#check-resolution}
-
-## Further Steps {#further-steps}
-
-1) [Further Step 1](#further-steps-1)
-
-### Further Step 1 {#further-steps-1}
+Here we have restructured the program to first create a new variable, and then edit the properties of this object as the program executes, removing the risk of the function returning a nil pointer. In the event it is not explicitly set, the value of `NumberObject.number` will default to 0, rather than nil as you might expect - this is because Go has default 'zero values' for all it's types, which you can read more about [here](https://yourbasic.org/golang/default-zero-value/).
 
 ## Further Information {#further-information}
-https://stackoverflow.com/questions/16280176/go-panic-runtime-error-invalid-memory-address-or-nil-pointer-dereference
+[Gotcha Nil Pointer Dereference](https://yourbasic.org/golang/gotcha-nil-pointer-dereference/)
+
+[Golang default zero values](https://yourbasic.org/golang/default-zero-value/)
+
+[Go Pointers](https://tour.golang.org/moretypes/1)
 
 ## Owner {#owner}
 
