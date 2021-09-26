@@ -1,6 +1,6 @@
 ---
 title: "Invalid Memory Address or Nil Pointer Dereference"
-summary: "Invalid Memory Address or Nil Pointer Dereference"
+summary: "panic: runtime error: invalid memory address or nil pointer dereference"
 ---
 
 ## Overview {#overview}
@@ -183,4 +183,3 @@ Here we have restructured the program to first create a new variable, and then e
 ## Owner {#owner}
 
 [Joey](https://github.com/jabray5)
-

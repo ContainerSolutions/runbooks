@@ -1,6 +1,6 @@
 ---
 title: "Assignment to Entry in Nil Map"
-summary: "Summary here"
+summary: "panic: assignment to entry in nil map"
 ---
 
 ## Overview {#overview}
@@ -10,7 +10,7 @@ Example error:
 $ go run main.go
 panic: assignment to entry in nil map
 ```
-This panic occurs when you fail to initialize a map properly
+This panic occurs when you fail to initialize a map properly.
 
 ## Initial Steps Overview {#initial-steps-overview}
 
@@ -91,7 +91,6 @@ func main() {
 	}
 	fmt.Println(myMap)
 }
-
 ```
 
 ## Further Information {#further-information}
@@ -103,4 +102,3 @@ https://stackoverflow.com/questions/27267900/runtime-error-assignment-to-entry-i
 ## Owner {#owner}
 
 [Joey](https://github.com/jabray5)
-
