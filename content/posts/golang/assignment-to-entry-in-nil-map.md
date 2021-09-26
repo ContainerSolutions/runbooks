@@ -1,7 +1,6 @@
 ---
 title: "Assignment to Entry in Nil Map"
 summary: "Summary here"
-draft: true
 ---
 
 ## Overview {#overview}
@@ -19,7 +18,7 @@ This panic occurs when you fail to initialize a map properly
 
 ## Detailed Steps {#detailed-steps}
 
-### 1) Check the declaration of the map 
+### 1) Check the declaration of the map
 If necessary, use the error information to locate the map causing the issue, then find where this map is first declared, which may be as below:
 ``` golang
 func main() {
@@ -42,7 +41,7 @@ B) [Nested maps](#solution-b)
 
 ### A) Use 'make' to initialize the map {#solution-a}
 
-``` golang 
+``` golang
 func main() {
 	var agesMap = make(map[string]int)
 
@@ -77,7 +76,7 @@ For a more convenient way to work with this kind of nested structure see [Furthe
 1) [Use composite literals to create map in-line ](#further-steps-1)
 
 ### 1) Use composite literals to create map in-line {#further-steps-1}
-Using a composite literal we can skip having to use the `make` keyword and reduce the required number of lines of code. 
+Using a composite literal we can skip having to use the `make` keyword and reduce the required number of lines of code.
 ```golang
 func main() {
 	myMap := map[string]map[string]int{

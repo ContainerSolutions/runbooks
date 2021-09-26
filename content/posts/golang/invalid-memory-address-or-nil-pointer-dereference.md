@@ -1,7 +1,6 @@
 ---
 title: "Invalid Memory Address or Nil Pointer Dereference"
-summary: "Summary here"
-draft: true
+summary: "Invalid Memory Address or Nil Pointer Dereference"
 ---
 
 ## Overview {#overview}
@@ -28,7 +27,7 @@ Go uses an asterisk `*` to specify a pointer to a variable, and an ampersand `&`
 
 ### 1) Check if the pointer is being set {#step-1}
 
-Before a pointer can be referenced, it needs to have something assigned to it. 
+Before a pointer can be referenced, it needs to have something assigned to it.
 
 ```golang
 type person struct {
@@ -93,14 +92,14 @@ type Person struct{
 	Age int
 }
 
-func main() 
+func main()
 	var myPointer *Person // This is currently a nil pointer
 
 	aPerson := Person{
 		Name: "Joey",
 		Age:  29,
 	} // This is a Person object
-	
+
 	myPointer = &aPerson // Now the pointer references the same Person as 'aPerson'
 
 	fmt.Println(joey.Name)
@@ -109,7 +108,7 @@ func main()
 Here the variable `aPerson` is created, after which we can use the Go `&` syntax to get this variable's reference (location in memory) and assign it to `myPointer`. Importantly, both `myPointer` and `aPerson` now point to the same variable in memory, and modifications made to either will apply to both.
 
 ```golang
-func main() 
+func main()
 	var myPointer *person
 	myPointer = &anotherPerson
 

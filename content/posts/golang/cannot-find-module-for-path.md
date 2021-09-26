@@ -1,7 +1,6 @@
 ---
 title: "Cannot Find Module for Path"
-summary: "Summary here"
-draft: true
+summary: "Cannot Find Module for Path"
 ---
 
 ## Overview {#overview}
@@ -109,12 +108,12 @@ Your code will then build while allowing modules to be imported locally.
 1) [Tell Go to use a local module](#further-steps-1)
 
 ### 1) Tell Go to use a local module {#further-steps-1}
-Within your go.mod file for your working project you can now require a module using its URL to use within this project. The module to be imported also requires its own go.mod file, so if this is a local module you'll need to create this in the same way. 
+Within your go.mod file for your working project you can now require a module using its URL to use within this project. The module to be imported also requires its own go.mod file, so if this is a local module you'll need to create this in the same way.
 
 If the module you want to import is not published to the internet, you can use the 'replace' syntax to tell Go where to find it on your local machine instead instead.
 
 Your go.mod file would then look something like this:
-``` 
+```
 module example.com/your-module-name
 
 go 1.16
