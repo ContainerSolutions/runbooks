@@ -160,6 +160,7 @@ You should no longer receive the error about being given more positional argumen
 * [Class methods vs static methods](https://www.geeksforgeeks.org/class-method-vs-static-method-python/)
 * [Static methods](https://docs.python.org/3/library/functions.html#staticmethod)
 * [Class methods](https://docs.python.org/3/library/functions.html#classmethod)
+* [Class in Python](https://www.scaler.com/topics/python/class-in-python/)
 
 ## Authors {#authors}
 
