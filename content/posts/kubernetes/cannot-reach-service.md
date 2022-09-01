@@ -33,7 +33,8 @@ If you are unable to make a web request via the cluster to the service, then thi
 ## Initial Steps Overview {#initial-steps-overview}
 
 1) [Ensure that the service is running](#step-1)
-
+<!-- can these be removed until we have a corresponding
+detailed step? 
 2) [Is this affecting all host lookups?](#step-2)
 
 3) [Is the issue steady or intermittent?](#step-3)
@@ -53,6 +54,7 @@ If you are unable to make a web request via the cluster to the service, then thi
 10) [Network blocked?](#step-10)
 
 11) [On AWS?](#step-11)
+-->
 
 ## Detailed Steps {#detailed-steps}
 
