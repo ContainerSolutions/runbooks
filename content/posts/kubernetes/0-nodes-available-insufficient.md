@@ -111,7 +111,6 @@ Allocated resources:
 
 You should be able to compare these to the resources you requested to determine why your request was not met, and choose where to [autoscale](#solution-a) or [provision a larger node](#solution-b) accordingly.
 
-[Link to Solution A](#solution-a)
 
 ## Solutions List {#solutions-list}
 
