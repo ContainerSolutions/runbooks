@@ -9,6 +9,8 @@ jobs:
   hugo-deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
+    - run: git config --global --add safe.directory /github/workspace
+      shell: bash
     - uses: actions/checkout@master
     - name: hugo-deploy-gh-pages
       uses: ContainerSolutions/gh-actions-hugo-deploy-gh-pages@master
