@@ -61,9 +61,7 @@ Warning  Failed                 8s (x3 over 22s)  kubelet, nginx-7ef9efa7cd-qasd
 ```
 
 then starting command might not be available on the image. Correct the container start command - or the image's contents - accordingly. See the [CrashLoopBackOff runbook]({{< relref "crashloopbackoff.md#solution-c" >}}) solution C.
-<!-- can this be removed? 
 [//]: # (https://bugzilla.redhat.com/show_bug.cgi?id=1537478 DONE)
--->
 
 #### 2.3) If you see `container name [...] already in use by container`
 
