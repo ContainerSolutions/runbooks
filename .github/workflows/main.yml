@@ -5,7 +5,6 @@ on:
     branches:
       - master
       - gc/test-action-v2
-
 jobs:
   hugo-deploy-gh-pages:
     runs-on: ubuntu-latest
