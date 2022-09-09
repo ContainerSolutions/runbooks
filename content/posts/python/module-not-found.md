@@ -132,7 +132,7 @@ If so, you may need to more carefully qualify your module import. See [here](htt
 
 If you have `PYTHONPATH` set in your environment, or are adding to your `sys.path` within your code or configuration, you may be falling victim to this trap, which can cause havoc with relative imports and the like. See [here](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html#the-double-import-trap) for more background.
 
-### 7) Virtualenv activated? {#step-7}
+### 7) Virtualenv activated? {#step-6}
 
 If your python code runs in a [virtualenv](https://docs.python.org/3/tutorial/venv.html), you may need to activate it for this error to be resolved. See [solution A](#solution-a) for more on this.
 
