@@ -1,4 +1,4 @@
-baseURL = "https://containersolutions.github.io/runbook/"
+baseURL = "https://containersolutions.github.io/runbooks/"
 languageCode = "en-us"
 title = "Runbooks"
 theme = ["hugo-debugprint", "hugo-primer-cs"]
