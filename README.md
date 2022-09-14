@@ -92,4 +92,3 @@ Then git add, commit, raise PR as normal.
 ## License
 
 See [LICENSE](LICENSE)
-
