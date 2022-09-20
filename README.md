@@ -6,7 +6,7 @@
 
 - We don't want a one-off fix, we want to deepen our understanding of the problem space
 
-- We want to give people a resource where they can benefit from our experience without taking up our time
+- We want to give people a resource where they can benefit from our experience in a scalable way
 
 ## What
 
