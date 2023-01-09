@@ -123,7 +123,7 @@ B) [Provision appropriately-sized nodes](#solution-b)
 
 ### A) Set up autoscaling {#solution-a}
 
-The details of this will vary depending on your platform, but in general the principle is that you have legitimately used up all your resources, and you ened more nodes to take the load.
+The details of this will vary depending on your platform, but in general the principle is that you have legitimately used up all your resources, and you need more nodes to take the load.
 
 Note this solution will not work if:
 
