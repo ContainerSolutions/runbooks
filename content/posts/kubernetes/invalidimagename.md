@@ -58,7 +58,7 @@ A) [Review the image reference](#solution-a)
 
 ### A) Add credentials {#solution-a}
 
-Review the container image reference in your manifest. The container image has to parts, the image name and the image tag. You can include a container registry hostname and the port as well. Protocols like `http://`, `ssh://`, `docker://` are not allowed and can lead to this issue. The container image tag consists of lowercase and uppercase letters, digits, underscores, periods and dashes, any other symbol can cause this issue to appear.
+Review the container image reference in your manifest. The container image has two parts, the image name and the image tag. You can include a container registry hostname and the port as well. Protocols like `http://`, `ssh://`, `docker://` are not allowed and can lead to this issue. The container image tag consists of lowercase and uppercase letters, digits, underscores, periods and dashes, any other symbol can cause this issue to appear.
 
 ## Check Resolution {#check-resolution}
 
