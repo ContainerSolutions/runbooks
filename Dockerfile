@@ -16,7 +16,7 @@ RUN apk add --no-cache \
   libc6-compat \
   libstdc++ \
   # Needed for getting post update dates out of git commits
-  git
+  git && git config --global --add safe.directory /src
 
 # Install Hugo
 RUN mkdir -p /tmp/hugo \
@@ -26,4 +26,4 @@ RUN mkdir -p /tmp/hugo \
 
 WORKDIR /src
 
-CMD ["/src/docker/hugo_serve.sh"]
+CMD ["/usr/sbin/hugo", "server", "--buildDrafts", "--bind=0.0.0.0"]
