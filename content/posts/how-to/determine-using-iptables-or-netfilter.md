@@ -28,7 +28,7 @@ lsmod | grep -wi iptables
 If this command generates any output, then NetFilter is in effect on the system:
 
 ```shell
-lsmod | grep -i netfilter
+lsmod | grep -i nf_tables
 ```
 
 ### 2) Run `iptables-save` {#step-2}
