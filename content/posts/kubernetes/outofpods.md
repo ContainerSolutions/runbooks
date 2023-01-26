@@ -58,7 +58,7 @@ A) [Increase the kubelet maxPods](#solution-a)
 
 Kubelet has a 110 pods default value for the maxPods attribute. This means that each kubelet can run up to 110 pods.
 
-To change the default value you can check if the kubelet service has a KubeletConfiguration specified. To find that out you can execute the following command on your node:
+To change the default value you need administration permission on the cluster. To do so, it is required to verify if the kubelet service has a KubeletConfiguration specified. To find that out you can execute the following command on the same node as the pod has been scheduled:
 
 ```bash
 systemctl show kubelet | grep -e "--config"
