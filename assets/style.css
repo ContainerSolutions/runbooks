@@ -1,0 +1,100 @@
+/* custom css here */
+html,
+body {
+  height: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
+#holy {
+  display: grid;
+  /* auto: as wide as its content
+   * fr: all available space */
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "main side"
+    "footer side";
+}
+#header {
+  grid-area: header;
+}
+#main {
+  grid-area: main;
+  max-width: 782px;
+}
+#side {
+  grid-area: side;
+  width: 230px;
+}
+#footer {
+  grid-area: footer;
+}
+aside {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  display: block;
+  overflow-y: auto;
+}
+
+/* Menu */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.dropdown:hover .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+}
+.dropdown-content:hover {
+  visibility: visible;
+  opacity: 1;
+}
+.dropdown-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease;
+  top: 55px;
+  right: 0;
+  white-space: nowrap;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* TOC */
+#toc {
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+}
+#toc * {
+  list-style: none;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#toc ul {
+  padding-left: 0.8rem;
+}
+#toc li {
+  margin-top: 0.3rem;
+}
+
+@media screen and (max-width: 1012px) {
+  #holy {
+    display: block;
+  }
+  #header {
+  }
+  #main {
+    max-width: 1012px;
+  }
+  #side {
+    display: none;
+  }
+}
