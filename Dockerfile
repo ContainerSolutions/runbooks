@@ -1,6 +1,6 @@
 # You're probably wondering why I didn't just use klakegg/hugo:0.71.0-ext-alpine
 # Well that "Truly minimal" image is 552 MB. This one is 70.6 MB
-FROM alpine:3.17@sha256:f271e74b17ced29b915d351685fd4644785c6d1559dd1f2d4189a5e851ef753a
+FROM alpine:3.17@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a
 
 # config
 ENV HUGO_VERSION=0.84.1
